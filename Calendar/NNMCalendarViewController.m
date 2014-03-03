@@ -49,7 +49,6 @@
 
   self.calendarView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
   self.calendarView.backgroundColor = [UIColor calendarBackgroundGreenColor];
-  self.calendarView.contentInset = UIEdgeInsetsMake(300.0f, 0, 0, 0);
   self.calendarView.dataSource = self;
   [self.view addSubview:self.calendarView];
 
@@ -62,8 +61,6 @@
   // Schedule View
 
   CGRect scheduleFrame = self.view.bounds;
-  scheduleFrame.origin.y = -300.0f;
-  scheduleFrame.size.height = 300.0f;
 
   self.scheduleView = [[UITableView alloc] initWithFrame:scheduleFrame style:UITableViewStyleGrouped];
   self.scheduleView.dataSource = self;
@@ -72,6 +69,13 @@
   [self.calendarView addSubview:self.scheduleView];
 
   [self.scheduleView registerClass:[UITableViewCell class] forCellReuseIdentifier:[UITableViewCell reuseIdentifier]];
+
+  [self.scheduleView reloadData];
+  scheduleFrame.origin.y = -self.scheduleView.contentSize.height;
+  scheduleFrame.size.height = self.scheduleView.contentSize.height;
+  self.scheduleView.frame = scheduleFrame;
+
+  self.calendarView.contentInset = UIEdgeInsetsMake(scheduleFrame.size.height, 0, 0, 0);
 }
 
 - (void)didReceiveMemoryWarning {
