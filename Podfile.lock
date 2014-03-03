@@ -1,0 +1,10 @@
+PODS:
+  - AXKCollectionViewTools (1.0.1)
+
+DEPENDENCIES:
+  - AXKCollectionViewTools (~> 1.0)
+
+SPEC CHECKSUMS:
+  AXKCollectionViewTools: b2a4f8a3cbd3482c86221f24c0e8cbe5b7a7004a
+
+COCOAPODS: 0.29.0
