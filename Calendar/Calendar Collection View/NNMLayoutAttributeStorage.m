@@ -42,10 +42,6 @@
   else {
     [self.storage[attributes.indexPath.section] replaceObjectAtIndex:attributes.indexPath.item withObject:attributes];
   }
-
-  NSAssert(self.storage[attributes.indexPath.section][attributes.indexPath.item] == attributes,
-           @"Stored layout attributes %@ but storage says it has %@ instead",
-           attributes, self.storage[attributes.indexPath.section][attributes.indexPath.item]);
 }
 
 #pragma mark - Querying Attributes
