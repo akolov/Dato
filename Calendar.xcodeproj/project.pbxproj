@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3991F5BE7F840798732D22F /* libPods.a */; };
-		FA03E42A18C48B0700B2D7DC /* NNMLayoutAttributeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42918C48B0700B2D7DC /* NNMLayoutAttributeStorage.m */; };
 		FA03E42D18C4B2B200B2D7DC /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */; };
 		FAA81EDD18C3F81400CC3E8B /* UIView+Autolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA81EDC18C3F81400CC3E8B /* UIView+Autolayout.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
@@ -28,6 +27,7 @@
 		FAD294AB18C53F2F006932BF /* NNMCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A518C53F2F006932BF /* NNMCalendarHeaderView.m */; };
 		FAD294AC18C53F2F006932BF /* NNMCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A718C53F2F006932BF /* NNMCalendarLayout.m */; };
 		FAD294AD18C53F2F006932BF /* NNMCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A918C53F2F006932BF /* NNMCalendarViewCell.m */; };
+		FAD294B418C54B84006932BF /* NNMLayoutAttributeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B318C54B84006932BF /* NNMLayoutAttributeStorage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +43,6 @@
 /* Begin PBXFileReference section */
 		33A9D995AEFF4ED7A752DED3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F3991F5BE7F840798732D22F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA03E42818C48B0700B2D7DC /* NNMLayoutAttributeStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMLayoutAttributeStorage.h; sourceTree = "<group>"; };
-		FA03E42918C48B0700B2D7DC /* NNMLayoutAttributeStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMLayoutAttributeStorage.m; sourceTree = "<group>"; };
 		FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
 		FAA81EDB18C3F81400CC3E8B /* UIView+Autolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Autolayout.h"; sourceTree = "<group>"; };
@@ -76,6 +74,8 @@
 		FAD294A718C53F2F006932BF /* NNMCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMCalendarLayout.m; sourceTree = "<group>"; };
 		FAD294A818C53F2F006932BF /* NNMCalendarViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMCalendarViewCell.h; sourceTree = "<group>"; };
 		FAD294A918C53F2F006932BF /* NNMCalendarViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMCalendarViewCell.m; sourceTree = "<group>"; };
+		FAD294B218C54B84006932BF /* NNMLayoutAttributeStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMLayoutAttributeStorage.h; sourceTree = "<group>"; };
+		FAD294B318C54B84006932BF /* NNMLayoutAttributeStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMLayoutAttributeStorage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +157,6 @@
 				FAA81EDE18C3F82F00CC3E8B /* NNMConfig.h */,
 				FAB4616A18AC5FEF006E9437 /* NNMCalendarViewController.h */,
 				FAB4616B18AC5FEF006E9437 /* NNMCalendarViewController.m */,
-				FA03E42818C48B0700B2D7DC /* NNMLayoutAttributeStorage.h */,
-				FA03E42918C48B0700B2D7DC /* NNMLayoutAttributeStorage.m */,
 				FAB4614C18AC5E74006E9437 /* Images.xcassets */,
 				FAB4614118AC5E74006E9437 /* Supporting Files */,
 			);
@@ -205,6 +203,8 @@
 				FAD294A718C53F2F006932BF /* NNMCalendarLayout.m */,
 				FAD294A818C53F2F006932BF /* NNMCalendarViewCell.h */,
 				FAD294A918C53F2F006932BF /* NNMCalendarViewCell.m */,
+				FAD294B218C54B84006932BF /* NNMLayoutAttributeStorage.h */,
+				FAD294B318C54B84006932BF /* NNMLayoutAttributeStorage.m */,
 			);
 			path = "Calendar Collection View";
 			sourceTree = "<group>";
@@ -347,10 +347,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD294B418C54B84006932BF /* NNMLayoutAttributeStorage.m in Sources */,
 				FAB4616C18AC5FEF006E9437 /* NNMCalendarViewController.m in Sources */,
 				FAD294AB18C53F2F006932BF /* NNMCalendarHeaderView.m in Sources */,
 				FA03E42D18C4B2B200B2D7DC /* UIColor+CustomColors.m in Sources */,
-				FA03E42A18C48B0700B2D7DC /* NNMLayoutAttributeStorage.m in Sources */,
 				FAD294AA18C53F2F006932BF /* NNMCalendarBackgroundView.m in Sources */,
 				FAD294AC18C53F2F006932BF /* NNMCalendarLayout.m in Sources */,
 				FAD294AD18C53F2F006932BF /* NNMCalendarViewCell.m in Sources */,
