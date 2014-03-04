@@ -21,7 +21,8 @@
   self = [super initWithFrame:frame];
   if (self) {
     self.textLabel = [UILabel autolayoutView];
-    self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.font = [UIFont systemFontOfSize:13.0f];
+    self.textLabel.textColor = [UIColor calendarTextGreenColor];
     [self addSubview:self.textLabel];
     [self pin:@[@"H:|-30.0-[textLabel]-(>=0)-|"] owner:self];
     [self.textLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];

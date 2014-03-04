@@ -22,4 +22,8 @@
   return [UIColor colorWithRed:0.723f green:0.853f blue:0.819f alpha:1.000f];
 }
 
++ (instancetype)calendarTextGreenColor {
+  return [UIColor colorWithRed:0.765f green:0.878f blue:0.851f alpha:1.000f];
+}
+
 @end

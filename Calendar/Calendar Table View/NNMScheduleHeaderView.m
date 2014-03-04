@@ -21,7 +21,8 @@
   self = [super initWithReuseIdentifier:reuseIdentifier];
   if (self) {
     self.titleLabel = [UILabel autolayoutView];
-    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    self.titleLabel.textColor = [UIColor calendarTextGreenColor];
     [self.contentView addSubview:self.titleLabel];
 
     [self pin:@[@"H:|-30.0-[titleLabel]"] owner:self];

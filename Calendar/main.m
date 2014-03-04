@@ -6,13 +6,12 @@
 //  Copyright (c) 2014 Noname. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "NNMAppDelegate.h"
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]) {
   @autoreleasepool {
-      return UIApplicationMain(argc, argv, nil, NSStringFromClass([NNMAppDelegate class]));
+    return UIApplicationMain(argc, argv, nil, NSStringFromClass([NNMAppDelegate class]));
   }
 }

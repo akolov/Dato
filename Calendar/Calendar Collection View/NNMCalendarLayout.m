@@ -35,7 +35,7 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
   self = [super init];
   if (self) {
     self.itemSize = CGSizeMake(320.0f / 7.0f, 320.0f / 7.0f);
-    self.headerReferenceSize = CGSizeMake(320.0f, 30.0f);
+    self.headerReferenceSize = CGSizeMake(320.0f, 35.0f);
     self.itemLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
     self.headerLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
     self.backgroundLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
