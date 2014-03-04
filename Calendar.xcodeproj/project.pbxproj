@@ -28,6 +28,9 @@
 		FAD294AC18C53F2F006932BF /* NNMCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A718C53F2F006932BF /* NNMCalendarLayout.m */; };
 		FAD294AD18C53F2F006932BF /* NNMCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A918C53F2F006932BF /* NNMCalendarViewCell.m */; };
 		FAD294B418C54B84006932BF /* NNMLayoutAttributeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B318C54B84006932BF /* NNMLayoutAttributeStorage.m */; };
+		FAD294B718C54EE8006932BF /* NSCalendar+STYHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B618C54EE8006932BF /* NSCalendar+STYHelpers.m */; };
+		FAD294BA18C5558F006932BF /* NNMScheduleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B918C5558F006932BF /* NNMScheduleViewCell.m */; };
+		FAD294BD18C558C8006932BF /* NNMScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294BC18C558C8006932BF /* NNMScheduleHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,12 @@
 		FAD294A918C53F2F006932BF /* NNMCalendarViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMCalendarViewCell.m; sourceTree = "<group>"; };
 		FAD294B218C54B84006932BF /* NNMLayoutAttributeStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMLayoutAttributeStorage.h; sourceTree = "<group>"; };
 		FAD294B318C54B84006932BF /* NNMLayoutAttributeStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMLayoutAttributeStorage.m; sourceTree = "<group>"; };
+		FAD294B518C54EE8006932BF /* NSCalendar+STYHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+STYHelpers.h"; sourceTree = "<group>"; };
+		FAD294B618C54EE8006932BF /* NSCalendar+STYHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+STYHelpers.m"; sourceTree = "<group>"; };
+		FAD294B818C5558F006932BF /* NNMScheduleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMScheduleViewCell.h; sourceTree = "<group>"; };
+		FAD294B918C5558F006932BF /* NNMScheduleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMScheduleViewCell.m; sourceTree = "<group>"; };
+		FAD294BB18C558C8006932BF /* NNMScheduleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMScheduleHeaderView.h; sourceTree = "<group>"; };
+		FAD294BC18C558C8006932BF /* NNMScheduleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMScheduleHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +119,8 @@
 				FAA81EDC18C3F81400CC3E8B /* UIView+Autolayout.m */,
 				FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */,
 				FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */,
+				FAD294B518C54EE8006932BF /* NSCalendar+STYHelpers.h */,
+				FAD294B618C54EE8006932BF /* NSCalendar+STYHelpers.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -212,6 +223,10 @@
 		FAD294AE18C54003006932BF /* Calendar Table View */ = {
 			isa = PBXGroup;
 			children = (
+				FAD294BB18C558C8006932BF /* NNMScheduleHeaderView.h */,
+				FAD294BC18C558C8006932BF /* NNMScheduleHeaderView.m */,
+				FAD294B818C5558F006932BF /* NNMScheduleViewCell.h */,
+				FAD294B918C5558F006932BF /* NNMScheduleViewCell.m */,
 			);
 			path = "Calendar Table View";
 			sourceTree = "<group>";
@@ -350,13 +365,16 @@
 				FAD294B418C54B84006932BF /* NNMLayoutAttributeStorage.m in Sources */,
 				FAB4616C18AC5FEF006E9437 /* NNMCalendarViewController.m in Sources */,
 				FAD294AB18C53F2F006932BF /* NNMCalendarHeaderView.m in Sources */,
+				FAD294BD18C558C8006932BF /* NNMScheduleHeaderView.m in Sources */,
 				FA03E42D18C4B2B200B2D7DC /* UIColor+CustomColors.m in Sources */,
 				FAD294AA18C53F2F006932BF /* NNMCalendarBackgroundView.m in Sources */,
 				FAD294AC18C53F2F006932BF /* NNMCalendarLayout.m in Sources */,
 				FAD294AD18C53F2F006932BF /* NNMCalendarViewCell.m in Sources */,
 				FAB4614B18AC5E74006E9437 /* NNMAppDelegate.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
+				FAD294BA18C5558F006932BF /* NNMScheduleViewCell.m in Sources */,
 				FAA81EDD18C3F81400CC3E8B /* UIView+Autolayout.m in Sources */,
+				FAD294B718C54EE8006932BF /* NSCalendar+STYHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

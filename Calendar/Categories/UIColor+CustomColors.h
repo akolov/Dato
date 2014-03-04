@@ -12,5 +12,6 @@
 
 + (instancetype)calendarGreenColor;
 + (instancetype)calendarBackgroundGreenColor;
++ (instancetype)calendarSeparatorGreenColor;
 
 @end

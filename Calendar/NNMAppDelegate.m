@@ -16,6 +16,8 @@
   NNMCalendarViewController *vc = [[NNMCalendarViewController alloc] init];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
 
+  [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
   self.window.rootViewController = navigation;

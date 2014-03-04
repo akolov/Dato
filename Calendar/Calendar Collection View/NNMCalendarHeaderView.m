@@ -23,7 +23,7 @@
     self.textLabel = [UILabel autolayoutView];
     self.textLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.textLabel];
-    [self pin:@[@"H:|-[textLabel]-(>=0)-|"] owner:self];
+    [self pin:@[@"H:|-30.0-[textLabel]-(>=0)-|"] owner:self];
     [self.textLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
   }
   return self;

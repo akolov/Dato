@@ -11,6 +11,7 @@
 
 #import "NNMCalendarBackgroundView.h"
 #import "NNMLayoutAttributeStorage.h"
+#import "NSCalendar+STYHelpers.h"
 
 NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackground";
 
@@ -26,10 +27,6 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
 - (void)placeBlocksToIndexPath:(NSIndexPath *)toIndexPath;
 - (void)placeBackgroundsToRect:(CGRect)rect;
 
-- (NSDate *)nextDate:(NSDate *)date;
-- (BOOL)isDifferentWeek:(NSDate *)fromDate toDate:(NSDate *)toDate;
-- (BOOL)isDifferentMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
-
 @end
 
 @implementation NNMCalendarLayout
@@ -38,8 +35,7 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
   self = [super init];
   if (self) {
     self.itemSize = CGSizeMake(320.0f / 7.0f, 320.0f / 7.0f);
-    self.headerReferenceSize = CGSizeMake(320.0f, 46.0f);
-    self.sectionInset = UIEdgeInsetsMake(0, 0, 20.0f, 0);
+    self.headerReferenceSize = CGSizeMake(320.0f, 30.0f);
     self.itemLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
     self.headerLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
     self.backgroundLayoutAttributes = [[NNMLayoutAttributeStorage alloc] init];
@@ -138,54 +134,6 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
   return nil;
 }
 
-#pragma mark - Date helpers
-
-- (BOOL)isDifferentWeek:(NSDate *)fromDate toDate:(NSDate *)toDate {
-  if (!fromDate || !toDate) {
-    return NO;
-  }
-
-  NSDateComponents *fromComponents = [self.calendar components:NSCalendarUnitWeekOfYear fromDate:fromDate];
-  NSDateComponents *toComponents = [self.calendar components:NSCalendarUnitWeekOfYear fromDate:toDate];
-  return fromComponents.weekOfYear != toComponents.weekOfYear;
-}
-
-- (BOOL)isDifferentMonth:(NSDate *)fromDate toDate:(NSDate *)toDate {
-  if (!fromDate || !toDate) {
-    return NO;
-  }
-
-  NSDateComponents *fromComponents = [self.calendar components:NSCalendarUnitMonth fromDate:fromDate];
-  NSDateComponents *toComponents = [self.calendar components:NSCalendarUnitMonth fromDate:toDate];
-  return fromComponents.month != toComponents.month;
-}
-
-- (NSDate *)nextDate:(NSDate *)date {
-  if (!date) {
-    return nil;
-  }
-
-  static NSDateComponents *components;
-  if (!components) {
-    components = [[NSDateComponents alloc] init];
-    components.day = 1;
-  }
-  return [self.calendar dateByAddingComponents:components toDate:date options:0];
-}
-
-- (NSDate *)previousDate:(NSDate *)date {
-  if (!date) {
-    return nil;
-  }
-
-  static NSDateComponents *components;
-  if (!components) {
-    components = [[NSDateComponents alloc] init];
-    components.day = -1;
-  }
-  return [self.calendar dateByAddingComponents:components toDate:date options:0];
-}
-
 #pragma mark - Private methods
 
 - (void)placeBlocksToRect:(CGRect)rect {
@@ -223,11 +171,11 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
   CGRect frame = lastFrame;
 
   while (YES) {
-    NSDate *date = lastDate ? [self nextDate:lastDate] : self.startDate;
-    BOOL newSection = [self isDifferentMonth:lastDate toDate:date];
+    NSDate *date = lastDate ? [self.calendar nextDate:lastDate] : self.startDate;
+    BOOL newSection = [self.calendar isDifferentMonth:lastDate toDate:date];
     NSInteger ordinality = [self.calendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:date] - 1;
 
-    BOOL newLine = [self isDifferentWeek:lastDate toDate:date];
+    BOOL newLine = [self.calendar isDifferentWeek:lastDate toDate:date];
     frame.origin.x = self.itemSize.width * ordinality;
 
     if (newSection) {
@@ -294,13 +242,17 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
       indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     }
 
-    UICollectionViewLayoutAttributes *headerAttributes = [self.headerLayoutAttributes attributesAtIndexPath:indexPath];
-    UICollectionViewLayoutAttributes *itemAttributes = [self.itemLayoutAttributes lastAttributeInSection:indexPath.section];
+    UICollectionViewLayoutAttributes *firstAttributes = [self.itemLayoutAttributes firstAttributeInSection:indexPath.section];
+    UICollectionViewLayoutAttributes *lastAttributes = [self.itemLayoutAttributes lastAttributeInSection:indexPath.section];
+
+    if (!firstAttributes || !lastAttributes) {
+      break;
+    }
 
     frame.origin.x = 0;
-    frame.origin.y = CGRectGetMinY(headerAttributes.frame);
+    frame.origin.y = CGRectGetMinY(firstAttributes.frame);
     frame.size.width = CGRectGetWidth(self.collectionView.bounds);
-    frame.size.height = CGRectGetMaxY(itemAttributes.frame) - CGRectGetMinY(headerAttributes.frame);
+    frame.size.height = CGRectGetMaxY(lastAttributes.frame) - CGRectGetMinY(firstAttributes.frame);
 
     UICollectionViewLayoutAttributes *backgroundAttributes =
       [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:NNMCalendarElementKindBackground
