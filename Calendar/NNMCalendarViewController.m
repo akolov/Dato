@@ -307,7 +307,8 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   if ([EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized) {
     NSDate *tomorrow = [self.calendar nextDate:self.today];
     NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:self.today endDate:tomorrow calendars:nil];
-    self.events = [self.eventStore eventsMatchingPredicate:predicate];
+    self.events = [[self.eventStore eventsMatchingPredicate:predicate]
+                   sortedArrayUsingSelector:@selector(compareStartDateWithEvent:)];
     [self.scheduleView reloadData];
   }
 
