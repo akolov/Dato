@@ -61,7 +61,8 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
 
   NSMutableArray *attributesInRect = [NSMutableArray array];
 
-  [self.itemLayoutAttributes enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
+  [self.itemLayoutAttributes
+   enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
     UICollectionViewLayoutAttributes *first = [section firstObject];
     UICollectionViewLayoutAttributes *last = [section lastObject];
 
@@ -76,7 +77,8 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
     }
   }];
 
-  [self.headerLayoutAttributes enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
+  [self.headerLayoutAttributes
+   enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
     UICollectionViewLayoutAttributes *last = [section lastObject];
 
     if (CGRectIntersectsRect(rect, last.frame)) {
@@ -92,7 +94,8 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
 
   [self placeBackgroundsToRect:rect];
 
-  [self.backgroundLayoutAttributes enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
+  [self.backgroundLayoutAttributes
+   enumerateSectionsWithOptions:options usingBlock:^(NSArray *section, NSUInteger idx, BOOL *stop) {
     UICollectionViewLayoutAttributes *last = [section lastObject];
 
     if (CGRectIntersectsRect(rect, last.frame)) {
@@ -201,6 +204,11 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
     }
     else {
       indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    }
+
+    if (indexPath.section >= [self.collectionView numberOfSections] ||
+        indexPath.item >= [self.collectionView numberOfItemsInSection:indexPath.section]) {
+      break;
     }
 
     UICollectionViewLayoutAttributes *itemAttributes =

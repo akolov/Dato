@@ -1,47 +1,21 @@
 PODS:
-  - AXKCollectionViewTools (1.0.1)
-  - libextobjc (0.4):
-    - libextobjc/EXTADT
-    - libextobjc/EXTConcreteProtocol
-    - libextobjc/EXTKeyPathCoding
-    - libextobjc/EXTNil
-    - libextobjc/EXTSafeCategory
-    - libextobjc/EXTScope
-    - libextobjc/EXTSelectorChecking
-    - libextobjc/EXTSynthesize
-    - libextobjc/NSInvocation+EXT
-    - libextobjc/NSMethodSignature+EXT
-    - libextobjc/RuntimeExtensions
-    - libextobjc/UmbrellaHeader
-  - libextobjc/EXTADT (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTConcreteProtocol (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTKeyPathCoding (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTNil (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSafeCategory (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTScope (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSelectorChecking (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSynthesize (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSInvocation+EXT (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSMethodSignature+EXT (0.4):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/RuntimeExtensions (0.4)
-  - libextobjc/UmbrellaHeader (0.4)
+  - AXKCollectionViewTools (1.0.2)
+  - AXKViewLayout (1.0.0)
+  - ReactiveCocoa (2.2.4):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.2.4):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.2.4)
 
 DEPENDENCIES:
-  - AXKCollectionViewTools (~> 1.0)
-  - libextobjc (~> 0.4)
+  - AXKCollectionViewTools (~> 1.0.2)
+  - AXKViewLayout (~> 1.0.0)
+  - ReactiveCocoa (~> 2.2.4)
 
 SPEC CHECKSUMS:
-  AXKCollectionViewTools: b2a4f8a3cbd3482c86221f24c0e8cbe5b7a7004a
-  libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
+  AXKCollectionViewTools: 4d77e19a5738e2a2838ddddd2683b6d8cc36782f
+  AXKViewLayout: adf4044361b02eec7b31c674e233377ee06dc643
+  ReactiveCocoa: c3b0686ca2aa6589a6716000a7f6ff8e15d8de34
 
 COCOAPODS: 0.29.0

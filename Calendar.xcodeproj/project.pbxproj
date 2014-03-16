@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3991F5BE7F840798732D22F /* libPods.a */; };
 		FA03E42D18C4B2B200B2D7DC /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */; };
-		FAA81EDD18C3F81400CC3E8B /* UIView+Autolayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA81EDC18C3F81400CC3E8B /* UIView+Autolayout.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
 		FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
@@ -49,8 +48,6 @@
 		F3991F5BE7F840798732D22F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
-		FAA81EDB18C3F81400CC3E8B /* UIView+Autolayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Autolayout.h"; sourceTree = "<group>"; };
-		FAA81EDC18C3F81400CC3E8B /* UIView+Autolayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Autolayout.m"; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* NNMConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNMConfig.h; sourceTree = "<group>"; };
 		FAB4613718AC5E74006E9437 /* Calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4613A18AC5E74006E9437 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -118,8 +115,6 @@
 		FAA81EDA18C3F7DD00CC3E8B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				FAA81EDB18C3F81400CC3E8B /* UIView+Autolayout.h */,
-				FAA81EDC18C3F81400CC3E8B /* UIView+Autolayout.m */,
 				FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */,
 				FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */,
 				FAD294B518C54EE8006932BF /* NSCalendar+STYHelpers.h */,
@@ -283,7 +278,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NNM;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Noname;
 				TargetAttributes = {
 					FAB4615118AC5E74006E9437 = {
@@ -379,7 +374,6 @@
 				FAB4614B18AC5E74006E9437 /* NNMAppDelegate.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
 				FAD294BA18C5558F006932BF /* NNMScheduleEventViewCell.m in Sources */,
-				FAA81EDD18C3F81400CC3E8B /* UIView+Autolayout.m in Sources */,
 				FAD294B718C54EE8006932BF /* NSCalendar+STYHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +420,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -466,7 +459,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -527,7 +519,6 @@
 		FAB4616718AC5E74006E9437 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Calendar.app/Calendar";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -550,7 +541,6 @@
 		FAB4616818AC5E74006E9437 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Calendar.app/Calendar";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

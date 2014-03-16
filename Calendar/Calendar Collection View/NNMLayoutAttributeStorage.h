@@ -11,6 +11,8 @@
 
 @interface NNMLayoutAttributeStorage : NSObject
 
+- (NSUInteger)count;
+
 #pragma mark - Adding Attributes
 
 - (void)setAttributes:(UICollectionViewLayoutAttributes *)attributes;

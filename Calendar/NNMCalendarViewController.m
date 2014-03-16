@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Noname. All rights reserved.
 //
 
+@import EventKit;
+
 #import "NNMConfig.h"
 #import "NNMCalendarViewController.h"
 
-@import EventKit;
-
 #import <AXKCollectionViewTools/AXKCollectionViewTools.h>
-#import <libextobjc/extobjc.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 
 #import "NNMCalendarHeaderView.h"
 #import "NNMCalendarLayout.h"
@@ -179,7 +179,10 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return 365;
+  NSDateComponents *components = [[NSDateComponents alloc] init];
+  components.month = section;
+  NSDate *date = [self.calendar dateByAddingComponents:components toDate:self.today options:0];
+  return [self.calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -198,6 +201,7 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
+
   if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
     NNMCalendarHeaderView *header =
       [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[NNMCalendarHeaderView reuseIdentifier]

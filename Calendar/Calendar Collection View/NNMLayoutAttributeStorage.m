@@ -25,6 +25,14 @@
   return self;
 }
 
+- (NSUInteger)count {
+  NSUInteger count = 0;
+  for (NSArray *array in self.storage) {
+    count += [array count];
+  }
+  return count;
+}
+
 #pragma mark - Adding Attributes
 
 - (void)setAttributes:(UICollectionViewLayoutAttributes *)attributes {

@@ -30,9 +30,4 @@
   return self;
 }
 
-- (void)prepareForReuse {
-  [super prepareForReuse];
-  self.textLabel.textColor = [UIColor whiteColor];
-}
-
 @end
