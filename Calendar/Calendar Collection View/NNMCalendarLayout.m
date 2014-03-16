@@ -173,6 +173,8 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
 
   CGRect frame = lastFrame;
 
+  BOOL stop = NO;
+
   while (YES) {
     NSDate *date = lastDate ? [self.calendar nextDate:lastDate] : self.startDate;
     BOOL newSection = [self.calendar isDifferentMonth:lastDate toDate:date];
@@ -182,11 +184,16 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
     frame.origin.x = self.itemSize.width * ordinality;
 
     if (newSection) {
+      if (stop) {
+        break;
+      }
+
       frame.origin.y += (self.headerReferenceSize.height + self.itemSize.height +
                          self.sectionInset.top + self.sectionInset.bottom);
 
       if (CGRectGetMaxY(frame) > CGRectGetMaxY(rect)) {
-        break;
+        // Will stop at the next section
+        stop = YES;
       }
     }
     else if (newLine) {
@@ -227,6 +234,7 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
       headerAttributes.zIndex = 2;
 
       [self.headerLayoutAttributes setAttributes:headerAttributes];
+      NSLog(@"%ld.%ld - %@", (long)indexPath.section, (long)indexPath.item, headerAttributes);
     }
 
     lastDate = date;
