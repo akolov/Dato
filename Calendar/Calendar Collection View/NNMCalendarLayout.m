@@ -234,7 +234,6 @@ NSString *const NNMCalendarElementKindBackground = @"NNMCalendarElementKindBackg
       headerAttributes.zIndex = 2;
 
       [self.headerLayoutAttributes setAttributes:headerAttributes];
-      NSLog(@"%ld.%ld - %@", (long)indexPath.section, (long)indexPath.item, headerAttributes);
     }
 
     lastDate = date;
