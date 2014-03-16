@@ -43,6 +43,8 @@
 
 - (NSArray *)eventsForDate:(NSDate *)date;
 - (NNMScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date;
+
 - (void)sizeScheduleToFit;
 - (void)scrollCalendarToScheduleRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
 
@@ -185,9 +187,11 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   return [self.calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  NNMCalendarViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[NNMCalendarViewCell reuseIdentifier]
-                                                                        forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  NNMCalendarViewCell *cell =
+    [collectionView dequeueReusableCellWithReuseIdentifier:[NNMCalendarViewCell reuseIdentifier]
+                                              forIndexPath:indexPath];
 
   NSDateComponents *components = [[NSDateComponents alloc] init];
   components.day = indexPath.item;
@@ -199,12 +203,13 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind
-                                 atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
   if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
     NNMCalendarHeaderView *header =
-      [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[NNMCalendarHeaderView reuseIdentifier]
+      [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                         withReuseIdentifier:[NNMCalendarHeaderView reuseIdentifier]
                                                 forIndexPath:indexPath];
 
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -218,6 +223,22 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   }
 
   return nil;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  NSDateComponents *referenceComponents = [self.calendar components:NSMonthCalendarUnit | NSYearCalendarUnit
+                                                           fromDate:self.today];
+  referenceComponents.day = 1;
+  NSDate *referenceDate = [self.calendar dateFromComponents:referenceComponents];
+
+  NSDateComponents *components = [[NSDateComponents alloc] init];
+  components.month = indexPath.section;
+  components.day = indexPath.item;
+
+  NSDate *date = [self.calendar dateByAddingComponents:components toDate:referenceDate options:0];
+  [self expandSchedule:self.scheduleView forDate:date];
 }
 
 #pragma mark - UITableViewDataSource
@@ -257,7 +278,8 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
       }
       else {
         NNMScheduleDayViewCell *cell =
-          [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier] forIndexPath:indexPath];
+          [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
+                                          forIndexPath:indexPath];
         cell.textLabel.text = NSLocalizedString(@"No events today", nil);
         return cell;
       }
@@ -269,14 +291,16 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
         }
         else {
           NNMScheduleDayViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier] forIndexPath:indexPath];
+            [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
+                                            forIndexPath:indexPath];
           cell.textLabel.text = NSLocalizedString(@"No events today", nil);
           return cell;
         }
       }
       else {
         NNMScheduleDayViewCell *cell =
-          [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier] forIndexPath:indexPath];
+          [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
+                                          forIndexPath:indexPath];
         NSDate *date = [self.calendar nextDate:[NSDate date]];
         cell.textLabel.text = [self.relativeFormatter stringFromDate:date];
         return cell;
@@ -284,14 +308,16 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
     }
     case 2: {
       NNMScheduleDayViewCell *cell =
-        [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier] forIndexPath:indexPath];
+        [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
+                                        forIndexPath:indexPath];
       NSDate *date = [self.calendar nextNextDate:[NSDate date]];
       cell.textLabel.text = [self.weekdayFormatter stringFromDate:date];
       return cell;
     }
     case 3: {
       NNMScheduleDayViewCell *cell =
-        [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier] forIndexPath:indexPath];
+        [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
+                                        forIndexPath:indexPath];
       NSDate *date = [self.calendar nextDate:[self.calendar nextNextDate:[NSDate date]]];
       cell.textLabel.text = [self.weekdayFormatter stringFromDate:date];
       return cell;
@@ -345,59 +371,11 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] != EKAuthorizationStatusAuthorized) {
-    return;
-  }
+  NSDateComponents *components = [[NSDateComponents alloc] init];
+  components.day = indexPath.section;
 
-  NSDate *tomorrow = [self.calendar nextDate:self.today];
-  self.nextDayEvents = [self eventsForDate:tomorrow];
-
-  __block CGRect frame;
-  __block CGFloat offsetY;
-
-  CGFloat height = 0;
-  for (NSInteger i = 0; i < self.scheduleView.numberOfSections; ++i) {
-    if (i == 1) {
-      height += [self.nextDayEvents count] * self.scheduleView.rowHeight;
-    }
-    else {
-      height += [self.scheduleView numberOfRowsInSection:i] * self.scheduleView.rowHeight;
-    }
-
-    height += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
-  }
-
-  height += 35.0f + self.scheduleView.rowHeight;
-
-  CGRect scheduleFrame = self.scheduleView.frame;
-  scheduleFrame.origin.y = -height;
-  scheduleFrame.size.height = height;
-  self.scheduleView.frame = scheduleFrame;
-
-  offsetY = height + 66.0f;
-  self.calendarView.contentInset = UIEdgeInsetsMake(offsetY, 0, 0, 0);
-  [self.calendarView setContentOffset:CGPointMake(0, -offsetY) animated:NO];
-
-  [CATransaction begin];
-  [CATransaction setCompletionBlock:^{
-    self.today = tomorrow;
-    self.events = [self eventsForDate:self.today];
-    self.nextDayEvents = nil;
-    [self.scheduleView reloadData];
-    [self sizeScheduleToFit];
-    [self scrollCalendarToScheduleRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO];
-  }];
-
-  [tableView beginUpdates];
-  [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-  [tableView insertSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationFade];
-  [tableView endUpdates];
-
-  frame = [tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-  offsetY = -self.calendarView.contentInset.top + frame.origin.y;
-  [self.calendarView setContentOffset:CGPointMake(0, offsetY) animated:YES];
-
-  [CATransaction commit];
+  NSDate *date = [self.calendar dateByAddingComponents:components toDate:self.today options:0];
+  [self expandSchedule:tableView forDate:date];
 }
 
 #pragma mark - Private Methods
@@ -432,6 +410,62 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 
   cell.calendarKnob.backgroundColor = [UIColor colorWithCGColor:calendar.CGColor];
   return cell;
+}
+
+- (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date {
+  if ([EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] != EKAuthorizationStatusAuthorized) {
+    return;
+  }
+
+  self.title = [self.titleFormatter stringFromDate:date];
+  self.nextDayEvents = [self eventsForDate:date];
+
+  __block CGRect frame;
+  __block CGFloat offsetY;
+
+  CGFloat height = 0;
+  for (NSInteger i = 0; i < self.scheduleView.numberOfSections; ++i) {
+    if (i == 1) {
+      height += [self.nextDayEvents count] * self.scheduleView.rowHeight;
+    }
+    else {
+      height += [self.scheduleView numberOfRowsInSection:i] * self.scheduleView.rowHeight;
+    }
+
+    height += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
+  }
+
+  height += 35.0f + self.scheduleView.rowHeight;
+
+  CGRect scheduleFrame = self.scheduleView.frame;
+  scheduleFrame.origin.y = -height;
+  scheduleFrame.size.height = height;
+  self.scheduleView.frame = scheduleFrame;
+
+  offsetY = height + 66.0f;
+  self.calendarView.contentInset = UIEdgeInsetsMake(offsetY, 0, 0, 0);
+  [self.calendarView setContentOffset:CGPointMake(0, -offsetY) animated:NO];
+
+  [CATransaction begin];
+  [CATransaction setCompletionBlock:^{
+    self.today = date;
+    self.events = [self eventsForDate:self.today];
+    self.nextDayEvents = nil;
+    [self.scheduleView reloadData];
+    [self sizeScheduleToFit];
+    [self scrollCalendarToScheduleRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO];
+  }];
+
+  [scheduleView beginUpdates];
+  [scheduleView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+  [scheduleView insertSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationFade];
+  [scheduleView endUpdates];
+
+  frame = [scheduleView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+  offsetY = -self.calendarView.contentInset.top + frame.origin.y;
+  [self.calendarView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+
+  [CATransaction commit];
 }
 
 - (void)sizeScheduleToFit {
