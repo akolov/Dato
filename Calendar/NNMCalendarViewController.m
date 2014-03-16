@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) NSCalendar *calendar;
 @property (nonatomic, strong) NSDate *today;
+@property (nonatomic, strong) NSDate *futureDate;
 @property (nonatomic, strong) EKEventStore *eventStore;
 @property (nonatomic, strong) NSArray *events;
 @property (nonatomic, strong) NSArray *nextDayEvents;
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) NNMCalendarLayout *layout;
 @property (nonatomic, strong) UICollectionView *calendarView;
 @property (nonatomic, strong) UITableView *scheduleView;
+@property (nonatomic, assign) BOOL calendarDidScroll;
 
 - (NSArray *)eventsForDate:(NSDate *)date;
 - (NNMScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
@@ -378,6 +380,64 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   [self expandSchedule:tableView forDate:date];
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+  if (scrollView != self.calendarView) {
+    return;
+  }
+
+  if (self.calendarDidScroll) {
+    self.today = self.futureDate;
+    self.events = [self eventsForDate:self.today];
+    self.nextDayEvents = nil;
+    [self.scheduleView reloadData];
+    [self sizeScheduleToFit];
+    [self scrollCalendarToScheduleRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO];
+    self.calendarDidScroll = NO;
+  }
+  else {
+    self.calendarDidScroll = YES;
+    self.title = [self.titleFormatter stringFromDate:self.futureDate];
+    self.nextDayEvents = [self eventsForDate:self.futureDate];
+
+    __block CGRect frame;
+    __block CGFloat offsetY;
+
+    CGFloat height = 0;
+    for (NSInteger i = 0; i < self.scheduleView.numberOfSections; ++i) {
+      if (i == 1) {
+        height += [self.nextDayEvents count] * self.scheduleView.rowHeight;
+      }
+      else {
+        height += [self.scheduleView numberOfRowsInSection:i] * self.scheduleView.rowHeight;
+      }
+
+      height += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
+    }
+
+    height += 35.0f + self.scheduleView.rowHeight;
+
+    CGRect scheduleFrame = self.scheduleView.frame;
+    scheduleFrame.origin.y = -height;
+    scheduleFrame.size.height = height;
+    self.scheduleView.frame = scheduleFrame;
+
+    offsetY = height + 66.0f;
+    self.calendarView.contentInset = UIEdgeInsetsMake(offsetY, 0, 0, 0);
+    [self.calendarView setContentOffset:CGPointMake(0, -offsetY) animated:NO];
+
+    [self.scheduleView beginUpdates];
+    [self.scheduleView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    [self.scheduleView insertSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationFade];
+    [self.scheduleView endUpdates];
+
+    frame = [self.scheduleView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    offsetY = -self.calendarView.contentInset.top + frame.origin.y;
+    [self.calendarView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+  }
+}
+
 #pragma mark - Private Methods
 
 - (NSArray *)eventsForDate:(NSDate *)date {
@@ -417,55 +477,8 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
     return;
   }
 
-  self.title = [self.titleFormatter stringFromDate:date];
-  self.nextDayEvents = [self eventsForDate:date];
-
-  __block CGRect frame;
-  __block CGFloat offsetY;
-
-  CGFloat height = 0;
-  for (NSInteger i = 0; i < self.scheduleView.numberOfSections; ++i) {
-    if (i == 1) {
-      height += [self.nextDayEvents count] * self.scheduleView.rowHeight;
-    }
-    else {
-      height += [self.scheduleView numberOfRowsInSection:i] * self.scheduleView.rowHeight;
-    }
-
-    height += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
-  }
-
-  height += 35.0f + self.scheduleView.rowHeight;
-
-  CGRect scheduleFrame = self.scheduleView.frame;
-  scheduleFrame.origin.y = -height;
-  scheduleFrame.size.height = height;
-  self.scheduleView.frame = scheduleFrame;
-
-  offsetY = height + 66.0f;
-  self.calendarView.contentInset = UIEdgeInsetsMake(offsetY, 0, 0, 0);
-  [self.calendarView setContentOffset:CGPointMake(0, -offsetY) animated:NO];
-
-  [CATransaction begin];
-  [CATransaction setCompletionBlock:^{
-    self.today = date;
-    self.events = [self eventsForDate:self.today];
-    self.nextDayEvents = nil;
-    [self.scheduleView reloadData];
-    [self sizeScheduleToFit];
-    [self scrollCalendarToScheduleRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO];
-  }];
-
-  [scheduleView beginUpdates];
-  [scheduleView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-  [scheduleView insertSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationFade];
-  [scheduleView endUpdates];
-
-  frame = [scheduleView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-  offsetY = -self.calendarView.contentInset.top + frame.origin.y;
-  [self.calendarView setContentOffset:CGPointMake(0, offsetY) animated:YES];
-
-  [CATransaction commit];
+  self.futureDate = date;
+  [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:YES];
 }
 
 - (void)sizeScheduleToFit {
