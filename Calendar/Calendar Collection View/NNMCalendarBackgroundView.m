@@ -21,17 +21,18 @@
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor calendarGreenColor];
+    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.25f];
+    self.opaque = NO;
 
     self.separatorTop = [UIView autolayoutView];
-    self.separatorTop.backgroundColor = [UIColor calendarSeparatorGreenColor];
+    self.separatorTop.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
     [self addSubview:self.separatorTop];
     [self.separatorTop pinToContainerEdge:NSLayoutAttributeTop];
     [self.separatorTop pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
     [self.separatorTop pinHeight:0.5f withRelation:NSLayoutRelationEqual];
 
     self.separatorBottom = [UIView autolayoutView];
-    self.separatorBottom.backgroundColor = [UIColor calendarSeparatorGreenColor];
+    self.separatorBottom.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
     [self addSubview:self.separatorBottom];
     [self.separatorBottom pinToContainerEdge:NSLayoutAttributeBottom];
     [self.separatorBottom pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];

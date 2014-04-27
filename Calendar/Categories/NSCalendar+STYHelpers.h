@@ -13,6 +13,7 @@
 - (BOOL)isDifferentWeek:(NSDate *)fromDate toDate:(NSDate *)toDate;
 - (BOOL)isDifferentMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
+- (NSDate *)today;
 - (NSDate *)nextDate:(NSDate *)date;
 - (NSDate *)nextNextDate:(NSDate *)date;
 - (NSDate *)previousDate:(NSDate *)date;

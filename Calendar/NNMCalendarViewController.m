@@ -22,6 +22,15 @@
 #import "NNMScheduleHeaderView.h"
 #import "NSCalendar+STYHelpers.h"
 
+static CGFloat NNMWorkHoursPerDay = 8.0f;
+
+typedef NS_ENUM(NSInteger, NNMDateBusyness) {
+  NNMDateFree,
+  NNMDateNotBusy,
+  NNMDateBusy,
+  NNMDateVeryBusy
+};
+
 @interface NNMCalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
                                          UITableViewDataSource, UITableViewDelegate>
 
@@ -43,8 +52,11 @@
 @property (nonatomic, strong) UITableView *scheduleView;
 @property (nonatomic, assign) BOOL calendarDidScroll;
 
+- (NNMDateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events;
+
 - (NSArray *)eventsForDate:(NSDate *)date;
 - (NNMScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureScheduleCell:(NNMScheduleDayViewCell *)cell forDate:(NSDate *)date;
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date;
 
 - (void)sizeScheduleToFit;
@@ -119,9 +131,7 @@
 
   // View
 
-  self.title = [self.titleFormatter stringFromDate:[NSDate date]];
-  self.navigationController.navigationBar.barTintColor = [UIColor calendarBackgroundGreenColor];
-  self.view.backgroundColor = [UIColor calendarBackgroundGreenColor];
+  self.title = [self.titleFormatter stringFromDate:self.today];
 
   // Calendar View
 
@@ -130,9 +140,10 @@
   self.layout.startDate = self.today;
 
   self.calendarView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
-  self.calendarView.backgroundColor = [UIColor calendarBackgroundGreenColor];
+  self.calendarView.backgroundColor = nil;
   self.calendarView.dataSource = self;
   self.calendarView.delegate = self;
+  self.calendarView.opaque = YES;
   self.calendarView.showsHorizontalScrollIndicator = NO;
   self.calendarView.showsVerticalScrollIndicator = NO;
   [self.view addSubview:self.calendarView];
@@ -148,16 +159,19 @@
   CGRect scheduleFrame = self.view.bounds;
 
   self.scheduleView = [[UITableView alloc] initWithFrame:scheduleFrame style:UITableViewStyleGrouped];
-  self.scheduleView.backgroundColor = [UIColor calendarBackgroundGreenColor];
+  self.scheduleView.backgroundColor = nil;
   self.scheduleView.dataSource = self;
   self.scheduleView.delegate = self;
+  self.scheduleView.opaque = YES;
   self.scheduleView.rowHeight = 60.0f;
   self.scheduleView.scrollEnabled = NO;
   self.scheduleView.sectionFooterHeight = 0;
   self.scheduleView.sectionHeaderHeight = 0;
-  self.scheduleView.separatorColor = [UIColor calendarSeparatorGreenColor];
+  self.scheduleView.separatorColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
+
+  [self changeInterfaceColorForDate:self.today];
 
   [self.scheduleView registerClass:[NNMScheduleDayViewCell class]
             forCellReuseIdentifier:[NNMScheduleDayViewCell reuseIdentifier]];
@@ -201,6 +215,21 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
   NSDate *date = [self.calendar dateByAddingComponents:components toDate:self.layout.startDate options:0];
 
   cell.dateLabel.text = [self.dayFormatter stringFromDate:date];
+
+  switch ([self dateBusyness:date events:NULL]) {
+    case NNMDateVeryBusy:
+      cell.dateLabel.textColor = [UIColor calendarRedColor];
+      break;
+    case NNMDateBusy:
+      cell.dateLabel.textColor = [UIColor calendarOrangeColor];
+      break;
+    case NNMDateNotBusy:
+      cell.dateLabel.textColor = [UIColor calendarGreenColor];
+      break;
+    default:
+      cell.dateLabel.textColor = [UIColor whiteColor];
+      break;
+  }
 
   return cell;
 }
@@ -303,8 +332,17 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
         NNMScheduleDayViewCell *cell =
           [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
                                           forIndexPath:indexPath];
-        NSDate *date = [self.calendar nextDate:[NSDate date]];
-        cell.textLabel.text = [self.relativeFormatter stringFromDate:date];
+        NSDate *date = [self.calendar nextDate:self.today];
+        NSDateComponents *components =
+          [self.calendar components:NSDayCalendarUnit fromDate:date toDate:[self.calendar today] options:0];
+        if (ABS(components.day) > 1) {
+          cell.textLabel.text = [self.weekdayFormatter stringFromDate:date];
+        }
+        else {
+          cell.textLabel.text = [self.relativeFormatter stringFromDate:date];
+        }
+
+        [self configureScheduleCell:cell forDate:date];
         return cell;
       }
     }
@@ -312,16 +350,18 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
       NNMScheduleDayViewCell *cell =
         [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
                                         forIndexPath:indexPath];
-      NSDate *date = [self.calendar nextNextDate:[NSDate date]];
+      NSDate *date = [self.calendar nextNextDate:self.today];
       cell.textLabel.text = [self.weekdayFormatter stringFromDate:date];
+      [self configureScheduleCell:cell forDate:date];
       return cell;
     }
     case 3: {
       NNMScheduleDayViewCell *cell =
         [tableView dequeueReusableCellWithIdentifier:[NNMScheduleDayViewCell reuseIdentifier]
                                         forIndexPath:indexPath];
-      NSDate *date = [self.calendar nextDate:[self.calendar nextNextDate:[NSDate date]]];
+      NSDate *date = [self.calendar nextDate:[self.calendar nextNextDate:self.today]];
       cell.textLabel.text = [self.weekdayFormatter stringFromDate:date];
+      [self configureScheduleCell:cell forDate:date];
       return cell;
     }
   }
@@ -435,10 +475,62 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
     frame = [self.scheduleView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     offsetY = -self.calendarView.contentInset.top + frame.origin.y;
     [self.calendarView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+
+    [self changeInterfaceColorForDate:self.futureDate];
   }
 }
 
 #pragma mark - Private Methods
+
+- (void)changeInterfaceColorForDate:(NSDate *)date {
+  UIColor *color;
+
+  switch ([self dateBusyness:date events:NULL]) {
+    case NNMDateVeryBusy:
+      color = [UIColor calendarBackgroundRedColor];
+      break;
+    case NNMDateBusy:
+      color = [UIColor calendarBackgroundOrangeColor];
+      break;
+    default:
+      color = [UIColor calendarBackgroundGreenColor];
+      break;
+  }
+
+  self.navigationController.navigationBar.barTintColor = color;
+  self.view.backgroundColor = color;
+}
+
+- (NNMDateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events {
+  NSArray *dateEvents = [self eventsForDate:date];
+  CGFloat hoursLeft = NNMWorkHoursPerDay;
+  for (EKEvent *event in dateEvents) {
+    if (event.allDay) {
+      continue;
+    }
+
+    NSDateComponents *components = [self.calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit
+                                                    fromDate:event.startDate toDate:event.endDate options:0];
+    hoursLeft -= components.hour + components.minute / 60.0f;
+  }
+
+  if (events) {
+    *events = dateEvents;
+  }
+
+  if (hoursLeft >= NNMWorkHoursPerDay) {
+    return NNMDateFree;
+  }
+  else if (hoursLeft >= NNMWorkHoursPerDay - 1.0f) {
+    return NNMDateNotBusy;
+  }
+  else if (hoursLeft >= NNMWorkHoursPerDay - 2.0f) {
+    return NNMDateBusy;
+  }
+  else {
+    return NNMDateVeryBusy;
+  }
+}
 
 - (NSArray *)eventsForDate:(NSDate *)date {
   if ([EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] != EKAuthorizationStatusAuthorized) {
@@ -470,6 +562,29 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 
   cell.calendarKnob.backgroundColor = [UIColor colorWithCGColor:calendar.CGColor];
   return cell;
+}
+
+- (void)configureScheduleCell:(NNMScheduleDayViewCell *)cell forDate:(NSDate *)date {
+  UIColor *color;
+  NSArray *events;
+
+  switch ([self dateBusyness:date events:&events]) {
+    case NNMDateVeryBusy:
+      color = [UIColor calendarRedColor];
+      break;
+    case NNMDateBusy:
+      color = [UIColor calendarOrangeColor];
+      break;
+    case NNMDateNotBusy:
+      color = [UIColor calendarGreenColor];
+      break;
+    case NNMDateFree:
+      color = nil;
+      break;
+  }
+
+  cell.gradientBaseColor = color;
+  cell.gradientComponents = [events count];
 }
 
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date {

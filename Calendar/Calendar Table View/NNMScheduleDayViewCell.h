@@ -10,4 +10,7 @@
 
 @interface NNMScheduleDayViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIColor *gradientBaseColor;
+@property (nonatomic, assign) NSUInteger gradientComponents;
+
 @end

@@ -10,9 +10,13 @@
 
 @interface UIColor (CustomColors)
 
+@property (readonly) CGFloat alpha;
+
 + (instancetype)calendarGreenColor;
++ (instancetype)calendarOrangeColor;
++ (instancetype)calendarRedColor;
 + (instancetype)calendarBackgroundGreenColor;
-+ (instancetype)calendarSeparatorGreenColor;
-+ (instancetype)calendarTextGreenColor;
++ (instancetype)calendarBackgroundOrangeColor;
++ (instancetype)calendarBackgroundRedColor;
 
 @end

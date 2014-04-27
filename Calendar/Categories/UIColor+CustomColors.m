@@ -10,20 +10,32 @@
 
 @implementation UIColor (CustomColors)
 
+- (CGFloat)alpha {
+  return CGColorGetAlpha(self.CGColor);
+}
+
 + (instancetype)calendarGreenColor {
-  return [UIColor colorWithRed:0.553f green:0.761f blue:0.706f alpha:1.000f];
+  return [UIColor colorWithRed:0.153f green:0.404f blue:0.286f alpha:1.000f];
+}
+
++ (instancetype)calendarOrangeColor {
+  return [UIColor colorWithRed:0.992f green:0.804f blue:0.071f alpha:1.000f];
+}
+
++ (instancetype)calendarRedColor {
+  return [UIColor colorWithRed:0.796f green:0.000f blue:0.102f alpha:1.000f];
 }
 
 + (instancetype)calendarBackgroundGreenColor {
   return [UIColor colorWithRed:0.424f green:0.694f blue:0.624f alpha:1.000f];
 }
 
-+ (instancetype)calendarSeparatorGreenColor {
-  return [UIColor colorWithRed:0.723f green:0.853f blue:0.819f alpha:1.000f];
++ (instancetype)calendarBackgroundOrangeColor {
+  return [UIColor colorWithRed:0.949f green:0.525f blue:0.216f alpha:1.000f];
 }
 
-+ (instancetype)calendarTextGreenColor {
-  return [UIColor colorWithRed:0.765f green:0.878f blue:0.851f alpha:1.000f];
++ (instancetype)calendarBackgroundRedColor {
+  return [UIColor colorWithRed:0.843f green:0.384f blue:0.345f alpha:1.000f];
 }
 
 @end

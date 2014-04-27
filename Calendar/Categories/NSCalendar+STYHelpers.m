@@ -30,6 +30,12 @@
   return fromComponents.month != toComponents.month;
 }
 
+- (NSDate *)today {
+  NSDateComponents *components =
+    [self components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+  return [self dateFromComponents:components];
+}
+
 - (NSDate *)nextDate:(NSDate *)date {
   if (!date) {
     return nil;
