@@ -12,11 +12,13 @@
 
 @property (readonly) CGFloat alpha;
 
-+ (instancetype)calendarGreenColor;
++ (instancetype)calendarBlueColor;
++ (instancetype)calendarYellowColor;
 + (instancetype)calendarOrangeColor;
 + (instancetype)calendarRedColor;
-+ (instancetype)calendarBackgroundGreenColor;
-+ (instancetype)calendarBackgroundOrangeColor;
-+ (instancetype)calendarBackgroundRedColor;
++ (instancetype)backgroundGrayColor;
++ (instancetype)calendarBackgroundGrayColor;
++ (instancetype)textGrayColor;
++ (instancetype)textDarkGrayColor;
 
 @end

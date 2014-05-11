@@ -16,12 +16,12 @@ static CGFloat NNMGradientComponentWidth = 10.0f;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.125f];
+    self.backgroundColor = [UIColor calendarBackgroundGrayColor];
     self.opaque = NO;
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
   }
   return self;
 }

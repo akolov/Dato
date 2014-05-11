@@ -21,7 +21,7 @@
 - (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.25f];
+    self.backgroundColor = [UIColor calendarBackgroundGrayColor];
     self.opaque = NO;
 
     self.separatorTop = [UIView autolayoutView];

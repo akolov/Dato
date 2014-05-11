@@ -23,29 +23,29 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.125f];
+    self.backgroundColor = [UIColor calendarBackgroundGrayColor];
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
     self.opaque = NO;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     self.eventLabel = [UILabel autolayoutView];
-    self.eventLabel.font = [UIFont systemFontOfSize:16.0f];
-    self.eventLabel.textColor = [UIColor whiteColor];
+    self.eventLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
+    self.eventLabel.textColor = [UIColor textDarkGrayColor];
     [self.contentView addSubview:self.eventLabel];
 
     self.timeLabel = [UILabel autolayoutView];
-    self.timeLabel.font = [UIFont systemFontOfSize:13.0f];
-    self.timeLabel.textColor = [UIColor whiteColor];
+    self.timeLabel.font = [UIFont lightOpenSansFontOfSize:13.0f];
+    self.timeLabel.textColor = [UIColor textGrayColor];
     [self.contentView addSubview:self.timeLabel];
 
     self.calendarOuterKnob = [UIView autolayoutView];
-    self.calendarOuterKnob.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
-    self.calendarOuterKnob.layer.cornerRadius = 6.0f;
+    self.calendarOuterKnob.backgroundColor = [UIColor whiteColor];
+    self.calendarOuterKnob.layer.cornerRadius = 5.0f;
     [self.contentView addSubview:self.calendarOuterKnob];
 
     self.calendarKnob = [UIView autolayoutView];
-    self.calendarKnob.layer.cornerRadius = 5.0f;
+    self.calendarKnob.layer.cornerRadius = 4.0f;
     [self.calendarOuterKnob addSubview:self.calendarKnob];
 
     // Constraints
@@ -57,8 +57,8 @@
                                                     forAxis:UILayoutConstraintAxisHorizontal];
     [self.calendarOuterKnob pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.calendarKnob pinToCenter];
-    [self.calendarOuterKnob pinSize:CGSizeMake(12.0f, 12.0f) withRelation:NSLayoutRelationEqual];
-    [self.calendarKnob pinSize:CGSizeMake(10.0f, 10.0f) withRelation:NSLayoutRelationEqual];
+    [self.calendarOuterKnob pinSize:CGSizeMake(10.0f, 10.0f) withRelation:NSLayoutRelationEqual];
+    [self.calendarKnob pinSize:CGSizeMake(8.0f, 8.0f) withRelation:NSLayoutRelationEqual];
   }
   return self;
 }

@@ -21,9 +21,10 @@
   self = [super initWithFrame:frame];
   if (self) {
     self.textLabel = [UILabel autolayoutView];
-    self.textLabel.font = [UIFont systemFontOfSize:13.0f];
-    self.textLabel.textColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
+    self.textLabel.font = [UIFont lightClavoFontOfSize:13.0f];
+    self.textLabel.textColor = [UIColor textGrayColor];
     [self addSubview:self.textLabel];
+
     [self pin:@[@"H:|-30.0-[textLabel]-(>=0)-|"] owner:self];
     [self.textLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
   }

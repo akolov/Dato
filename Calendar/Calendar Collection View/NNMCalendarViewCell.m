@@ -21,7 +21,7 @@
   self = [super initWithFrame:frame];
   if (self) {
     self.dateLabel = [UILabel autolayoutView];
-    self.dateLabel.textColor = [UIColor whiteColor];
+    self.dateLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
     [self.contentView addSubview:self.dateLabel];
     [self.dateLabel pinToCenter];
   }

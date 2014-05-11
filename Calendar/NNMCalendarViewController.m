@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, NNMDateBusyness) {
   self.layout.startDate = self.today;
 
   self.calendarView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
-  self.calendarView.backgroundColor = nil;
+  self.calendarView.backgroundColor = [UIColor backgroundGrayColor];
   self.calendarView.dataSource = self;
   self.calendarView.delegate = self;
   self.calendarView.opaque = YES;
@@ -225,10 +225,10 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
       cell.dateLabel.textColor = [UIColor calendarOrangeColor];
       break;
     case NNMDateNotBusy:
-      cell.dateLabel.textColor = [UIColor calendarGreenColor];
+      cell.dateLabel.textColor = [UIColor calendarYellowColor];
       break;
     default:
-      cell.dateLabel.textColor = [UIColor whiteColor];
+      cell.dateLabel.textColor = [UIColor textDarkGrayColor];
       break;
   }
 
@@ -557,18 +557,20 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
 
   switch ([self dateBusyness:date events:NULL]) {
     case NNMDateVeryBusy:
-      color = [UIColor calendarBackgroundRedColor];
+      color = [UIColor calendarRedColor];
       break;
     case NNMDateBusy:
-      color = [UIColor calendarBackgroundOrangeColor];
+      color = [UIColor calendarOrangeColor];
+      break;
+    case NNMDateNotBusy:
+      color = [UIColor calendarYellowColor];
       break;
     default:
-      color = [UIColor calendarBackgroundGreenColor];
+      color = [UIColor calendarBlueColor];
       break;
   }
 
   self.navigationController.navigationBar.barTintColor = color;
-  self.view.backgroundColor = color;
 }
 
 - (NNMDateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events {
@@ -650,13 +652,14 @@ forHeaderFooterViewReuseIdentifier:[NNMScheduleHeaderView reuseIdentifier]];
       color = [UIColor calendarOrangeColor];
       break;
     case NNMDateNotBusy:
-      color = [UIColor calendarGreenColor];
+      color = [UIColor calendarYellowColor];
       break;
     case NNMDateFree:
-      color = nil;
+      color = [UIColor calendarBlueColor];
       break;
   }
 
+  cell.textLabel.textColor = color;
   cell.gradientBaseColor = color;
   cell.gradientComponents = [events count];
 }
