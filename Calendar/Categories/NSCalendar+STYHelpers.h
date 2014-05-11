@@ -17,5 +17,6 @@
 - (NSDate *)nextDate:(NSDate *)date;
 - (NSDate *)nextNextDate:(NSDate *)date;
 - (NSDate *)previousDate:(NSDate *)date;
+- (NSDate *)dateWithOffset:(NSInteger)offset fromDate:(NSDate *)date;
 
 @end

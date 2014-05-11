@@ -37,41 +37,24 @@
 }
 
 - (NSDate *)nextDate:(NSDate *)date {
-  if (!date) {
-    return nil;
-  }
-
-  static NSDateComponents *components;
-  if (!components) {
-    components = [[NSDateComponents alloc] init];
-    components.day = 1;
-  }
-  return [self dateByAddingComponents:components toDate:date options:0];
+  return [self dateWithOffset:1 fromDate:date];
 }
 
 - (NSDate *)nextNextDate:(NSDate *)date {
-  if (!date) {
-    return nil;
-  }
-
-  static NSDateComponents *components;
-  if (!components) {
-    components = [[NSDateComponents alloc] init];
-    components.day = 2;
-  }
-  return [self dateByAddingComponents:components toDate:date options:0];
+  return [self dateWithOffset:2 fromDate:date];
 }
 
 - (NSDate *)previousDate:(NSDate *)date {
+  return [self dateWithOffset:-1 fromDate:date];
+}
+
+- (NSDate *)dateWithOffset:(NSInteger)offset fromDate:(NSDate *)date {
   if (!date) {
     return nil;
   }
 
-  static NSDateComponents *components;
-  if (!components) {
-    components = [[NSDateComponents alloc] init];
-    components.day = -1;
-  }
+  NSDateComponents *components = [[NSDateComponents alloc] init];
+  components.day = offset;
   return [self dateByAddingComponents:components toDate:date options:0];
 }
 
