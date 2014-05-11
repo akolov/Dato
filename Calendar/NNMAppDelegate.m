@@ -17,6 +17,7 @@
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
 
   [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+  [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont lightClavoFontOfSize:18.0f]}];
 
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];

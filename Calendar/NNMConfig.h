@@ -18,6 +18,7 @@
 #import <AXKViewLayout/UIView+AXKViewLayout.h>
 
 #import "UIColor+CustomColors.h"
+#import "UIFont+NNMAdditions.h"
 
 #ifndef ErrorLog
 #define ErrorLog(format, ...) \

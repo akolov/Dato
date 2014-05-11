@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3991F5BE7F840798732D22F /* libPods.a */; };
 		FA03E42D18C4B2B200B2D7DC /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */; };
+		FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E419201BEA002BB57E /* Clavo Light.otf */; };
+		FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */; };
+		FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */; };
+		FA1998EC19201C3C002BB57E /* UIFont+NNMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1998EB19201C3C002BB57E /* UIFont+NNMAdditions.m */; };
 		FAB05DB4190D666D00CF0B92 /* NNMOverscrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB05DB3190D666D00CF0B92 /* NNMOverscrollView.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
@@ -49,6 +53,11 @@
 		F3991F5BE7F840798732D22F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		FA1998E419201BEA002BB57E /* Clavo Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Clavo Light.otf"; sourceTree = "<group>"; };
+		FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		FA1998EA19201C3C002BB57E /* UIFont+NNMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+NNMAdditions.h"; sourceTree = "<group>"; };
+		FA1998EB19201C3C002BB57E /* UIFont+NNMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+NNMAdditions.m"; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* NNMConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNMConfig.h; sourceTree = "<group>"; };
 		FAB05DB2190D666D00CF0B92 /* NNMOverscrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNMOverscrollView.h; sourceTree = "<group>"; };
 		FAB05DB3190D666D00CF0B92 /* NNMOverscrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNMOverscrollView.m; sourceTree = "<group>"; };
@@ -62,7 +71,7 @@
 		FAB4614818AC5E74006E9437 /* Calendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calendar-Prefix.pch"; sourceTree = "<group>"; };
 		FAB4614918AC5E74006E9437 /* NNMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NNMAppDelegate.h; sourceTree = "<group>"; };
 		FAB4614A18AC5E74006E9437 /* NNMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNMAppDelegate.m; sourceTree = "<group>"; };
-		FAB4614C18AC5E74006E9437 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FAB4614C18AC5E74006E9437 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Calendar/Images.xcassets; sourceTree = "<group>"; };
 		FAB4615218AC5E74006E9437 /* CalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4615318AC5E74006E9437 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FAB4615B18AC5E74006E9437 /* CalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalendarTests-Info.plist"; sourceTree = "<group>"; };
@@ -115,11 +124,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA1998E219201BD6002BB57E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4614C18AC5E74006E9437 /* Images.xcassets */,
+				FA1998E319201BEA002BB57E /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FA1998E319201BEA002BB57E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA1998E419201BEA002BB57E /* Clavo Light.otf */,
+				FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */,
+				FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */,
+			);
+			name = Fonts;
+			path = Calendar/Fonts;
+			sourceTree = "<group>";
+		};
 		FAA81EDA18C3F7DD00CC3E8B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				FA03E42B18C4B2B200B2D7DC /* UIColor+CustomColors.h */,
 				FA03E42C18C4B2B200B2D7DC /* UIColor+CustomColors.m */,
+				FA1998EA19201C3C002BB57E /* UIFont+NNMAdditions.h */,
+				FA1998EB19201C3C002BB57E /* UIFont+NNMAdditions.m */,
 				FAD294B518C54EE8006932BF /* NSCalendar+STYHelpers.h */,
 				FAD294B618C54EE8006932BF /* NSCalendar+STYHelpers.m */,
 			);
@@ -142,6 +173,7 @@
 				FAB4615918AC5E74006E9437 /* CalendarTests */,
 				FAB4613918AC5E74006E9437 /* Frameworks */,
 				FAB4613818AC5E74006E9437 /* Products */,
+				FA1998E219201BD6002BB57E /* Resources */,
 				33A9D995AEFF4ED7A752DED3 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -178,7 +210,6 @@
 				FAA81EDE18C3F82F00CC3E8B /* NNMConfig.h */,
 				FAB4616A18AC5FEF006E9437 /* NNMCalendarViewController.h */,
 				FAB4616B18AC5FEF006E9437 /* NNMCalendarViewController.m */,
-				FAB4614C18AC5E74006E9437 /* Images.xcassets */,
 				FAB4614118AC5E74006E9437 /* Supporting Files */,
 			);
 			path = Calendar;
@@ -324,6 +355,9 @@
 			files = (
 				FAB4614518AC5E74006E9437 /* InfoPlist.strings in Resources */,
 				FAB4614D18AC5E74006E9437 /* Images.xcassets in Resources */,
+				FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */,
+				FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */,
+				FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +418,7 @@
 				FAD294AA18C53F2F006932BF /* NNMCalendarBackgroundView.m in Sources */,
 				FAD294AC18C53F2F006932BF /* NNMCalendarLayout.m in Sources */,
 				FAD294AD18C53F2F006932BF /* NNMCalendarViewCell.m in Sources */,
+				FA1998EC19201C3C002BB57E /* UIFont+NNMAdditions.m in Sources */,
 				FAB4614B18AC5E74006E9437 /* NNMAppDelegate.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
 				FAD294BA18C5558F006932BF /* NNMScheduleEventViewCell.m in Sources */,
