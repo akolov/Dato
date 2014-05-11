@@ -20,5 +20,6 @@
 + (instancetype)calendarBackgroundGrayColor;
 + (instancetype)textGrayColor;
 + (instancetype)textDarkGrayColor;
++ (instancetype)separatorGrayColor;
 
 @end

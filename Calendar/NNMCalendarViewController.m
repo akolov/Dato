@@ -167,7 +167,7 @@ typedef NS_ENUM(NSInteger, NNMDateBusyness) {
   self.scheduleView.scrollEnabled = NO;
   self.scheduleView.sectionFooterHeight = 0;
   self.scheduleView.sectionHeaderHeight = 0;
-  self.scheduleView.separatorColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
+  self.scheduleView.separatorColor = [UIColor separatorGrayColor];
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
 

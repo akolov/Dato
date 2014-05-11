@@ -46,4 +46,8 @@
   return [UIColor colorWithWhite:0.224f alpha:1.000f];
 }
 
++ (instancetype)separatorGrayColor {
+  return [UIColor colorWithWhite:0.878f alpha:1.000f];
+}
+
 @end
