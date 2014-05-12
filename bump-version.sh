@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 
 set -e
+set -x
 
-if [ ! -z "$(git status --porcelain)" ]; then
-  echo "Please commit all changes before bumping version"
-  exit 1
-fi
+#if [ ! -z "$(git status --porcelain)" ]; then
+#  echo "Please commit all changes before bumping version"
+#  exit 1
+#fi
 
 xcrun agvtool bump -all &> /dev/null
 
