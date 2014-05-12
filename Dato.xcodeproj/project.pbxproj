@@ -559,7 +559,6 @@
 				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
 				INFOPLIST_FILE = "Dato/Dato-Info.plist";
 				PRODUCT_NAME = Dato;
-				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -578,7 +577,6 @@
 				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
 				INFOPLIST_FILE = "Dato/Dato-Info.plist";
 				PRODUCT_NAME = Dato;
-				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
