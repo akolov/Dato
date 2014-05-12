@@ -1,21 +1,22 @@
 PODS:
-  - AXKCollectionViewTools (1.0.2)
-  - AXKViewLayout (1.0.0)
-  - ReactiveCocoa (2.2.4):
+  - AXKCollectionViewTools (1.0.3)
+  - AXKViewLayout (1.0.1)
+  - ReactiveCocoa (2.3):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3)
+  - ReactiveCocoa/UI (2.3):
     - ReactiveCocoa/Core
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/Core (2.2.4):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.2.4)
 
 DEPENDENCIES:
-  - AXKCollectionViewTools (~> 1.0.2)
-  - AXKViewLayout (~> 1.0.0)
-  - ReactiveCocoa (~> 2.2.4)
+  - AXKCollectionViewTools (~> 1.0.3)
+  - AXKViewLayout (~> 1.0.1)
+  - ReactiveCocoa (~> 2.3)
 
 SPEC CHECKSUMS:
-  AXKCollectionViewTools: 4d77e19a5738e2a2838ddddd2683b6d8cc36782f
-  AXKViewLayout: adf4044361b02eec7b31c674e233377ee06dc643
-  ReactiveCocoa: c3b0686ca2aa6589a6716000a7f6ff8e15d8de34
+  AXKCollectionViewTools: b17801c1e7797ec79589503fe05facd11e799264
+  AXKViewLayout: 8423fba7d6f0a9716b0a3951d39d57874ca4383a
+  ReactiveCocoa: dde7b11a14954edf789e7343b2c32e595caabd01
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1
