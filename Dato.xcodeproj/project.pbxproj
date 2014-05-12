@@ -553,6 +553,7 @@
 				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
 				INFOPLIST_FILE = "Dato/Dato-Info.plist";
 				PRODUCT_NAME = Dato;
+				PROVISIONING_PROFILE = "14817369-7545-4710-853D-B76338F871E8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -567,6 +568,7 @@
 				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
 				INFOPLIST_FILE = "Dato/Dato-Info.plist";
 				PRODUCT_NAME = Dato;
+				PROVISIONING_PROFILE = "1CA461E2-03EB-4867-88EA-D581C1D4EF7D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
