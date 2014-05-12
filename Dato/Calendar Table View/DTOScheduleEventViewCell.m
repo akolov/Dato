@@ -63,4 +63,10 @@
   return self;
 }
 
+- (void)prepareForReuse {
+  [super prepareForReuse];
+
+  self.eventLabel.textColor = [UIColor blackColor];
+}
+
 @end

@@ -30,6 +30,7 @@ static CGFloat DTOGradientComponentWidth = 10.0f;
   [super prepareForReuse];
   self.gradientBaseColor = nil;
   self.gradientComponents = 0;
+  self.textLabel.textColor = [UIColor blackColor];
 }
 
 - (void)drawRect:(CGRect)rect {
