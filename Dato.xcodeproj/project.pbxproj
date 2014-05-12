@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3991F5BE7F840798732D22F /* libPods.a */; };
+		FA03E42D18C4B2B200B2D7DC /* UIColor+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */; };
+		FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E419201BEA002BB57E /* Clavo Light.otf */; };
+		FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */; };
+		FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */; };
+		FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */; };
+		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
+		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
+		FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
+		FAB4614518AC5E74006E9437 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB4614318AC5E74006E9437 /* InfoPlist.strings */; };
+		FAB4614718AC5E74006E9437 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4614618AC5E74006E9437 /* main.m */; };
+		FAB4614B18AC5E74006E9437 /* DTOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4614A18AC5E74006E9437 /* DTOAppDelegate.m */; };
+		FAB4614D18AC5E74006E9437 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB4614C18AC5E74006E9437 /* Images.xcassets */; };
+		FAB4615418AC5E74006E9437 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4615318AC5E74006E9437 /* XCTest.framework */; };
+		FAB4615518AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
+		FAB4615618AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
+		FAB4615E18AC5E74006E9437 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB4615C18AC5E74006E9437 /* InfoPlist.strings */; };
+		FAB4616018AC5E74006E9437 /* DatoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4615F18AC5E74006E9437 /* DatoTests.m */; };
+		FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */; };
+		FACC53911921566C000F992B /* Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC538E1921566C000F992B /* Common.xcconfig */; };
+		FACC53921921566C000F992B /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC538F1921566C000F992B /* Debug.xcconfig */; };
+		FACC53931921566C000F992B /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC53901921566C000F992B /* Release.xcconfig */; };
+		FAD294AA18C53F2F006932BF /* DTOCalendarBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A318C53F2F006932BF /* DTOCalendarBackgroundView.m */; };
+		FAD294AB18C53F2F006932BF /* DTOCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A518C53F2F006932BF /* DTOCalendarHeaderView.m */; };
+		FAD294AC18C53F2F006932BF /* DTOCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A718C53F2F006932BF /* DTOCalendarLayout.m */; };
+		FAD294AD18C53F2F006932BF /* DTOCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A918C53F2F006932BF /* DTOCalendarViewCell.m */; };
+		FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B318C54B84006932BF /* DTOLayoutAttributeStorage.m */; };
+		FAD294B718C54EE8006932BF /* NSCalendar+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B618C54EE8006932BF /* NSCalendar+DTOAdditions.m */; };
+		FAD294BA18C5558F006932BF /* DTOScheduleEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */; };
+		FAD294BD18C558C8006932BF /* DTOScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294BC18C558C8006932BF /* DTOScheduleHeaderView.m */; };
+		FAD294C018C5640B006932BF /* DTOScheduleDayViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAB4615718AC5E74006E9437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB4612F18AC5E74006E9437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB4613618AC5E74006E9437;
+			remoteInfo = Dato;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		33A9D995AEFF4ED7A752DED3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F3991F5BE7F840798732D22F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA03E42B18C4B2B200B2D7DC /* UIColor+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DTOAdditions.h"; sourceTree = "<group>"; };
+		FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DTOAdditions.m"; sourceTree = "<group>"; };
+		FA1998E419201BEA002BB57E /* Clavo Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Clavo Light.otf"; sourceTree = "<group>"; };
+		FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		FA1998EA19201C3C002BB57E /* UIFont+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DTOAdditions.h"; sourceTree = "<group>"; };
+		FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DTOAdditions.m"; sourceTree = "<group>"; };
+		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
+		FAB4613718AC5E74006E9437 /* Dato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dato.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB4613A18AC5E74006E9437 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FAB4613E18AC5E74006E9437 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAB4614218AC5E74006E9437 /* Dato-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dato-Info.plist"; sourceTree = "<group>"; };
+		FAB4614418AC5E74006E9437 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAB4614618AC5E74006E9437 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAB4614818AC5E74006E9437 /* Dato-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dato-Prefix.pch"; sourceTree = "<group>"; };
+		FAB4614918AC5E74006E9437 /* DTOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOAppDelegate.h; sourceTree = "<group>"; };
+		FAB4614A18AC5E74006E9437 /* DTOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTOAppDelegate.m; sourceTree = "<group>"; };
+		FAB4614C18AC5E74006E9437 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dato/Images.xcassets; sourceTree = "<group>"; };
+		FAB4615218AC5E74006E9437 /* DatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB4615318AC5E74006E9437 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FAB4615B18AC5E74006E9437 /* DatoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DatoTests-Info.plist"; sourceTree = "<group>"; };
+		FAB4615D18AC5E74006E9437 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAB4615F18AC5E74006E9437 /* DatoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatoTests.m; sourceTree = "<group>"; };
+		FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarViewController.h; sourceTree = "<group>"; };
+		FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarViewController.m; sourceTree = "<group>"; };
+		FACC538E1921566C000F992B /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = SOURCE_ROOT; };
+		FACC538F1921566C000F992B /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		FACC53901921566C000F992B /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		FAD294A218C53F2F006932BF /* DTOCalendarBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarBackgroundView.h; sourceTree = "<group>"; };
+		FAD294A318C53F2F006932BF /* DTOCalendarBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarBackgroundView.m; sourceTree = "<group>"; };
+		FAD294A418C53F2F006932BF /* DTOCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarHeaderView.h; sourceTree = "<group>"; };
+		FAD294A518C53F2F006932BF /* DTOCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarHeaderView.m; sourceTree = "<group>"; };
+		FAD294A618C53F2F006932BF /* DTOCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarLayout.h; sourceTree = "<group>"; };
+		FAD294A718C53F2F006932BF /* DTOCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarLayout.m; sourceTree = "<group>"; };
+		FAD294A818C53F2F006932BF /* DTOCalendarViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarViewCell.h; sourceTree = "<group>"; };
+		FAD294A918C53F2F006932BF /* DTOCalendarViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarViewCell.m; sourceTree = "<group>"; };
+		FAD294B218C54B84006932BF /* DTOLayoutAttributeStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOLayoutAttributeStorage.h; sourceTree = "<group>"; };
+		FAD294B318C54B84006932BF /* DTOLayoutAttributeStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOLayoutAttributeStorage.m; sourceTree = "<group>"; };
+		FAD294B518C54EE8006932BF /* NSCalendar+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+DTOAdditions.h"; sourceTree = "<group>"; };
+		FAD294B618C54EE8006932BF /* NSCalendar+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+DTOAdditions.m"; sourceTree = "<group>"; };
+		FAD294B818C5558F006932BF /* DTOScheduleEventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleEventViewCell.h; sourceTree = "<group>"; };
+		FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOScheduleEventViewCell.m; sourceTree = "<group>"; };
+		FAD294BB18C558C8006932BF /* DTOScheduleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleHeaderView.h; sourceTree = "<group>"; };
+		FAD294BC18C558C8006932BF /* DTOScheduleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOScheduleHeaderView.m; sourceTree = "<group>"; };
+		FAD294BE18C5640B006932BF /* DTOScheduleDayViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleDayViewCell.h; sourceTree = "<group>"; };
+		FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOScheduleDayViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAB4613418AC5E74006E9437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */,
+				FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */,
+				FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */,
+				956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB4614F18AC5E74006E9437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB4615418AC5E74006E9437 /* XCTest.framework in Frameworks */,
+				FAB4615618AC5E74006E9437 /* UIKit.framework in Frameworks */,
+				FAB4615518AC5E74006E9437 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA1998E219201BD6002BB57E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4614C18AC5E74006E9437 /* Images.xcassets */,
+				FA1998E319201BEA002BB57E /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FA1998E319201BEA002BB57E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA1998E419201BEA002BB57E /* Clavo Light.otf */,
+				FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */,
+				FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */,
+			);
+			name = Fonts;
+			path = Dato/Fonts;
+			sourceTree = "<group>";
+		};
+		FAA81EDA18C3F7DD00CC3E8B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FA03E42B18C4B2B200B2D7DC /* UIColor+DTOAdditions.h */,
+				FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */,
+				FA1998EA19201C3C002BB57E /* UIFont+DTOAdditions.h */,
+				FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */,
+				FAD294B518C54EE8006932BF /* NSCalendar+DTOAdditions.h */,
+				FAD294B618C54EE8006932BF /* NSCalendar+DTOAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FAB4612E18AC5E74006E9437 = {
+			isa = PBXGroup;
+			children = (
+				FAB4614018AC5E74006E9437 /* Dato */,
+				FAB4615918AC5E74006E9437 /* DatoTests */,
+				FAB4613918AC5E74006E9437 /* Frameworks */,
+				FAB4613818AC5E74006E9437 /* Products */,
+				FA1998E219201BD6002BB57E /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		FAB4613818AC5E74006E9437 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4613718AC5E74006E9437 /* Dato.app */,
+				FAB4615218AC5E74006E9437 /* DatoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB4613918AC5E74006E9437 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4613A18AC5E74006E9437 /* Foundation.framework */,
+				FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */,
+				FAB4613E18AC5E74006E9437 /* UIKit.framework */,
+				FAB4615318AC5E74006E9437 /* XCTest.framework */,
+				F3991F5BE7F840798732D22F /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAB4614018AC5E74006E9437 /* Dato */ = {
+			isa = PBXGroup;
+			children = (
+				FAA81EDA18C3F7DD00CC3E8B /* Categories */,
+				FAD294A118C53F2F006932BF /* Calendar Collection View */,
+				FAD294AE18C54003006932BF /* Calendar Table View */,
+				FACC538D19214EDA000F992B /* Settings */,
+				FAB4614918AC5E74006E9437 /* DTOAppDelegate.h */,
+				FAB4614A18AC5E74006E9437 /* DTOAppDelegate.m */,
+				FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */,
+				FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */,
+				FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */,
+				FAB4614118AC5E74006E9437 /* Supporting Files */,
+			);
+			path = Dato;
+			sourceTree = "<group>";
+		};
+		FAB4614118AC5E74006E9437 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33A9D995AEFF4ED7A752DED3 /* Pods.xcconfig */,
+				FACC538E1921566C000F992B /* Common.xcconfig */,
+				FACC538F1921566C000F992B /* Debug.xcconfig */,
+				FACC53901921566C000F992B /* Release.xcconfig */,
+				FAB4614218AC5E74006E9437 /* Dato-Info.plist */,
+				FAB4614318AC5E74006E9437 /* InfoPlist.strings */,
+				FAB4614618AC5E74006E9437 /* main.m */,
+				FAB4614818AC5E74006E9437 /* Dato-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAB4615918AC5E74006E9437 /* DatoTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4615F18AC5E74006E9437 /* DatoTests.m */,
+				FAB4615A18AC5E74006E9437 /* Supporting Files */,
+			);
+			path = DatoTests;
+			sourceTree = "<group>";
+		};
+		FAB4615A18AC5E74006E9437 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAB4615B18AC5E74006E9437 /* DatoTests-Info.plist */,
+				FAB4615C18AC5E74006E9437 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FACC538D19214EDA000F992B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FAD294A118C53F2F006932BF /* Calendar Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				FAD294A218C53F2F006932BF /* DTOCalendarBackgroundView.h */,
+				FAD294A318C53F2F006932BF /* DTOCalendarBackgroundView.m */,
+				FAD294A418C53F2F006932BF /* DTOCalendarHeaderView.h */,
+				FAD294A518C53F2F006932BF /* DTOCalendarHeaderView.m */,
+				FAD294A618C53F2F006932BF /* DTOCalendarLayout.h */,
+				FAD294A718C53F2F006932BF /* DTOCalendarLayout.m */,
+				FAD294A818C53F2F006932BF /* DTOCalendarViewCell.h */,
+				FAD294A918C53F2F006932BF /* DTOCalendarViewCell.m */,
+				FAD294B218C54B84006932BF /* DTOLayoutAttributeStorage.h */,
+				FAD294B318C54B84006932BF /* DTOLayoutAttributeStorage.m */,
+			);
+			path = "Calendar Collection View";
+			sourceTree = "<group>";
+		};
+		FAD294AE18C54003006932BF /* Calendar Table View */ = {
+			isa = PBXGroup;
+			children = (
+				FAD294BB18C558C8006932BF /* DTOScheduleHeaderView.h */,
+				FAD294BC18C558C8006932BF /* DTOScheduleHeaderView.m */,
+				FAD294BE18C5640B006932BF /* DTOScheduleDayViewCell.h */,
+				FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */,
+				FAD294B818C5558F006932BF /* DTOScheduleEventViewCell.h */,
+				FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */,
+			);
+			path = "Calendar Table View";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAB4613618AC5E74006E9437 /* Dato */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB4616318AC5E74006E9437 /* Build configuration list for PBXNativeTarget "Dato" */;
+			buildPhases = (
+				1CB5B5DD43FF494A9C9129BD /* Check Pods Manifest.lock */,
+				FAB4613318AC5E74006E9437 /* Sources */,
+				FAB4613418AC5E74006E9437 /* Frameworks */,
+				FAB4613518AC5E74006E9437 /* Resources */,
+				7E78657F327A450281A08F97 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dato;
+			productName = Dato;
+			productReference = FAB4613718AC5E74006E9437 /* Dato.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAB4615118AC5E74006E9437 /* DatoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB4616618AC5E74006E9437 /* Build configuration list for PBXNativeTarget "DatoTests" */;
+			buildPhases = (
+				FAB4614E18AC5E74006E9437 /* Sources */,
+				FAB4614F18AC5E74006E9437 /* Frameworks */,
+				FAB4615018AC5E74006E9437 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB4615818AC5E74006E9437 /* PBXTargetDependency */,
+			);
+			name = DatoTests;
+			productName = DatoTests;
+			productReference = FAB4615218AC5E74006E9437 /* DatoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAB4612F18AC5E74006E9437 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = NNM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Noname;
+				TargetAttributes = {
+					FAB4615118AC5E74006E9437 = {
+						TestTargetID = FAB4613618AC5E74006E9437;
+					};
+				};
+			};
+			buildConfigurationList = FAB4613218AC5E74006E9437 /* Build configuration list for PBXProject "Dato" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FAB4612E18AC5E74006E9437;
+			productRefGroup = FAB4613818AC5E74006E9437 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAB4613618AC5E74006E9437 /* Dato */,
+				FAB4615118AC5E74006E9437 /* DatoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAB4613518AC5E74006E9437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FACC53931921566C000F992B /* Release.xcconfig in Resources */,
+				FAB4614518AC5E74006E9437 /* InfoPlist.strings in Resources */,
+				FAB4614D18AC5E74006E9437 /* Images.xcassets in Resources */,
+				FACC53921921566C000F992B /* Debug.xcconfig in Resources */,
+				FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */,
+				FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */,
+				FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */,
+				FACC53911921566C000F992B /* Common.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB4615018AC5E74006E9437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB4615E18AC5E74006E9437 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CB5B5DD43FF494A9C9129BD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E78657F327A450281A08F97 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAB4613318AC5E74006E9437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAD294C018C5640B006932BF /* DTOScheduleDayViewCell.m in Sources */,
+				FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */,
+				FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */,
+				FAD294AB18C53F2F006932BF /* DTOCalendarHeaderView.m in Sources */,
+				FAD294BD18C558C8006932BF /* DTOScheduleHeaderView.m in Sources */,
+				FA03E42D18C4B2B200B2D7DC /* UIColor+DTOAdditions.m in Sources */,
+				FAD294AA18C53F2F006932BF /* DTOCalendarBackgroundView.m in Sources */,
+				FAD294AC18C53F2F006932BF /* DTOCalendarLayout.m in Sources */,
+				FAD294AD18C53F2F006932BF /* DTOCalendarViewCell.m in Sources */,
+				FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */,
+				FAB4614B18AC5E74006E9437 /* DTOAppDelegate.m in Sources */,
+				FAB4614718AC5E74006E9437 /* main.m in Sources */,
+				FAD294BA18C5558F006932BF /* DTOScheduleEventViewCell.m in Sources */,
+				FAD294B718C54EE8006932BF /* NSCalendar+DTOAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB4614E18AC5E74006E9437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB4616018AC5E74006E9437 /* DatoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAB4615818AC5E74006E9437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB4613618AC5E74006E9437 /* Dato */;
+			targetProxy = FAB4615718AC5E74006E9437 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAB4614318AC5E74006E9437 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB4614418AC5E74006E9437 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FAB4615C18AC5E74006E9437 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB4615D18AC5E74006E9437 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAB4616118AC5E74006E9437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAB4616218AC5E74006E9437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAB4616418AC5E74006E9437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACC538F1921566C000F992B /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
+				INFOPLIST_FILE = "Dato/Dato-Info.plist";
+				PRODUCT_NAME = Dato;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FAB4616518AC5E74006E9437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACC53901921566C000F992B /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
+				INFOPLIST_FILE = "Dato/Dato-Info.plist";
+				PRODUCT_NAME = Dato;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FAB4616718AC5E74006E9437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACC538F1921566C000F992B /* Debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dato.app/Dato";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DatoTests/DatoTests-Info.plist";
+				PRODUCT_NAME = DatoTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FAB4616818AC5E74006E9437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACC53901921566C000F992B /* Release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dato.app/Dato";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dato/Dato-Prefix.pch";
+				INFOPLIST_FILE = "DatoTests/DatoTests-Info.plist";
+				PRODUCT_NAME = DatoTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAB4613218AC5E74006E9437 /* Build configuration list for PBXProject "Dato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB4616118AC5E74006E9437 /* Debug */,
+				FAB4616218AC5E74006E9437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB4616318AC5E74006E9437 /* Build configuration list for PBXNativeTarget "Dato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB4616418AC5E74006E9437 /* Debug */,
+				FAB4616518AC5E74006E9437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB4616618AC5E74006E9437 /* Build configuration list for PBXNativeTarget "DatoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB4616718AC5E74006E9437 /* Debug */,
+				FAB4616818AC5E74006E9437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAB4612F18AC5E74006E9437 /* Project object */;
+}

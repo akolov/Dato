@@ -1,0 +1,31 @@
+//
+//  Release.xcconfig
+//  Dato
+//
+//  Created by Alexander Kolov on 24/06/13.
+//  Copyright (c) 2013 Alexander Kolov. All rights reserved.
+//
+
+#include "Common.xcconfig"
+
+// Architectures
+
+ONLY_ACTIVE_ARCH = NO
+
+// Deployment
+
+COPY_PHASE_STRIP = YES
+
+// Apple LLVM - Code Generation
+
+GCC_OPTIMIZATION_LEVEL = s
+GCC_UNROLL_LOOPS = YES
+LLVM_LTO = YES
+
+// Apple LLVM - Custom Compiler Flags
+
+OTHER_CFLAGS = -DNS_BLOCK_ASSERTIONS=1
+
+// Apple LLVM - Preprocessing
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
