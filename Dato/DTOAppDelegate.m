@@ -8,11 +8,16 @@
 
 #import "DTOConfig.h"
 #import "DTOAppDelegate.h"
+
+#import <TestFlightSDK/TestFlight.h>
+
 #import "DTOCalendarViewController.h"
 
 @implementation DTOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [TestFlight takeOff:@"c8f794e5-c69d-4c01-9176-a85662590b16"];
+
   DTOCalendarViewController *vc = [[DTOCalendarViewController alloc] init];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
 
