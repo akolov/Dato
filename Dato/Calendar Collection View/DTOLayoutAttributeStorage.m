@@ -43,15 +43,17 @@
     [self.storage addObject:[NSMutableArray array]];
   }
 
-  while ([self.storage[section] count] < (NSUInteger)attributes.indexPath.item) {
-    [self.storage[section] addObject:[NSNull null]];
+  NSMutableArray *sectionStorage = self.storage[section];
+
+  while ([sectionStorage count] < (NSUInteger)attributes.indexPath.item) {
+    [sectionStorage addObject:[NSNull null]];
   }
 
-  if ([self.storage[section] count] == item) {
-    [self.storage[section] addObject:attributes];
+  if ([sectionStorage count] == item) {
+    [sectionStorage addObject:attributes];
   }
   else {
-    [self.storage[section] replaceObjectAtIndex:item withObject:attributes];
+    [sectionStorage replaceObjectAtIndex:item withObject:attributes];
   }
 }
 
@@ -90,11 +92,13 @@
     return nil;
   }
 
-  if ([self.storage[(NSUInteger)indexPath.section] count] <= (NSUInteger)indexPath.item) {
+  NSArray *sectionStorage = self.storage[(NSUInteger)indexPath.section];
+
+  if ([sectionStorage count] <= (NSUInteger)indexPath.item) {
     return nil;
   }
 
-  id attributes = self.storage[(NSUInteger)indexPath.section][(NSUInteger)indexPath.item];
+  id attributes = sectionStorage[(NSUInteger)indexPath.item];
   if ([attributes isEqual:[NSNull null]]) {
     return nil;
   }
