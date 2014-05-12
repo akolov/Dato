@@ -59,7 +59,6 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
 - (void)sizeScheduleToFit;
 - (void)scrollCalendarToScheduleRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
-- (void)reloadCalendarWithDate:(NSDate *)date;
 
 @end
 
@@ -670,7 +669,55 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   }
 
   self.today = date;
-  [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:YES];
+  NSArray *events = [self eventsForDate:self.today];
+  NSUInteger count = (NSUInteger)[self.scheduleView numberOfRowsInSection:2];
+
+  [self.scheduleView beginUpdates];
+  {
+    NSMutableArray *insert = [NSMutableArray array];
+    NSMutableArray *reload = [NSMutableArray array];
+    NSMutableArray *delete = [NSMutableArray array];
+
+    [reload addObject:[NSIndexPath indexPathForRow:0 inSection:2]];
+
+    for (NSUInteger i = 1; i < [events count] && i < count; ++i) {
+      [reload addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
+    }
+
+    if (count > 0 && count < [events count]) {
+      for (NSUInteger i = count; i < [events count]; ++i) {
+        [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
+      }
+    }
+    else if ([events count] < count) {
+      for (NSUInteger i = 1; i < count; ++i) {
+        [delete addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
+      }
+    }
+
+    self.events = events;
+
+    [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationBottom];
+    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
+    [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
+  }
+  [self.scheduleView endUpdates];
+
+  CGFloat offset = 0;
+  for (NSInteger i = 3; i < 4; ++i) {
+    offset += self.scheduleView.rowHeight;
+    offset += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
+    offset += CGRectGetHeight([self.scheduleView rectForFooterInSection:i]);
+  }
+  self.title = [self.titleFormatter stringFromDate:self.today];
+
+  [self.scheduleView reloadData];
+
+  [UIView animateWithDuration:0.25 animations:^{
+    [self sizeScheduleToFit];
+    [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:YES];
+    [self changeInterfaceColorForDate:self.today];
+  }];
 }
 
 - (void)sizeScheduleToFit {
@@ -694,60 +741,6 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   CGRect rect = [self.scheduleView rectForRowAtIndexPath:indexPath];
   CGFloat height = CGRectGetHeight(self.scheduleView.frame);
   [self.calendarView setContentOffset:CGPointMake(0, -height + CGRectGetMinY(rect) - 66.0f) animated:animated];
-}
-
-- (void)reloadCalendarWithDate:(NSDate *)date {
-  [self.scheduleView beginUpdates];
-  {
-    NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:2]];
-    NSMutableArray *delete = [NSMutableArray array];
-    for (NSInteger i = 1; i < [self.scheduleView numberOfRowsInSection:2]; ++i) {
-      [delete addObject:[NSIndexPath indexPathForRow:i inSection:2]];
-    }
-
-    self.events = nil;
-
-    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-    [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
-  }
-  [self.scheduleView endUpdates];
-
-  CGFloat offset = 0;
-  for (NSInteger i = 3; i < 4; ++i) {
-    offset += self.scheduleView.rowHeight;
-    offset += CGRectGetHeight([self.scheduleView rectForHeaderInSection:i]);
-    offset += CGRectGetHeight([self.scheduleView rectForFooterInSection:i]);
-  }
-
-  [UIView animateWithDuration:0.25 animations:^{
-    [self.scheduleView setContentOffset:CGPointMake(0, offset) animated:NO];
-  } completion:^(BOOL finished) {
-    self.title = [self.titleFormatter stringFromDate:self.today];
-
-    [self.scheduleView setContentOffset:CGPointZero animated:NO];
-    [self.scheduleView beginUpdates];
-    {
-      self.events = [self eventsForDate:self.today];
-
-      NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:2]];
-      NSMutableArray *insert = [NSMutableArray array];
-      for (NSUInteger i = 1; i < [self.events count]; ++i) {
-        [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
-      }
-
-      [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-      [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationTop];
-    }
-    [self.scheduleView endUpdates];
-
-    [self.scheduleView reloadData];
-
-    [UIView animateWithDuration:0.25 animations:^{
-      [self sizeScheduleToFit];
-      [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:NO];
-      [self changeInterfaceColorForDate:self.today];
-    }];
-  }];
 }
 
 @end
