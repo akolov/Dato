@@ -178,7 +178,7 @@ NSString *const DTOCalendarElementKindBackground = @"DTOCalendarElementKindBackg
   while (YES) {
     NSDate *date = lastDate ? [self.calendar nextDate:lastDate] : self.startDate;
     BOOL newSection = [self.calendar isDifferentMonth:lastDate toDate:date];
-    NSInteger ordinality = [self.calendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:date] - 1;
+    NSUInteger ordinality = [self.calendar ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:date] - 1;
 
     BOOL newLine = [self.calendar isDifferentWeek:lastDate toDate:date];
     frame.origin.x = self.itemSize.width * ordinality;

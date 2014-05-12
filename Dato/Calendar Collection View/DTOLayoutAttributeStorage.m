@@ -36,19 +36,22 @@
 #pragma mark - Adding Attributes
 
 - (void)setAttributes:(UICollectionViewLayoutAttributes *)attributes {
-  while ([self.storage count] <= attributes.indexPath.section) {
+  NSUInteger section = (NSUInteger)attributes.indexPath.section;
+  NSUInteger item = (NSUInteger)attributes.indexPath.item;
+
+  while ([self.storage count] <= section) {
     [self.storage addObject:[NSMutableArray array]];
   }
 
-  while ([self.storage[attributes.indexPath.section] count] < attributes.indexPath.item) {
-    [self.storage[attributes.indexPath.section] addObject:[NSNull null]];
+  while ([self.storage[section] count] < (NSUInteger)attributes.indexPath.item) {
+    [self.storage[section] addObject:[NSNull null]];
   }
 
-  if ([self.storage[attributes.indexPath.section] count] == attributes.indexPath.item) {
-    [self.storage[attributes.indexPath.section] addObject:attributes];
+  if ([self.storage[section] count] == item) {
+    [self.storage[section] addObject:attributes];
   }
   else {
-    [self.storage[attributes.indexPath.section] replaceObjectAtIndex:attributes.indexPath.item withObject:attributes];
+    [self.storage[section] replaceObjectAtIndex:item withObject:attributes];
   }
 }
 
@@ -60,11 +63,11 @@
 }
 
 - (UICollectionViewLayoutAttributes *)firstAttributeInSection:(NSInteger)section {
-  if ([self.storage count] <= section) {
+  if ([self.storage count] <= (NSUInteger)section) {
     return nil;
   }
 
-  id obj = [self.storage[section] firstObject];
+  id obj = [self.storage[(NSUInteger)section] firstObject];
   return [obj isEqual:[NSNull null]] ? nil : obj;
 }
 
@@ -74,24 +77,24 @@
 }
 
 - (UICollectionViewLayoutAttributes *)lastAttributeInSection:(NSInteger)section {
-  if ([self.storage count] <= section) {
+  if ([self.storage count] <= (NSUInteger)section) {
     return nil;
   }
 
-  id obj = [self.storage[section] lastObject];
+  id obj = [self.storage[(NSUInteger)section] lastObject];
   return [obj isEqual:[NSNull null]] ? nil : obj;
 }
 
 - (UICollectionViewLayoutAttributes *)attributesAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.storage count] <= indexPath.section) {
+  if ([self.storage count] <= (NSUInteger)indexPath.section) {
     return nil;
   }
 
-  if ([self.storage[indexPath.section] count] <= indexPath.item) {
+  if ([self.storage[(NSUInteger)indexPath.section] count] <= (NSUInteger)indexPath.item) {
     return nil;
   }
 
-  id attributes = self.storage[indexPath.section][indexPath.item];
+  id attributes = self.storage[(NSUInteger)indexPath.section][(NSUInteger)indexPath.item];
   if ([attributes isEqual:[NSNull null]]) {
     return nil;
   }
@@ -100,7 +103,7 @@
 }
 
 - (NSArray *)attributesInSection:(NSInteger)section {
-  return [self.storage[section] filteredArrayUsingPredicate:
+  return [self.storage[(NSUInteger)section] filteredArrayUsingPredicate:
           [NSPredicate predicateWithFormat:@"SELF != %@", [NSNull null]]];
 }
 
@@ -130,9 +133,10 @@
 
 - (void)enumerateAttributesUsingBlock:(void (^)(UICollectionViewLayoutAttributes *attrs, NSIndexPath *idx, BOOL *stop))block {
   [self.storage enumerateObjectsUsingBlock:^(NSArray *arr, NSUInteger section, BOOL *stop) {
-    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger item, BOOL *stop) {
+    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger item, BOOL *innerStop) {
       if (![obj isEqual:[NSNull null]]) {
-        block(obj, [NSIndexPath indexPathForItem:item inSection:section], stop);
+        block(obj, [NSIndexPath indexPathForItem:(NSInteger)item inSection:(NSInteger)section], innerStop);
+        *stop = *innerStop;
       }
     }];
   }];
@@ -141,10 +145,11 @@
 - (void)enumerateAttributesWithOptions:(NSEnumerationOptions)opts
                             usingBlock:(void (^)(UICollectionViewLayoutAttributes *attrs, NSIndexPath *idx, BOOL *stop))block {
   [self.storage enumerateObjectsWithOptions:opts usingBlock:^(NSArray *arr, NSUInteger section, BOOL *stop) {
-    [arr enumerateObjectsWithOptions:opts usingBlock:^(id obj, NSUInteger item, BOOL *stop) {
+    [arr enumerateObjectsWithOptions:opts usingBlock:^(id obj, NSUInteger item, BOOL *innerStop) {
       if (![obj isEqual:[NSNull null]]) {
-        block(obj, [NSIndexPath indexPathForItem:item inSection:section], stop);
+        block(obj, [NSIndexPath indexPathForItem:(NSInteger)item inSection:(NSInteger)section], innerStop);
       }
+      *stop = *innerStop;
     }];
   }];
 }
@@ -152,10 +157,11 @@
 - (void)enumerateAttributesAtIndexes:(NSIndexSet *)s options:(NSEnumerationOptions)opts
                           usingBlock:(void (^)(UICollectionViewLayoutAttributes *attrs, NSIndexPath *idx, BOOL *stop))block {
   [self.storage enumerateObjectsAtIndexes:s options:opts usingBlock:^(NSArray *arr, NSUInteger section, BOOL *stop) {
-    [arr enumerateObjectsWithOptions:opts usingBlock:^(id obj, NSUInteger item, BOOL *stop) {
+    [arr enumerateObjectsWithOptions:opts usingBlock:^(id obj, NSUInteger item, BOOL *innerStop) {
       if (![obj isEqual:[NSNull null]]) {
-        block(obj, [NSIndexPath indexPathForItem:item inSection:section], stop);
+        block(obj, [NSIndexPath indexPathForItem:(NSInteger)item inSection:(NSInteger)section], innerStop);
       }
+      *stop = *innerStop;
     }];
   }];
 }

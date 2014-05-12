@@ -201,7 +201,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   NSDateComponents *components = [[NSDateComponents alloc] init];
   components.month = section;
   NSDate *date = [self.calendar dateByAddingComponents:components toDate:self.today options:0];
-  return [self.calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
+  return (NSInteger)[self.calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -282,7 +282,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   switch (section) {
     case 2:
-      return [self.events count] != 0 ? [self.events count] : 1;
+      return [self.events count] != 0 ? (NSInteger)[self.events count] : 1;
     default:
       return 1;
   }
@@ -464,8 +464,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
         NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:2]];
         NSMutableArray *insert = [NSMutableArray array];
-        for (NSInteger i = 1; i < [self.events count]; ++i) {
-          [insert addObject:[NSIndexPath indexPathForRow:i inSection:2]];
+        for (NSUInteger i = 1; i < [self.events count]; ++i) {
+          [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
         }
 
         [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
@@ -528,8 +528,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
         NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:2]];
         NSMutableArray *insert = [NSMutableArray array];
-        for (NSInteger i = 1; i < [self.events count]; ++i) {
-          [insert addObject:[NSIndexPath indexPathForRow:i inSection:2]];
+        for (NSUInteger i = 1; i < [self.events count]; ++i) {
+          [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
         }
 
         [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
@@ -543,7 +543,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
         [self sizeScheduleToFit];
         [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:NO];
         [self changeInterfaceColorForDate:self.today];
-      } completion:^(BOOL finished) {
+      } completion:^(BOOL innerFinished) {
         self.animating = NO;
       }];
     }];
@@ -573,7 +573,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   self.navigationController.navigationBar.barTintColor = color;
 }
 
-- (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events {
+- (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray * __autoreleasing *)events {
   NSArray *dateEvents = [self eventsForDate:date];
   CGFloat hoursLeft = DTOWorkHoursPerDay;
   for (EKEvent *event in dateEvents) {
@@ -623,7 +623,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 - (DTOScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
   DTOScheduleEventViewCell *cell =
     [tableView dequeueReusableCellWithIdentifier:[DTOScheduleEventViewCell reuseIdentifier] forIndexPath:indexPath];
-  EKEvent *event = self.events[indexPath.row];
+  EKEvent *event = self.events[(NSUInteger)indexPath.row];
   EKCalendar *calendar = event.calendar;
   cell.eventLabel.text = event.title;
 
@@ -731,8 +731,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
       NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:2]];
       NSMutableArray *insert = [NSMutableArray array];
-      for (NSInteger i = 1; i < [self.events count]; ++i) {
-        [insert addObject:[NSIndexPath indexPathForRow:i inSection:2]];
+      for (NSUInteger i = 1; i < [self.events count]; ++i) {
+        [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:2]];
       }
 
       [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
