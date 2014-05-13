@@ -12,6 +12,12 @@
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
+@interface DTOScheduleDayViewCell ()
+
+@property (nonatomic, weak) UIView *separator;
+
+@end
+
 @implementation DTOScheduleDayViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -27,11 +33,13 @@
     self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
     self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
 
-    self.gradientView = [DTOScheduleGradient autolayoutView];
-    [self.contentView addSubview:self.gradientView];
+    CGRect frame = self.bounds;
+    frame.origin.x = CGRectGetMaxX(frame) - 80.0f;
+    frame.size.width = 80.0f;
 
-    [self.contentView pin:@"H:[gradientView(80.0)]|" options:0 owner:self];
-    [self.gradientView pinToFillContainerOnAxis:UILayoutConstraintAxisVertical];
+    self.gradientView = [[DTOScheduleGradient alloc] initWithFrame:frame];
+    self.gradientView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+    [self.contentView addSubview:self.gradientView];
   }
   return self;
 }
@@ -43,11 +51,40 @@
 
 - (void)prepareForReuse {
   [super prepareForReuse];
+  [self.separator removeFromSuperview];
   self.gradientView.tintColor = nil;
   self.gradientView.numberOfComponents = 0;
   self.contentView.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
   self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
   self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
+}
+
+- (void)setShowsFullSeparator:(BOOL)showsFullSeparator {
+  if (_showsFullSeparator == showsFullSeparator) {
+    return;
+  }
+
+  _showsFullSeparator = showsFullSeparator;
+
+  if (_showsFullSeparator) {
+    if (self.separator) {
+      return;
+    }
+
+    UIView *separator = [UIView autolayoutView];
+    separator.backgroundColor = [DTOThemeManager theme].separatorColor;
+    [self addSubview:separator];
+
+    self.separator = separator;
+
+    [self.separator pinEdge:NSLayoutAttributeLeading toView:self.contentView];
+    [self.separator pinEdge:NSLayoutAttributeTrailing toView:self.contentView];
+    [[self.separator pinEdge:NSLayoutAttributeBottom toView:self.contentView] setConstant:0.5f];
+    [self.separator pinHeight:0.5f withRelation:NSLayoutRelationEqual];
+  }
+  else {
+    [self.separator removeFromSuperview];
+  }
 }
 
 @end

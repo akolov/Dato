@@ -13,5 +13,6 @@
 @interface DTOScheduleDayViewCell : UITableViewCell
 
 @property (nonatomic, strong) DTOScheduleGradient *gradientView;
+@property (nonatomic, assign) BOOL showsFullSeparator;
 
 @end
