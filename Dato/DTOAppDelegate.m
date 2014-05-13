@@ -9,14 +9,16 @@
 #import "DTOConfig.h"
 #import "DTOAppDelegate.h"
 
-#import <TestFlightSDK/TestFlight.h>
+#import <HockeySDK/HockeySDK.h>
 
 #import "DTOCalendarViewController.h"
 
 @implementation DTOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [TestFlight takeOff:@"c8f794e5-c69d-4c01-9176-a85662590b16"];
+  [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"5ab089596e2e2fbe995ce7fcc8f59640"];
+  [[BITHockeyManager sharedHockeyManager] startManager];
+  [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 
   DTOCalendarViewController *vc = [[DTOCalendarViewController alloc] init];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
