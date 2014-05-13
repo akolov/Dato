@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 set -e
-set -x
 
 if [ ! -z "$(git status --porcelain)" ]; then
   echo "Please commit all changes before bumping version"
