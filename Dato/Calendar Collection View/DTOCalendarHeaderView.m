@@ -22,7 +22,7 @@
   if (self) {
     self.textLabel = [UILabel autolayoutView];
     self.textLabel.font = [UIFont lightClavoFontOfSize:13.0f];
-    self.textLabel.textColor = [UIColor textGrayColor];
+    self.textLabel.textColor = [DTOStyleKit foregroundGrayColor];
     [self addSubview:self.textLabel];
 
     [self pin:@[@"H:|-30.0-[textLabel]-(>=0)-|"] owner:self];

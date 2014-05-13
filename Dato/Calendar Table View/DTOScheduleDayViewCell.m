@@ -16,7 +16,7 @@ static CGFloat DTOGradientComponentWidth = 10.0f;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor calendarBackgroundGrayColor];
+    self.backgroundColor = [DTOStyleKit backgroundWhiteColor];
     self.opaque = NO;
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;

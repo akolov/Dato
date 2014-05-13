@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.layout.startDate = self.today;
 
   self.calendarView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
-  self.calendarView.backgroundColor = [UIColor backgroundGrayColor];
+  self.calendarView.backgroundColor = [DTOStyleKit backgroundGrayColor];
   self.calendarView.dataSource = self;
   self.calendarView.delegate = self;
   self.calendarView.opaque = YES;
@@ -167,7 +167,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.scheduleView.scrollEnabled = NO;
   self.scheduleView.sectionFooterHeight = 0;
   self.scheduleView.sectionHeaderHeight = 0;
-  self.scheduleView.separatorColor = [UIColor separatorGrayColor];
+  self.scheduleView.separatorColor = [DTOStyleKit separatorGrayColor];
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
 
@@ -219,16 +219,16 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
   switch ([self dateBusyness:date events:NULL]) {
     case DTODateVeryBusy:
-      cell.dateLabel.textColor = [UIColor calendarRedColor];
+      cell.dateLabel.textColor = [DTOStyleKit foregroundRedColor];
       break;
     case DTODateBusy:
-      cell.dateLabel.textColor = [UIColor calendarOrangeColor];
+      cell.dateLabel.textColor = [DTOStyleKit foregroundOrangeColor];
       break;
     case DTODateNotBusy:
-      cell.dateLabel.textColor = [UIColor calendarYellowColor];
+      cell.dateLabel.textColor = [DTOStyleKit foregroundYellowColor];
       break;
     default:
-      cell.dateLabel.textColor = [UIColor textDarkGrayColor];
+      cell.dateLabel.textColor = [DTOStyleKit foregroundDarkGrayColor];
       break;
   }
 
@@ -557,16 +557,16 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
   switch ([self dateBusyness:date events:NULL]) {
     case DTODateVeryBusy:
-      color = [UIColor calendarRedColor];
+      color = [DTOStyleKit foregroundRedColor];
       break;
     case DTODateBusy:
-      color = [UIColor calendarOrangeColor];
+      color = [DTOStyleKit foregroundOrangeColor];
       break;
     case DTODateNotBusy:
-      color = [UIColor calendarYellowColor];
+      color = [DTOStyleKit foregroundYellowColor];
       break;
     default:
-      color = [UIColor calendarBlueColor];
+      color = [DTOStyleKit foregroundBlueColor];
       break;
   }
 
@@ -646,16 +646,16 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
   switch ([self dateBusyness:date events:&events]) {
     case DTODateVeryBusy:
-      color = [UIColor calendarRedColor];
+      color = [DTOStyleKit foregroundRedColor];
       break;
     case DTODateBusy:
-      color = [UIColor calendarOrangeColor];
+      color = [DTOStyleKit foregroundOrangeColor];
       break;
     case DTODateNotBusy:
-      color = [UIColor calendarYellowColor];
+      color = [DTOStyleKit foregroundYellowColor];
       break;
     case DTODateFree:
-      color = [UIColor calendarBlueColor];
+      color = [DTOStyleKit foregroundBlueColor];
       break;
   }
 

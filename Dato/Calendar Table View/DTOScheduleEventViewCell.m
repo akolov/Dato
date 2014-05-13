@@ -23,7 +23,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor calendarBackgroundGrayColor];
+    self.backgroundColor = [DTOStyleKit backgroundWhiteColor];
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
     self.opaque = NO;
@@ -31,12 +31,12 @@
 
     self.eventLabel = [UILabel autolayoutView];
     self.eventLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
-    self.eventLabel.textColor = [UIColor textDarkGrayColor];
+    self.eventLabel.textColor = [DTOStyleKit foregroundGrayColor];
     [self.contentView addSubview:self.eventLabel];
 
     self.timeLabel = [UILabel autolayoutView];
     self.timeLabel.font = [UIFont lightOpenSansFontOfSize:13.0f];
-    self.timeLabel.textColor = [UIColor textGrayColor];
+    self.timeLabel.textColor = [DTOStyleKit foregroundGrayColor];
     [self.contentView addSubview:self.timeLabel];
 
     self.calendarOuterKnob = [UIView autolayoutView];

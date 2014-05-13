@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		956A8AFC6CE6405DBDE37E2D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3991F5BE7F840798732D22F /* libPods.a */; };
-		FA03E42D18C4B2B200B2D7DC /* UIColor+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */; };
 		FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E419201BEA002BB57E /* Clavo Light.otf */; };
 		FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */; };
 		FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */; };
 		FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */; };
+		FA346EBC192221460018704F /* DTOStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EBB192221460018704F /* DTOStyleKit.m */; };
+		FA346EBF192228190018704F /* UIColor+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EBE192228190018704F /* UIColor+DTOAdditions.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
 		FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
@@ -53,13 +54,15 @@
 /* Begin PBXFileReference section */
 		33A9D995AEFF4ED7A752DED3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F3991F5BE7F840798732D22F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA03E42B18C4B2B200B2D7DC /* UIColor+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DTOAdditions.h"; sourceTree = "<group>"; };
-		FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DTOAdditions.m"; sourceTree = "<group>"; };
 		FA1998E419201BEA002BB57E /* Clavo Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Clavo Light.otf"; sourceTree = "<group>"; };
 		FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		FA1998EA19201C3C002BB57E /* UIFont+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DTOAdditions.h"; sourceTree = "<group>"; };
 		FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DTOAdditions.m"; sourceTree = "<group>"; };
+		FA346EBA192221460018704F /* DTOStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOStyleKit.h; sourceTree = "<group>"; };
+		FA346EBB192221460018704F /* DTOStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOStyleKit.m; sourceTree = "<group>"; };
+		FA346EBD192228190018704F /* UIColor+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DTOAdditions.h"; sourceTree = "<group>"; };
+		FA346EBE192228190018704F /* UIColor+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DTOAdditions.m"; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
 		FAB4613718AC5E74006E9437 /* Dato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4613A18AC5E74006E9437 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,8 +153,8 @@
 		FAA81EDA18C3F7DD00CC3E8B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				FA03E42B18C4B2B200B2D7DC /* UIColor+DTOAdditions.h */,
-				FA03E42C18C4B2B200B2D7DC /* UIColor+DTOAdditions.m */,
+				FA346EBD192228190018704F /* UIColor+DTOAdditions.h */,
+				FA346EBE192228190018704F /* UIColor+DTOAdditions.m */,
 				FA1998EA19201C3C002BB57E /* UIFont+DTOAdditions.h */,
 				FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */,
 				FAD294B518C54EE8006932BF /* NSCalendar+DTOAdditions.h */,
@@ -204,6 +207,8 @@
 				FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */,
 				FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */,
 				FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */,
+				FA346EBA192221460018704F /* DTOStyleKit.h */,
+				FA346EBB192221460018704F /* DTOStyleKit.m */,
 				FAB4614118AC5E74006E9437 /* Supporting Files */,
 			);
 			path = Dato;
@@ -421,10 +426,11 @@
 			files = (
 				FAD294C018C5640B006932BF /* DTOScheduleDayViewCell.m in Sources */,
 				FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */,
+				FA346EBC192221460018704F /* DTOStyleKit.m in Sources */,
+				FA346EBF192228190018704F /* UIColor+DTOAdditions.m in Sources */,
 				FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */,
 				FAD294AB18C53F2F006932BF /* DTOCalendarHeaderView.m in Sources */,
 				FAD294BD18C558C8006932BF /* DTOScheduleHeaderView.m in Sources */,
-				FA03E42D18C4B2B200B2D7DC /* UIColor+DTOAdditions.m in Sources */,
 				FAD294AA18C53F2F006932BF /* DTOCalendarBackgroundView.m in Sources */,
 				FAD294AC18C53F2F006932BF /* DTOCalendarLayout.m in Sources */,
 				FAD294AD18C53F2F006932BF /* DTOCalendarViewCell.m in Sources */,
