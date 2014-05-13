@@ -12,6 +12,7 @@
 
 + (instancetype)lightClavoFontOfSize:(CGFloat)size;
 + (instancetype)lightOpenSansFontOfSize:(CGFloat)size;
++ (instancetype)lightItalicOpenSansFontOfSize:(CGFloat)size;
 + (instancetype)semiBoldOpenSansFontOfSize:(CGFloat)size;
 
 @end

@@ -18,6 +18,10 @@
   return [UIFont fontWithName:@"OpenSans-Light" size:size];
 }
 
++ (instancetype)lightItalicOpenSansFontOfSize:(CGFloat)size {
+  return [UIFont fontWithName:@"OpenSansLight-Italic" size:size];
+}
+
 + (instancetype)semiBoldOpenSansFontOfSize:(CGFloat)size {
   return [UIFont fontWithName:@"OpenSans-Semibold" size:size];
 }

@@ -45,6 +45,7 @@
 	<array>
 		<string>Clavo Light.otf</string>
 		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
 		<string>OpenSans-Semibold.ttf</string>
 	</array>
 </dict>

@@ -356,6 +356,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
           [tableView dequeueReusableCellWithIdentifier:[DTOScheduleDayViewCell reuseIdentifier]
                                           forIndexPath:indexPath];
         cell.textLabel.text = NSLocalizedString(@"You have no dates today...", nil);
+        cell.textLabel.font = [UIFont lightItalicOpenSansFontOfSize:16.0f];
         return cell;
       }
     }
