@@ -8,10 +8,9 @@
 
 #import "DTOConfig.h"
 #import "DTOScheduleDayViewCell.h"
+#import "DTOScheduleGradient.h"
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
-
-static CGFloat DTOGradientComponentWidth = 10.0f;
 
 @implementation DTOScheduleDayViewCell
 
@@ -25,39 +24,28 @@ static CGFloat DTOGradientComponentWidth = 10.0f;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
     self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
+
+    self.gradientView = [DTOScheduleGradient autolayoutView];
+    [self.contentView addSubview:self.gradientView];
+
+    [self.contentView pin:@"H:[gradientView(80.0)]|" options:0 owner:self];
+    [self.gradientView pinToFillContainerOnAxis:UILayoutConstraintAxisVertical];
   }
   return self;
 }
 
-- (void)prepareForReuse {
-  [super prepareForReuse];
-  self.gradientBaseColor = nil;
-  self.gradientComponents = 0;
-  self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
-  self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  [self.gradientView setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect {
-  if (!self.gradientBaseColor || self.gradientBaseColor.alpha == 0 || self.gradientComponents == 0) {
-    return;
-  }
-
-  CGContextRef context = UIGraphicsGetCurrentContext();
-
-  CGFloat alphaStep = 0.8f / self.gradientComponents;
-
-  for (NSUInteger i = 0; i <= self.gradientComponents; ++i) {
-    CGRect frame;
-    frame.origin.x = CGRectGetMaxX(rect) - DTOGradientComponentWidth * i;
-    frame.origin.y = CGRectGetMinY(rect);
-    frame.size.width = DTOGradientComponentWidth;
-    frame.size.height = CGRectGetHeight(rect);
-
-    UIColor *color = [self.gradientBaseColor colorWithAlphaComponent:1.0f - alphaStep * i];
-    [color setFill];
-
-    CGContextFillRect(context, frame);
-  }
+- (void)prepareForReuse {
+  [super prepareForReuse];
+  self.gradientView.tintColor = nil;
+  self.gradientView.numberOfComponents = 0;
+  self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
+  self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
 }
 
 @end

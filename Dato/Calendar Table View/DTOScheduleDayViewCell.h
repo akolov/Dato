@@ -8,9 +8,10 @@
 
 @import UIKit;
 
+@class DTOScheduleGradient;
+
 @interface DTOScheduleDayViewCell : UITableViewCell
 
-@property (nonatomic, strong) UIColor *gradientBaseColor;
-@property (nonatomic, assign) NSUInteger gradientComponents;
+@property (nonatomic, strong) DTOScheduleGradient *gradientView;
 
 @end

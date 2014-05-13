@@ -22,6 +22,7 @@
 #import "DTOCalendarViewCell.h"
 #import "DTOScheduleDayViewCell.h"
 #import "DTOScheduleEventViewCell.h"
+#import "DTOScheduleGradient.h"
 #import "DTOScheduleHeaderView.h"
 #import "DTOTheme.h"
 #import "DTODarkTheme.h"
@@ -700,8 +701,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   }
 
   cell.textLabel.textColor = color;
-  cell.gradientBaseColor = color;
-  cell.gradientComponents = [events count];
+  cell.gradientView.tintColor = color;
+  cell.gradientView.numberOfComponents = [events count];
 }
 
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date {

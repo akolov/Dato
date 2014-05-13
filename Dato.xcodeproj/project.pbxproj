@@ -32,6 +32,8 @@
 		FAB4615E18AC5E74006E9437 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB4615C18AC5E74006E9437 /* InfoPlist.strings */; };
 		FAB4616018AC5E74006E9437 /* DatoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4615F18AC5E74006E9437 /* DatoTests.m */; };
 		FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */; };
+		FAC7B98D192297C20088D3B9 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAC7B98C192297C20088D3B9 /* OpenSans-LightItalic.ttf */; };
+		FAC7B99019229A330088D3B9 /* DTOScheduleGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC7B98F19229A330088D3B9 /* DTOScheduleGradient.m */; };
 		FACC53911921566C000F992B /* Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC538E1921566C000F992B /* Common.xcconfig */; };
 		FACC53921921566C000F992B /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC538F1921566C000F992B /* Debug.xcconfig */; };
 		FACC53931921566C000F992B /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FACC53901921566C000F992B /* Release.xcconfig */; };
@@ -97,6 +99,9 @@
 		FAB4615F18AC5E74006E9437 /* DatoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatoTests.m; sourceTree = "<group>"; };
 		FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarViewController.h; sourceTree = "<group>"; };
 		FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarViewController.m; sourceTree = "<group>"; };
+		FAC7B98C192297C20088D3B9 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		FAC7B98E19229A330088D3B9 /* DTOScheduleGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleGradient.h; sourceTree = "<group>"; };
+		FAC7B98F19229A330088D3B9 /* DTOScheduleGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOScheduleGradient.m; sourceTree = "<group>"; };
 		FACC538E1921566C000F992B /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = SOURCE_ROOT; };
 		FACC538F1921566C000F992B /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		FACC53901921566C000F992B /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -160,6 +165,7 @@
 				FA1998E419201BEA002BB57E /* Clavo Light.otf */,
 				FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */,
 				FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */,
+				FAC7B98C192297C20088D3B9 /* OpenSans-LightItalic.ttf */,
 			);
 			name = Fonts;
 			path = Dato/Fonts;
@@ -313,6 +319,8 @@
 				FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */,
 				FAD294B818C5558F006932BF /* DTOScheduleEventViewCell.h */,
 				FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */,
+				FAC7B98E19229A330088D3B9 /* DTOScheduleGradient.h */,
+				FAC7B98F19229A330088D3B9 /* DTOScheduleGradient.m */,
 			);
 			path = "Calendar Table View";
 			sourceTree = "<group>";
@@ -406,6 +414,7 @@
 				FA1998E719201BEA002BB57E /* Clavo Light.otf in Resources */,
 				FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */,
 				FACC53911921566C000F992B /* Common.xcconfig in Resources */,
+				FAC7B98D192297C20088D3B9 /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +470,7 @@
 				FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */,
 				FA346EBF192228190018704F /* UIColor+DTOAdditions.m in Sources */,
 				FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */,
+				FAC7B99019229A330088D3B9 /* DTOScheduleGradient.m in Sources */,
 				FA346ECC19222D6C0018704F /* DTOTheme.m in Sources */,
 				FAD294AB18C53F2F006932BF /* DTOCalendarHeaderView.m in Sources */,
 				FAD294BD18C558C8006932BF /* DTOScheduleHeaderView.m in Sources */,
