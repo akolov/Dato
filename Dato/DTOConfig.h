@@ -12,6 +12,7 @@
 #define DEBUG_MODE 0
 #endif
 
+@import Darwin.C.tgmath;
 @import Darwin.POSIX.libgen;
 @import Foundation;
 
@@ -32,4 +33,8 @@
         basename(buf), __LINE__, __func__, # __VA_ARGS__); \
     } \
   } while (0)
+#endif
+
+#ifndef ASIN
+#  define ASIN(__x) __tg_asin(__tg_promote1((__x))(__x))
 #endif

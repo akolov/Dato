@@ -17,7 +17,9 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+    self.backgroundColor = nil;
+    self.contentView.clipsToBounds = YES;
+    self.contentView.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
     self.opaque = NO;
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
@@ -43,7 +45,7 @@
   [super prepareForReuse];
   self.gradientView.tintColor = nil;
   self.gradientView.numberOfComponents = 0;
-  self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  self.contentView.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
   self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
   self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
 }

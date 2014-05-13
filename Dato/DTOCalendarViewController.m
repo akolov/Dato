@@ -521,6 +521,31 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
 #pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (scrollView != self.calendarView) {
+    return;
+  }
+
+  CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top;
+  if (offset < 0) {
+    UITableViewCell *cell = [self.scheduleView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+    CGFloat fraction = -offset / CGRectGetHeight(cell.frame);
+    fraction = MAX(MIN(1, fraction), 0);
+    CGFloat angle = (M_PI / 2) - ASIN(fraction);
+
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = 1.0f / -500.0f;
+    transform = CATransform3DRotate(transform, angle, 1, 0, 0);
+    cell.contentView.layer.anchorPoint = CGPointMake(0.5, 1.0);
+
+    CGPoint position = cell.layer.position;
+
+    cell.contentView.layer.position = CGPointMake(position.x, position.y * 2.0f);
+    cell.contentView.layer.transform = transform;
+  }
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
   if (scrollView != self.calendarView) {
     return;
