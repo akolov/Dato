@@ -471,7 +471,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
     [self.scheduleView beginUpdates];
     {
-      NSArray *reload = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+      NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                          [NSIndexPath indexPathForRow:1 inSection:0]];
       NSMutableArray *delete = [NSMutableArray array];
       for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
         [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -503,9 +504,10 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
       {
         self.events = [self eventsForDate:self.today];
 
-        NSArray *reload = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+        NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                            [NSIndexPath indexPathForRow:1 inSection:0]];
         NSMutableArray *insert = [NSMutableArray array];
-        for (NSUInteger i = 2; i < [self.events count]; ++i) {
+        for (NSUInteger i = 2; i < [self.events count] + 1; ++i) {
           [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
         }
 
@@ -593,7 +595,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
   [self.scheduleView beginUpdates];
   {
-    NSArray *reload = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+    NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                        [NSIndexPath indexPathForRow:1 inSection:0]];
     NSMutableArray *delete = [NSMutableArray array];
     for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
       [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -613,7 +616,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   {
     self.events = [self eventsForDate:self.today];
 
-    NSArray *reload = @[[NSIndexPath indexPathForRow:1 inSection:0]];
+    NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                        [NSIndexPath indexPathForRow:1 inSection:0]];
     NSMutableArray *insert = [NSMutableArray array];
     for (NSUInteger i = 2; i < [self.events count] + 1; ++i) {
       [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
@@ -763,18 +767,19 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     NSMutableArray *reload = [NSMutableArray array];
     NSMutableArray *delete = [NSMutableArray array];
 
+    [reload addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     [reload addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
 
-    for (NSUInteger i = 2; i < [events count] && i < count; ++i) {
+    for (NSUInteger i = 2; i < [events count] + 1 && i < count; ++i) {
       [reload addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
     }
 
-    if (count > 0 && count < [events count]) {
-      for (NSUInteger i = count; i < [events count]; ++i) {
+    if (count > 0 && count < [events count] + 1) {
+      for (NSUInteger i = count; i < [events count] + 1; ++i) {
         [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
       }
     }
-    else if ([events count] < count) {
+    else if ([events count] + 1 < count) {
       for (NSUInteger i = 2; i < count; ++i) {
         [delete addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
       }

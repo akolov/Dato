@@ -51,7 +51,8 @@
 
 - (void)prepareForReuse {
   [super prepareForReuse];
-  [self.separator removeFromSuperview];
+  [self.separator removeFromSuperview], self.separator = nil;
+  _showsFullSeparator = NO;
   self.gradientView.tintColor = nil;
   self.gradientView.numberOfComponents = 0;
   self.contentView.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
