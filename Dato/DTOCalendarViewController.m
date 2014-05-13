@@ -68,6 +68,8 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 - (void)configureScheduleCell:(DTOScheduleDayViewCell *)cell forDate:(NSDate *)date;
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date;
 
+- (UIColor *)interfaceColorForDate:(NSDate *)date;
+
 - (void)sizeScheduleToFit;
 - (void)scrollCalendarToScheduleRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
 
@@ -115,6 +117,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
                                                                           target:self
                                                                           action:@selector(didTapLeftBarButton:)];
   self.navigationItem.leftBarButtonItem.tintColor = [DTOStyleKit translucentForegroundWhite];
+  self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
 
   // Formatters
 
@@ -189,8 +192,6 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.scheduleView.separatorColor = [DTOThemeManager theme].separatorColor;
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
-
-  [self changeInterfaceColorForDate:self.today];
 
   [self.scheduleView registerClass:[DTOScheduleDayViewCell class]
             forCellReuseIdentifier:[DTOScheduleDayViewCell reuseIdentifier]];
@@ -518,7 +519,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
       [UIView animateWithDuration:0.25 animations:^{
         [self sizeScheduleToFit];
         [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:NO];
-        [self changeInterfaceColorForDate:self.today];
+        self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
       }];
     }];
   }
@@ -528,6 +529,10 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   if (scrollView != self.calendarView) {
+    return;
+  }
+
+  if (self.shouldGoBack) {
     return;
   }
 
@@ -548,6 +553,12 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
     cell.contentView.layer.position = CGPointMake(position.x, position.y * 2.0f);
     cell.contentView.layer.transform = transform;
+
+    UIColor *todayColor = [self interfaceColorForDate:self.today];
+    UIColor *yesterdayColor = [self interfaceColorForDate:[self.calendar previousDate:self.today]];
+    UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:yesterdayColor atRatio:fraction];
+
+    self.navigationController.navigationBar.barTintColor = color;
   }
 }
 
@@ -618,7 +629,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   [UIView animateWithDuration:0.25 animations:^{
     [self sizeScheduleToFit];
     [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:NO];
-    [self changeInterfaceColorForDate:self.today];
+    self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
   } completion:^(BOOL innerFinished) {
     self.animating = NO;
   }];
@@ -626,7 +637,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
 #pragma mark - Private Methods
 
-- (void)changeInterfaceColorForDate:(NSDate *)date {
+- (UIColor *)interfaceColorForDate:(NSDate *)date {
   UIColor *color;
 
   switch ([self dateBusyness:date events:NULL]) {
@@ -643,8 +654,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
       color = [DTOStyleKit foregroundBlueColor];
       break;
   }
-
-  self.navigationController.navigationBar.barTintColor = color;
+  return color;
 }
 
 - (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray * __autoreleasing *)events {
@@ -791,7 +801,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   [UIView animateWithDuration:0.25 animations:^{
     [self sizeScheduleToFit];
     [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:YES];
-    [self changeInterfaceColorForDate:self.today];
+    self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
   }];
 }
 

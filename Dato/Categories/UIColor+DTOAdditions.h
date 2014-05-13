@@ -12,4 +12,7 @@
 
 @property (readonly) CGFloat alpha;
 
++ (instancetype)colorForFadeBetweenFirstColor:(UIColor *)firstColor secondColor:(UIColor *)secondColor
+                                      atRatio:(CGFloat)ratio;
+
 @end
