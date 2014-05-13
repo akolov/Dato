@@ -469,21 +469,23 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   if (indexPath.section == 1 || indexPath.section == 2) {
     self.today = [self.calendar dateWithOffset:indexPath.section fromDate:self.today];
 
-    [self.scheduleView beginUpdates];
-    {
-      NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
-                          [NSIndexPath indexPathForRow:1 inSection:0]];
-      NSMutableArray *delete = [NSMutableArray array];
-      for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
-        [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+    if ([self.events count] != 0) {
+      [self.scheduleView beginUpdates];
+      {
+        NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                            [NSIndexPath indexPathForRow:1 inSection:0]];
+        NSMutableArray *delete = [NSMutableArray array];
+        for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
+          [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+
+        self.events = nil;
+
+        [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationNone];
+        [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
       }
-
-      self.events = nil;
-
-      [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-      [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
+      [self.scheduleView endUpdates];
     }
-    [self.scheduleView endUpdates];
 
     CGFloat offset = 0;
     for (NSInteger i = 1; i < 2; ++i) {
@@ -511,12 +513,10 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
           [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
         }
 
-        [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-        [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationTop];
+        [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationNone];
+        [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationBottom];
       }
       [self.scheduleView endUpdates];
-
-      [self.scheduleView reloadData];
 
       [UIView animateWithDuration:0.25 animations:^{
         [self sizeScheduleToFit];
@@ -593,21 +593,23 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   self.animating = YES;
   self.today = [self.calendar dateWithOffset:-1 fromDate:self.today];
 
-  [self.scheduleView beginUpdates];
-  {
-    NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
-                        [NSIndexPath indexPathForRow:1 inSection:0]];
-    NSMutableArray *delete = [NSMutableArray array];
-    for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
-      [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+  if ([self.events count] != 0) {
+    [self.scheduleView beginUpdates];
+    {
+      NSArray *reload = @[[NSIndexPath indexPathForRow:0 inSection:0],
+                          [NSIndexPath indexPathForRow:1 inSection:0]];
+      NSMutableArray *delete = [NSMutableArray array];
+      for (NSInteger i = 2; i < [self.scheduleView numberOfRowsInSection:0]; ++i) {
+        [delete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+      }
+
+      self.events = nil;
+
+      [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationNone];
+      [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
     }
-
-    self.events = nil;
-
-    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-    [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
+    [self.scheduleView endUpdates];
   }
-  [self.scheduleView endUpdates];
 
   self.title = [self.titleFormatter stringFromDate:self.today];
 
@@ -623,12 +625,10 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
       [insert addObject:[NSIndexPath indexPathForRow:(NSInteger)i inSection:0]];
     }
 
-    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
-    [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationTop];
+    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationNone];
+    [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationBottom];
   }
   [self.scheduleView endUpdates];
-
-  [self.scheduleView reloadData];
 
   [UIView animateWithDuration:0.25 animations:^{
     [self sizeScheduleToFit];
@@ -788,7 +788,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     self.events = events;
 
     [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationBottom];
-    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationFade];
+    [self.scheduleView reloadRowsAtIndexPaths:reload withRowAnimation:UITableViewRowAnimationNone];
     [self.scheduleView deleteRowsAtIndexPaths:delete withRowAnimation:UITableViewRowAnimationTop];
   }
   [self.scheduleView endUpdates];
@@ -800,8 +800,6 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     offset += CGRectGetHeight([self.scheduleView rectForFooterInSection:i]);
   }
   self.title = [self.titleFormatter stringFromDate:self.today];
-
-  [self.scheduleView reloadData];
 
   [UIView animateWithDuration:0.25 animations:^{
     [self sizeScheduleToFit];
