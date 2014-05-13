@@ -356,8 +356,9 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
         DTOScheduleDayViewCell *cell =
           [tableView dequeueReusableCellWithIdentifier:[DTOScheduleDayViewCell reuseIdentifier]
                                           forIndexPath:indexPath];
-        cell.textLabel.text = NSLocalizedString(@"You have no dates today...", nil);
         cell.textLabel.font = [UIFont lightItalicOpenSansFontOfSize:16.0f];
+        cell.textLabel.text = NSLocalizedString(@"You have no dates today...", nil);
+        cell.textLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
         return cell;
       }
     }
