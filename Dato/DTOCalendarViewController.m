@@ -84,6 +84,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
     if (granted) {
       self.events = [self eventsForDate:self.today];
+      [self.calendarView reloadData];
       [self.scheduleView reloadData];
       [self sizeScheduleToFit];
     }
