@@ -8,6 +8,8 @@
 
 #import "DTOConfig.h"
 #import "DTOScheduleDayViewCell.h"
+#import "DTOTheme.h"
+#import "DTOThemeManager.h"
 
 static CGFloat DTOGradientComponentWidth = 10.0f;
 
@@ -16,12 +18,13 @@ static CGFloat DTOGradientComponentWidth = 10.0f;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [DTOStyleKit backgroundWhiteColor];
+    self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
     self.opaque = NO;
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.textLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
+    self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   }
   return self;
 }
@@ -30,7 +33,8 @@ static CGFloat DTOGradientComponentWidth = 10.0f;
   [super prepareForReuse];
   self.gradientBaseColor = nil;
   self.gradientComponents = 0;
-  self.textLabel.textColor = [UIColor blackColor];
+  self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  self.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
 }
 
 - (void)drawRect:(CGRect)rect {

@@ -17,6 +17,7 @@
 @property(strong, nonatomic) IBOutletCollection(NSObject) NSArray* cogwheelTargets;
 
 // Colors
++ (UIColor*)translucentForegroundWhite;
 + (UIColor*)foregroundBlueColor;
 + (UIColor*)foregroundYellowColor;
 + (UIColor*)foregroundOrangeColor;
@@ -24,8 +25,12 @@
 + (UIColor*)foregroundGrayColor;
 + (UIColor*)foregroundDarkGrayColor;
 + (UIColor*)backgroundGrayColor;
++ (UIColor*)backgroundDarkGrayColor;
 + (UIColor*)backgroundWhiteColor;
++ (UIColor*)backgroundBlackColor;
++ (UIColor*)foregroundSilverColor;
 + (UIColor*)separatorGrayColor;
++ (UIColor*)separatorDarkGrayColor;
 
 // Drawing Methods
 + (void)drawCogwheel;

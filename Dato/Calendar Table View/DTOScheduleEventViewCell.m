@@ -8,6 +8,8 @@
 
 #import "DTOConfig.h"
 #import "DTOScheduleEventViewCell.h"
+#import "DTOTheme.h"
+#import "DTOThemeManager.h"
 
 @interface DTOScheduleEventViewCell ()
 
@@ -23,7 +25,7 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [DTOStyleKit backgroundWhiteColor];
+    self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
     self.indentationLevel = 0;
     self.indentationWidth = 30.0f;
     self.opaque = NO;
@@ -31,12 +33,12 @@
 
     self.eventLabel = [UILabel autolayoutView];
     self.eventLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
-    self.eventLabel.textColor = [DTOStyleKit foregroundGrayColor];
+    self.eventLabel.textColor = [DTOThemeManager theme].primaryTextColor;
     [self.contentView addSubview:self.eventLabel];
 
     self.timeLabel = [UILabel autolayoutView];
     self.timeLabel.font = [UIFont lightOpenSansFontOfSize:13.0f];
-    self.timeLabel.textColor = [DTOStyleKit foregroundGrayColor];
+    self.timeLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
     [self.contentView addSubview:self.timeLabel];
 
     self.calendarOuterKnob = [UIView autolayoutView];
@@ -65,8 +67,9 @@
 
 - (void)prepareForReuse {
   [super prepareForReuse];
-
-  self.eventLabel.textColor = [UIColor blackColor];
+  self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  self.eventLabel.textColor = [DTOThemeManager theme].primaryTextColor;
+  self.timeLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
 }
 
 @end

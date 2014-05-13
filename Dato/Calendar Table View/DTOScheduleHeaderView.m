@@ -8,6 +8,8 @@
 
 #import "DTOConfig.h"
 #import "DTOScheduleHeaderView.h"
+#import "DTOTheme.h"
+#import "DTOThemeManager.h"
 
 @interface DTOScheduleHeaderView ()
 
@@ -22,13 +24,18 @@
   if (self) {
     self.titleLabel = [UILabel autolayoutView];
     self.titleLabel.font = [UIFont lightClavoFontOfSize:13.0f];
-    self.titleLabel.textColor = [DTOStyleKit foregroundGrayColor];
+    self.titleLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
     [self.contentView addSubview:self.titleLabel];
 
     [self pin:@[@"H:|-30.0-[titleLabel]"] owner:self];
     [self.titleLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
   }
   return self;
+}
+
+- (void)prepareForReuse {
+  [super prepareForReuse];
+  self.titleLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
 }
 
 @end

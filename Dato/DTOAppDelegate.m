@@ -8,6 +8,9 @@
 
 #import "DTOConfig.h"
 #import "DTOAppDelegate.h"
+#import "DTODarkTheme.h"
+#import "DTOLightTheme.h"
+#import "DTOThemeManager.h"
 
 #import <HockeySDK/HockeySDK.h>
 
@@ -19,6 +22,8 @@
   [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"5ab089596e2e2fbe995ce7fcc8f59640"];
   [[BITHockeyManager sharedHockeyManager] startManager];
   [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+
+  [DTOThemeManager setTheme:[DTODarkTheme theme]];
 
   DTOCalendarViewController *vc = [[DTOCalendarViewController alloc] init];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];

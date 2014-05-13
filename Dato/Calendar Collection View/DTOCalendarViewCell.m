@@ -8,6 +8,8 @@
 
 #import "DTOConfig.h"
 #import "DTOCalendarViewCell.h"
+#import "DTOTheme.h"
+#import "DTOThemeManager.h"
 
 @interface DTOCalendarViewCell ()
 
@@ -22,6 +24,7 @@
   if (self) {
     self.dateLabel = [UILabel autolayoutView];
     self.dateLabel.font = [UIFont lightOpenSansFontOfSize:16.0f];
+    self.dateLabel.textColor = [DTOThemeManager theme].primaryTextColor;
     [self.contentView addSubview:self.dateLabel];
     [self.dateLabel pinToCenter];
   }
@@ -30,7 +33,7 @@
 
 - (void)prepareForReuse {
   [super prepareForReuse];
-  self.dateLabel.textColor = [UIColor whiteColor];
+  self.dateLabel.textColor = [DTOThemeManager theme].primaryTextColor;
 }
 
 @end

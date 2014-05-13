@@ -1,5 +1,10 @@
 PODS:
   - AXKCollectionViewTools (1.0.3)
+  - AXKRACExtensions (1.0.1):
+    - AXKRACExtensions/Core
+    - ReactiveCocoa
+  - AXKRACExtensions/Core (1.0.1):
+    - ReactiveCocoa
   - AXKViewLayout (1.0.1)
   - HockeySDK (3.5.5)
   - ReactiveCocoa (2.3):
@@ -12,12 +17,14 @@ PODS:
 
 DEPENDENCIES:
   - AXKCollectionViewTools (~> 1.0.3)
+  - AXKRACExtensions (~> 1.0.1)
   - AXKViewLayout (~> 1.0.1)
   - HockeySDK (~> 3.5.5)
   - ReactiveCocoa (~> 2.3)
 
 SPEC CHECKSUMS:
   AXKCollectionViewTools: b17801c1e7797ec79589503fe05facd11e799264
+  AXKRACExtensions: af7fec8f2ed021f2f66aae7797eaa08a62935dc7
   AXKViewLayout: 8423fba7d6f0a9716b0a3951d39d57874ca4383a
   HockeySDK: 350ef1cf18d2fc9a13801ad077c307cece8c6c64
   ReactiveCocoa: dde7b11a14954edf789e7343b2c32e595caabd01

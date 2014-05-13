@@ -12,14 +12,21 @@
 #import "DTOCalendarViewController.h"
 
 #import <AXKCollectionViewTools/AXKCollectionViewTools.h>
+#import <AXKRACExtensions/NSNotificationCenter+AXKRACExtensions.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
+#import "DTOCalendarBackgroundView.h"
 #import "DTOCalendarHeaderView.h"
 #import "DTOCalendarLayout.h"
 #import "DTOCalendarViewCell.h"
 #import "DTOScheduleDayViewCell.h"
 #import "DTOScheduleEventViewCell.h"
 #import "DTOScheduleHeaderView.h"
+#import "DTOTheme.h"
+#import "DTODarkTheme.h"
+#import "DTOLightTheme.h"
+#import "DTOThemeManager.h"
 #import "NSCalendar+DTOAdditions.h"
 
 static CGFloat DTOWorkHoursPerDay = 8.0f;
@@ -49,6 +56,8 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 @property (nonatomic, strong) UICollectionView *calendarView;
 @property (nonatomic, strong) UITableView *scheduleView;
 @property (nonatomic, assign) BOOL animating;
+
+- (void)didTapLeftBarButton:(id)sender;
 
 - (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events;
 
@@ -97,6 +106,14 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
     }
   }];
 
+  // Navigation
+
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[DTOStyleKit imageOfCogwheel]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(didTapLeftBarButton:)];
+  self.navigationItem.leftBarButtonItem.tintColor = [DTOStyleKit translucentForegroundWhite];
+
   // Formatters
 
   self.dayFormatter = [[NSDateFormatter alloc] init];
@@ -139,7 +156,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.layout.startDate = self.today;
 
   self.calendarView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.layout];
-  self.calendarView.backgroundColor = [DTOStyleKit backgroundGrayColor];
+  self.calendarView.backgroundColor = [DTOThemeManager theme].windowBackgroundColor;
   self.calendarView.dataSource = self;
   self.calendarView.delegate = self;
   self.calendarView.opaque = YES;
@@ -167,7 +184,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.scheduleView.scrollEnabled = NO;
   self.scheduleView.sectionFooterHeight = 0;
   self.scheduleView.sectionHeaderHeight = 0;
-  self.scheduleView.separatorColor = [DTOStyleKit separatorGrayColor];
+  self.scheduleView.separatorColor = [DTOThemeManager theme].separatorColor;
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
 
@@ -184,11 +201,33 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   [self.scheduleView reloadData];
 
   [self sizeScheduleToFit];
+
+  // Notifications
+
+  [RACObserveNotificationUntilDealloc(DTOApplicationThemeChangedNotification) subscribeNext:^(NSNotification *note) {
+    @strongify(self);
+    self.calendarView.backgroundColor = [DTOThemeManager theme].windowBackgroundColor;
+    self.scheduleView.separatorColor = [DTOThemeManager theme].separatorColor;
+
+    [self.calendarView reloadData];
+    [self.scheduleView reloadData];
+  }];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Actions
+
+- (void)didTapLeftBarButton:(id)sender {
+  if ([[DTOThemeManager theme].themeName isEqualToString:@"light"]) {
+    [DTOThemeManager setTheme:[DTODarkTheme theme]];
+  }
+  else {
+    [DTOThemeManager setTheme:[DTOLightTheme theme]];
+  }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -228,7 +267,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
       cell.dateLabel.textColor = [DTOStyleKit foregroundYellowColor];
       break;
     default:
-      cell.dateLabel.textColor = [DTOStyleKit foregroundDarkGrayColor];
+      cell.dateLabel.textColor = [DTOThemeManager theme].primaryTextColor;
       break;
   }
 

@@ -15,6 +15,7 @@
 
 #pragma mark Cache
 
+static UIColor* _translucentForegroundWhite = nil;
 static UIColor* _foregroundBlueColor = nil;
 static UIColor* _foregroundYellowColor = nil;
 static UIColor* _foregroundOrangeColor = nil;
@@ -22,8 +23,12 @@ static UIColor* _foregroundRedColor = nil;
 static UIColor* _foregroundGrayColor = nil;
 static UIColor* _foregroundDarkGrayColor = nil;
 static UIColor* _backgroundGrayColor = nil;
+static UIColor* _backgroundDarkGrayColor = nil;
 static UIColor* _backgroundWhiteColor = nil;
+static UIColor* _backgroundBlackColor = nil;
+static UIColor* _foregroundSilverColor = nil;
 static UIColor* _separatorGrayColor = nil;
+static UIColor* _separatorDarkGrayColor = nil;
 
 static UIImage* _imageOfCogwheel = nil;
 
@@ -32,6 +37,7 @@ static UIImage* _imageOfCogwheel = nil;
 + (void)initialize
 {
     // Colors Initialization
+    _translucentForegroundWhite = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.85];
     _foregroundBlueColor = [UIColor colorWithRed: 0.078 green: 0.506 blue: 0.984 alpha: 1];
     _foregroundYellowColor = [UIColor colorWithRed: 0.992 green: 0.745 blue: 0.196 alpha: 1];
     _foregroundOrangeColor = [UIColor colorWithRed: 0.988 green: 0.502 blue: 0.239 alpha: 1];
@@ -39,13 +45,18 @@ static UIImage* _imageOfCogwheel = nil;
     _foregroundGrayColor = [UIColor colorWithRed: 0.506 green: 0.506 blue: 0.506 alpha: 1];
     _foregroundDarkGrayColor = [UIColor colorWithRed: 0.224 green: 0.224 blue: 0.224 alpha: 1];
     _backgroundGrayColor = [UIColor colorWithRed: 0.929 green: 0.929 blue: 0.929 alpha: 1];
+    _backgroundDarkGrayColor = [UIColor colorWithRed: 0.176 green: 0.192 blue: 0.235 alpha: 1];
     _backgroundWhiteColor = [UIColor colorWithRed: 0.988 green: 0.988 blue: 0.988 alpha: 1];
+    _backgroundBlackColor = [UIColor colorWithRed: 0.125 green: 0.137 blue: 0.18 alpha: 1];
+    _foregroundSilverColor = [UIColor colorWithRed: 0.671 green: 0.678 blue: 0.694 alpha: 1];
     _separatorGrayColor = [UIColor colorWithRed: 0.878 green: 0.878 blue: 0.878 alpha: 1];
+    _separatorDarkGrayColor = [UIColor colorWithRed: 0.255 green: 0.267 blue: 0.31 alpha: 1];
 
 }
 
 #pragma mark Colors
 
++ (UIColor*)translucentForegroundWhite { return _translucentForegroundWhite; }
 + (UIColor*)foregroundBlueColor { return _foregroundBlueColor; }
 + (UIColor*)foregroundYellowColor { return _foregroundYellowColor; }
 + (UIColor*)foregroundOrangeColor { return _foregroundOrangeColor; }
@@ -53,15 +64,17 @@ static UIImage* _imageOfCogwheel = nil;
 + (UIColor*)foregroundGrayColor { return _foregroundGrayColor; }
 + (UIColor*)foregroundDarkGrayColor { return _foregroundDarkGrayColor; }
 + (UIColor*)backgroundGrayColor { return _backgroundGrayColor; }
++ (UIColor*)backgroundDarkGrayColor { return _backgroundDarkGrayColor; }
 + (UIColor*)backgroundWhiteColor { return _backgroundWhiteColor; }
++ (UIColor*)backgroundBlackColor { return _backgroundBlackColor; }
++ (UIColor*)foregroundSilverColor { return _foregroundSilverColor; }
 + (UIColor*)separatorGrayColor { return _separatorGrayColor; }
++ (UIColor*)separatorDarkGrayColor { return _separatorDarkGrayColor; }
 
 #pragma mark Drawing Methods
 
 + (void)drawCogwheel;
 {
-    //// Color Declarations
-    UIColor* color1 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.8];
 
     //// Bezier Drawing
     UIBezierPath* bezierPath = UIBezierPath.bezierPath;
@@ -146,7 +159,7 @@ static UIImage* _imageOfCogwheel = nil;
 
     bezierPath.usesEvenOddFillRule = YES;
 
-    [color1 setFill];
+    [DTOStyleKit.translucentForegroundWhite setFill];
     [bezierPath fill];
 }
 

@@ -12,8 +12,13 @@
 		FA1998E819201BEA002BB57E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E519201BEA002BB57E /* OpenSans-Light.ttf */; };
 		FA1998E919201BEA002BB57E /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */; };
 		FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */; };
-		FA346EBC192221460018704F /* DTOStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EBB192221460018704F /* DTOStyleKit.m */; };
 		FA346EBF192228190018704F /* UIColor+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EBE192228190018704F /* UIColor+DTOAdditions.m */; };
+		FA346EC219222B300018704F /* DTOConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EC119222B300018704F /* DTOConstants.m */; };
+		FA346ECB19222D6C0018704F /* DTOStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346EC819222D6C0018704F /* DTOStyleKit.m */; };
+		FA346ECC19222D6C0018704F /* DTOTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ECA19222D6C0018704F /* DTOTheme.m */; };
+		FA346ECF19222D8F0018704F /* DTOLightTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ECE19222D8F0018704F /* DTOLightTheme.m */; };
+		FA346ED219222E9F0018704F /* DTOThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ED119222E9F0018704F /* DTOThemeManager.m */; };
+		FA346ED5192233A40018704F /* DTODarkTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ED4192233A40018704F /* DTODarkTheme.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
 		FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
@@ -59,10 +64,20 @@
 		FA1998E619201BEA002BB57E /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		FA1998EA19201C3C002BB57E /* UIFont+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+DTOAdditions.h"; sourceTree = "<group>"; };
 		FA1998EB19201C3C002BB57E /* UIFont+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+DTOAdditions.m"; sourceTree = "<group>"; };
-		FA346EBA192221460018704F /* DTOStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOStyleKit.h; sourceTree = "<group>"; };
-		FA346EBB192221460018704F /* DTOStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOStyleKit.m; sourceTree = "<group>"; };
 		FA346EBD192228190018704F /* UIColor+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DTOAdditions.h"; sourceTree = "<group>"; };
 		FA346EBE192228190018704F /* UIColor+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DTOAdditions.m"; sourceTree = "<group>"; };
+		FA346EC019222B300018704F /* DTOConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOConstants.h; sourceTree = "<group>"; };
+		FA346EC119222B300018704F /* DTOConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOConstants.m; sourceTree = "<group>"; };
+		FA346EC719222D6C0018704F /* DTOStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOStyleKit.h; sourceTree = "<group>"; };
+		FA346EC819222D6C0018704F /* DTOStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOStyleKit.m; sourceTree = "<group>"; };
+		FA346EC919222D6C0018704F /* DTOTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOTheme.h; sourceTree = "<group>"; };
+		FA346ECA19222D6C0018704F /* DTOTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOTheme.m; sourceTree = "<group>"; };
+		FA346ECD19222D8F0018704F /* DTOLightTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOLightTheme.h; sourceTree = "<group>"; };
+		FA346ECE19222D8F0018704F /* DTOLightTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOLightTheme.m; sourceTree = "<group>"; };
+		FA346ED019222E9F0018704F /* DTOThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOThemeManager.h; sourceTree = "<group>"; };
+		FA346ED119222E9F0018704F /* DTOThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOThemeManager.m; sourceTree = "<group>"; };
+		FA346ED3192233A40018704F /* DTODarkTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTODarkTheme.h; sourceTree = "<group>"; };
+		FA346ED4192233A40018704F /* DTODarkTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTODarkTheme.m; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
 		FAB4613718AC5E74006E9437 /* Dato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4613A18AC5E74006E9437 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +165,23 @@
 			path = Dato/Fonts;
 			sourceTree = "<group>";
 		};
+		FA346EC619222D6C0018704F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				FA346EC719222D6C0018704F /* DTOStyleKit.h */,
+				FA346EC819222D6C0018704F /* DTOStyleKit.m */,
+				FA346ED019222E9F0018704F /* DTOThemeManager.h */,
+				FA346ED119222E9F0018704F /* DTOThemeManager.m */,
+				FA346EC919222D6C0018704F /* DTOTheme.h */,
+				FA346ECA19222D6C0018704F /* DTOTheme.m */,
+				FA346ECD19222D8F0018704F /* DTOLightTheme.h */,
+				FA346ECE19222D8F0018704F /* DTOLightTheme.m */,
+				FA346ED3192233A40018704F /* DTODarkTheme.h */,
+				FA346ED4192233A40018704F /* DTODarkTheme.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		FAA81EDA18C3F7DD00CC3E8B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,13 +234,14 @@
 				FAD294A118C53F2F006932BF /* Calendar Collection View */,
 				FAD294AE18C54003006932BF /* Calendar Table View */,
 				FACC538D19214EDA000F992B /* Settings */,
+				FA346EC619222D6C0018704F /* Theme */,
 				FAB4614918AC5E74006E9437 /* DTOAppDelegate.h */,
 				FAB4614A18AC5E74006E9437 /* DTOAppDelegate.m */,
 				FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */,
+				FA346EC019222B300018704F /* DTOConstants.h */,
+				FA346EC119222B300018704F /* DTOConstants.m */,
 				FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */,
 				FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */,
-				FA346EBA192221460018704F /* DTOStyleKit.h */,
-				FA346EBB192221460018704F /* DTOStyleKit.m */,
 				FAB4614118AC5E74006E9437 /* Supporting Files */,
 			);
 			path = Dato;
@@ -330,9 +363,9 @@
 		FAB4612F18AC5E74006E9437 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = NNM;
+				CLASSPREFIX = DTO;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = Noname;
+				ORGANIZATIONNAME = "Alexander Kolov";
 				TargetAttributes = {
 					FAB4613618AC5E74006E9437 = {
 						DevelopmentTeam = DLA7THG83Q;
@@ -426,18 +459,23 @@
 			files = (
 				FAD294C018C5640B006932BF /* DTOScheduleDayViewCell.m in Sources */,
 				FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */,
-				FA346EBC192221460018704F /* DTOStyleKit.m in Sources */,
 				FA346EBF192228190018704F /* UIColor+DTOAdditions.m in Sources */,
 				FAB4616C18AC5FEF006E9437 /* DTOCalendarViewController.m in Sources */,
+				FA346ECC19222D6C0018704F /* DTOTheme.m in Sources */,
 				FAD294AB18C53F2F006932BF /* DTOCalendarHeaderView.m in Sources */,
 				FAD294BD18C558C8006932BF /* DTOScheduleHeaderView.m in Sources */,
 				FAD294AA18C53F2F006932BF /* DTOCalendarBackgroundView.m in Sources */,
 				FAD294AC18C53F2F006932BF /* DTOCalendarLayout.m in Sources */,
+				FA346ECB19222D6C0018704F /* DTOStyleKit.m in Sources */,
 				FAD294AD18C53F2F006932BF /* DTOCalendarViewCell.m in Sources */,
 				FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */,
 				FAB4614B18AC5E74006E9437 /* DTOAppDelegate.m in Sources */,
+				FA346ED5192233A40018704F /* DTODarkTheme.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
+				FA346ED219222E9F0018704F /* DTOThemeManager.m in Sources */,
+				FA346EC219222B300018704F /* DTOConstants.m in Sources */,
 				FAD294BA18C5558F006932BF /* DTOScheduleEventViewCell.m in Sources */,
+				FA346ECF19222D8F0018704F /* DTOLightTheme.m in Sources */,
 				FAD294B718C54EE8006932BF /* NSCalendar+DTOAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

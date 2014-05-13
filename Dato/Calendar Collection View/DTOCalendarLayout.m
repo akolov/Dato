@@ -36,16 +36,21 @@ NSString *const DTOCalendarElementKindBackground = @"DTOCalendarElementKindBackg
   if (self) {
     self.itemSize = CGSizeMake(320.0f / 7.0f, 320.0f / 7.0f);
     self.headerReferenceSize = CGSizeMake(320.0f, 35.0f);
-    self.itemLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
-    self.headerLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
-    self.backgroundLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
-
     [self registerClass:[DTOCalendarBackgroundView class] forDecorationViewOfKind:DTOCalendarElementKindBackground];
   }
   return self;
 }
 
 #pragma mark - UICollectionViewLayout
+
+- (void)invalidateLayout {
+  [super invalidateLayout];
+  self.itemLayoutAttributes = nil;
+  self.headerLayoutAttributes = nil;
+  self.backgroundLayoutAttributes = nil;
+  self.previousLayoutAttributes = nil;
+  self.previousLayoutRect = CGRectZero;
+}
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
   if (CGRectEqualToRect(rect, self.previousLayoutRect)) {
@@ -304,6 +309,27 @@ NSString *const DTOCalendarElementKindBackground = @"DTOCalendarElementKindBackg
 - (void)setStartDate:(NSDate *)startDate {
   NSDateComponents *comps = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:startDate];
   _startDate = [self.calendar dateFromComponents:comps];
+}
+
+- (DTOLayoutAttributeStorage *)itemLayoutAttributes {
+  if (!_itemLayoutAttributes) {
+    _itemLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
+  }
+  return _itemLayoutAttributes;
+}
+
+- (DTOLayoutAttributeStorage *)headerLayoutAttributes {
+  if (!_headerLayoutAttributes) {
+    _headerLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
+  }
+  return _headerLayoutAttributes;
+}
+
+- (DTOLayoutAttributeStorage *)backgroundLayoutAttributes {
+  if (!_backgroundLayoutAttributes) {
+    _backgroundLayoutAttributes = [[DTOLayoutAttributeStorage alloc] init];
+  }
+  return _backgroundLayoutAttributes;
 }
 
 @end
