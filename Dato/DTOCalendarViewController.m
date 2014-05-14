@@ -614,7 +614,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
       self.shouldGoBackToToday = YES;
       self.shouldGoBackToYesterday = NO;
     }
-    else {
+    else if (fraction > 0.5f) {
       self.shouldGoBackToToday = NO;
       self.shouldGoBackToYesterday = YES;
     }
