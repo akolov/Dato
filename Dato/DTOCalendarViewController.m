@@ -573,25 +573,27 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
     cell.contentView.layer.transform = transform;
 
     UIColor *todayColor = [self interfaceColorForDate:self.today];
-    UIColor *yesterdayColor = [self interfaceColorForDate:[self.calendar previousDate:self.today]];
-    UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:yesterdayColor atRatio:halfFraction];
+    UIColor *backColor;
 
-    self.navigationController.navigationBar.barTintColor = color;
-
-    if (fraction * 2.0f == 1.0f) {
-      self.title = [self.titleFormatter stringFromDate:[self.calendar previousDate:self.today]];
+    if (fraction > 0.75f) {
+      NSDate *date = [self.calendar today];
+      cell.textLabel.text = @"Go back to Today";
+      self.title = [self.titleFormatter stringFromDate:date];
+      backColor = [self interfaceColorForDate:date];
+    }
+    else if (fraction > 0.5f) {
+      NSDate *date = [self.calendar previousDate:self.today];
+      cell.textLabel.text = [NSString stringWithFormat:@"Go back to %@", [self.relativeFormatter stringFromDate:date]];
+      self.title = [self.titleFormatter stringFromDate:date];
+      backColor = [self interfaceColorForDate:date];
     }
     else {
       self.title = [self.titleFormatter stringFromDate:self.today];
+      backColor = [self interfaceColorForDate:self.today];
     }
 
-    if (fraction > 0.75f) {
-      cell.textLabel.text = @"Go back to Today";
-    }
-    else {
-      NSDate *date = [self.calendar previousDate:self.today];
-      cell.textLabel.text = [NSString stringWithFormat:@"Go back to %@", [self.relativeFormatter stringFromDate:date]];
-    }
+    UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:backColor atRatio:halfFraction];
+    self.navigationController.navigationBar.barTintColor = color;
   }
 }
 
