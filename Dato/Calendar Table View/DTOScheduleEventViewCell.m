@@ -15,7 +15,6 @@
 
 @property (nonatomic, strong) UILabel *eventLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
-@property (nonatomic, strong) UIView *calendarOuterKnob;
 @property (nonatomic, strong) UIView *calendarKnob;
 
 @end
@@ -41,14 +40,9 @@
     self.timeLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
     [self.contentView addSubview:self.timeLabel];
 
-    self.calendarOuterKnob = [UIView autolayoutView];
-    self.calendarOuterKnob.backgroundColor = [UIColor whiteColor];
-    self.calendarOuterKnob.layer.cornerRadius = 5.0f;
-    [self.contentView addSubview:self.calendarOuterKnob];
-
     self.calendarKnob = [UIView autolayoutView];
-    self.calendarKnob.layer.cornerRadius = 4.0f;
-    [self.calendarOuterKnob addSubview:self.calendarKnob];
+    self.calendarKnob.layer.cornerRadius = 5.0f;
+    [self.contentView addSubview:self.calendarKnob];
 
     // Constraints
 
@@ -57,10 +51,8 @@
     [self.timeLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.timeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired
                                                     forAxis:UILayoutConstraintAxisHorizontal];
-    [self.calendarOuterKnob pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
-    [self.calendarKnob pinToCenter];
-    [self.calendarOuterKnob pinSize:CGSizeMake(10.0f, 10.0f) withRelation:NSLayoutRelationEqual];
-    [self.calendarKnob pinSize:CGSizeMake(8.0f, 8.0f) withRelation:NSLayoutRelationEqual];
+    [self.calendarKnob pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
+    [self.calendarKnob pinSize:CGSizeMake(10.0f, 10.0f) withRelation:NSLayoutRelationEqual];
   }
   return self;
 }
