@@ -41,18 +41,18 @@
     [self.contentView addSubview:self.timeLabel];
 
     self.calendarKnob = [UIView autolayoutView];
-    self.calendarKnob.layer.cornerRadius = 5.0f;
+    self.calendarKnob.layer.cornerRadius = 4.0f;
     [self.contentView addSubview:self.calendarKnob];
 
     // Constraints
 
-    [self.contentView pin:@[@"H:|-10.0-[calendarOuterKnob]-10.0-[eventLabel]-[timeLabel]-10.0-|"] owner:self];
+    [self.contentView pin:@[@"H:|-10.0-[calendarKnob]-10.0-[eventLabel]-[timeLabel]-10.0-|"] owner:self];
     [self.eventLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.timeLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.timeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired
                                                     forAxis:UILayoutConstraintAxisHorizontal];
-    [self.calendarKnob pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
-    [self.calendarKnob pinSize:CGSizeMake(10.0f, 10.0f) withRelation:NSLayoutRelationEqual];
+    [[self.calendarKnob pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical] setConstant:1.0f];
+    [self.calendarKnob pinSize:CGSizeMake(8.0f, 8.0f) withRelation:NSLayoutRelationEqual];
   }
   return self;
 }
