@@ -20,6 +20,7 @@
 #import "DTOCalendarHeaderView.h"
 #import "DTOCalendarLayout.h"
 #import "DTOCalendarViewCell.h"
+#import "DTONewEventViewController.h"
 #import "DTOScheduleDayViewCell.h"
 #import "DTOScheduleEventViewCell.h"
 #import "DTOScheduleGradient.h"
@@ -61,7 +62,8 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 @property (nonatomic, assign) BOOL shouldGoBackToToday;
 @property (nonatomic, assign) BOOL shouldGoBackToYesterday;
 
-- (void)didTapLeftBarButton:(id)sender;
+- (void)didTapLeftNavigationBarButton:(id)sender;
+- (void)didTapRightNavigationBarButton:(id)sender;
 
 - (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray *__autoreleasing *)events;
 
@@ -114,11 +116,19 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
   // Navigation
 
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[DTOStyleKit imageOfCogwheel]
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:self
-                                                                          action:@selector(didTapLeftBarButton:)];
-  self.navigationItem.leftBarButtonItem.tintColor = [DTOStyleKit translucentForegroundWhite];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                           initWithImage:[DTOStyleKit imageOfCogwheel]
+                                           style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(didTapLeftNavigationBarButton:)];
+//  self.navigationItem.leftBarButtonItem.tintColor = [DTOStyleKit foregroundWhiteColor];
+
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                            target:self
+                                            action:@selector(didTapRightNavigationBarButton:)];
+//  self.navigationItem.rightBarButtonItem.tintColor = [DTOStyleKit foregroundWhiteColor];
+
   self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
 
   // Formatters
@@ -222,13 +232,20 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
 #pragma mark - Actions
 
-- (void)didTapLeftBarButton:(id)sender {
+- (void)didTapLeftNavigationBarButton:(id)sender {
   if ([[DTOThemeManager theme].themeName isEqualToString:@"light"]) {
     [DTOThemeManager setTheme:[DTODarkTheme theme]];
   }
   else {
     [DTOThemeManager setTheme:[DTOLightTheme theme]];
   }
+}
+
+- (void)didTapRightNavigationBarButton:(id)sender {
+  DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
+  UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
+  navigation.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+  [self presentViewController:navigation animated:YES completion:NULL];
 }
 
 #pragma mark - UICollectionViewDataSource

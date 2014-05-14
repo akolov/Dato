@@ -20,6 +20,7 @@
 		FA346ED219222E9F0018704F /* DTOThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ED119222E9F0018704F /* DTOThemeManager.m */; };
 		FA346ED5192233A40018704F /* DTODarkTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = FA346ED4192233A40018704F /* DTODarkTheme.m */; };
 		FAA8651F1923FDE400256B7B /* DTOSchedulePullBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */; };
+		FAA865221924161100256B7B /* DTONewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA865211924161100256B7B /* DTONewEventViewController.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
 		FAB4613F18AC5E74006E9437 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613E18AC5E74006E9437 /* UIKit.framework */; };
@@ -84,6 +85,8 @@
 		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
 		FAA8651D1923FDE400256B7B /* DTOSchedulePullBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOSchedulePullBackCell.h; sourceTree = "<group>"; };
 		FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOSchedulePullBackCell.m; sourceTree = "<group>"; };
+		FAA865201924161100256B7B /* DTONewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTONewEventViewController.h; sourceTree = "<group>"; };
+		FAA865211924161100256B7B /* DTONewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTONewEventViewController.m; sourceTree = "<group>"; };
 		FAB4613718AC5E74006E9437 /* Dato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB4613A18AC5E74006E9437 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -251,6 +254,8 @@
 				FA346EC119222B300018704F /* DTOConstants.m */,
 				FAB4616A18AC5FEF006E9437 /* DTOCalendarViewController.h */,
 				FAB4616B18AC5FEF006E9437 /* DTOCalendarViewController.m */,
+				FAA865201924161100256B7B /* DTONewEventViewController.h */,
+				FAA865211924161100256B7B /* DTONewEventViewController.m */,
 				FAB4614118AC5E74006E9437 /* Supporting Files */,
 			);
 			path = Dato;
@@ -501,6 +506,7 @@
 				FA1998EC19201C3C002BB57E /* UIFont+DTOAdditions.m in Sources */,
 				FAB4614B18AC5E74006E9437 /* DTOAppDelegate.m in Sources */,
 				FA346ED5192233A40018704F /* DTODarkTheme.m in Sources */,
+				FAA865221924161100256B7B /* DTONewEventViewController.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
 				FA346ED219222E9F0018704F /* DTOThemeManager.m in Sources */,
 				FA346EC219222B300018704F /* DTOConstants.m in Sources */,
