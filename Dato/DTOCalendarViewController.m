@@ -24,6 +24,7 @@
 #import "DTOScheduleEventViewCell.h"
 #import "DTOScheduleGradient.h"
 #import "DTOScheduleHeaderView.h"
+#import "DTOSchedulePullBackCell.h"
 #import "DTOTheme.h"
 #import "DTODarkTheme.h"
 #import "DTOLightTheme.h"
@@ -57,11 +58,12 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 @property (nonatomic, strong) UICollectionView *calendarView;
 @property (nonatomic, strong) UITableView *scheduleView;
 @property (nonatomic, assign) BOOL animating;
-@property (nonatomic, assign) BOOL shouldGoBack;
+@property (nonatomic, assign) BOOL shouldGoBackToToday;
+@property (nonatomic, assign) BOOL shouldGoBackToYesterday;
 
 - (void)didTapLeftBarButton:(id)sender;
 
-- (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray **)events;
+- (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray *__autoreleasing *)events;
 
 - (NSArray *)eventsForDate:(NSDate *)date;
 - (DTOScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
@@ -169,11 +171,9 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.calendarView.showsVerticalScrollIndicator = NO;
   [self.view addSubview:self.calendarView];
 
-  [self.calendarView registerClass:[DTOCalendarViewCell class]
-        forCellWithReuseIdentifier:[DTOCalendarViewCell reuseIdentifier]];
+  [self.calendarView registerClassForCellReuse:[DTOCalendarViewCell class]];
   [self.calendarView registerClass:[DTOCalendarHeaderView class]
-        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-               withReuseIdentifier:[DTOCalendarHeaderView reuseIdentifier]];
+        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader];
 
   // Schedule View
 
@@ -193,12 +193,10 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   self.scheduleView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   [self.calendarView addSubview:self.scheduleView];
 
-  [self.scheduleView registerClass:[DTOScheduleDayViewCell class]
-            forCellReuseIdentifier:[DTOScheduleDayViewCell reuseIdentifier]];
-  [self.scheduleView registerClass:[DTOScheduleEventViewCell class]
-            forCellReuseIdentifier:[DTOScheduleEventViewCell reuseIdentifier]];
-  [self.scheduleView registerClass:[DTOScheduleHeaderView class]
-forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
+  [self.scheduleView registerClassForCellReuse:[DTOScheduleDayViewCell class]];
+  [self.scheduleView registerClassForCellReuse:[DTOScheduleEventViewCell class]];
+  [self.scheduleView registerClassForCellReuse:[DTOSchedulePullBackCell class]];
+  [self.scheduleView registerClassForHeaderFooterViewReuse:[DTOScheduleHeaderView class]];
 
   self.events = [self eventsForDate:self.today];
   [self.scheduleView reloadData];
@@ -337,12 +335,11 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     case 0: {
       switch (indexPath.row) {
         case 0: {
-          DTOScheduleDayViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:[DTOScheduleDayViewCell reuseIdentifier]
+          DTOSchedulePullBackCell *cell =
+            [tableView dequeueReusableCellWithIdentifier:[DTOSchedulePullBackCell reuseIdentifier]
                                             forIndexPath:indexPath];
-          cell.textLabel.text = @"Yesterday";
-          cell.showsFullSeparator = YES;
-          [self configureScheduleCell:cell forDate:[self.calendar previousDate:self.today]];
+          NSDate *date = [self.calendar previousDate:self.today];
+          cell.textLabel.text = [NSString stringWithFormat:@"Go back to %@", [self.relativeFormatter stringFromDate:date]];
           return cell;
         }
         default: {
@@ -534,7 +531,7 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     return;
   }
 
-  if (self.shouldGoBack) {
+  if (self.shouldGoBackToToday || self.shouldGoBackToYesterday) {
     return;
   }
 
@@ -542,10 +539,11 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
   if (offset < 0) {
     UITableViewCell *cell = [self.scheduleView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 
-    CGFloat fraction = -offset / CGRectGetHeight(cell.frame);
+    CGFloat fraction = -offset / (CGRectGetHeight(cell.frame) * 2.0f);
     fraction = MAX(MIN(1.0f, fraction), 0);
 
-    CGFloat angle = (M_PI / 2) - ASIN(fraction);
+    CGFloat halfFraction = MAX(MIN(1.0f, fraction * 2.0f), 0);
+    CGFloat angle = (M_PI / 2) - ASIN(halfFraction);
 
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0f / -500.0f;
@@ -559,15 +557,23 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
     UIColor *todayColor = [self interfaceColorForDate:self.today];
     UIColor *yesterdayColor = [self interfaceColorForDate:[self.calendar previousDate:self.today]];
-    UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:yesterdayColor atRatio:fraction];
+    UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:yesterdayColor atRatio:halfFraction];
 
     self.navigationController.navigationBar.barTintColor = color;
 
-    if (fraction == 1.0f) {
+    if (fraction * 2.0f == 1.0f) {
       self.title = [self.titleFormatter stringFromDate:[self.calendar previousDate:self.today]];
     }
     else {
       self.title = [self.titleFormatter stringFromDate:self.today];
+    }
+
+    if (fraction > 0.75f) {
+      cell.textLabel.text = @"Go back to Today";
+    }
+    else {
+      NSDate *date = [self.calendar previousDate:self.today];
+      cell.textLabel.text = [NSString stringWithFormat:@"Go back to %@", [self.relativeFormatter stringFromDate:date]];
     }
   }
 }
@@ -579,8 +585,22 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
 
   CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top;
 
-  if (decelerate && offset <= -self.scheduleView.rowHeight) {
-    self.shouldGoBack = YES;
+  if (decelerate) {
+    if (offset >= 0) {
+      return;
+    }
+
+    CGFloat fraction = -offset / (self.scheduleView.rowHeight * 2.0f);
+    fraction = MAX(MIN(1.0f, fraction), 0);
+
+    if (fraction > 0.75f) {
+      self.shouldGoBackToToday = YES;
+      self.shouldGoBackToYesterday = NO;
+    }
+    else {
+      self.shouldGoBackToToday = NO;
+      self.shouldGoBackToYesterday = YES;
+    }
   }
 }
 
@@ -593,13 +613,23 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     return;
   }
 
-  if (!self.shouldGoBack) {
+  if (!self.shouldGoBackToYesterday && !self.shouldGoBackToToday) {
     return;
   }
 
-  self.shouldGoBack = NO;
   self.animating = YES;
-  self.today = [self.calendar dateWithOffset:-1 fromDate:self.today];
+
+  [self.scheduleView reloadData];
+
+  if (self.shouldGoBackToYesterday) {
+    self.today = [self.calendar dateWithOffset:-1 fromDate:self.today];
+  }
+  else if (self.shouldGoBackToToday) {
+    self.today = [self.calendar today];
+  }
+
+  self.shouldGoBackToToday = NO;
+  self.shouldGoBackToYesterday = NO;
 
   if ([self.events count] != 0) {
     [self.scheduleView beginUpdates];
