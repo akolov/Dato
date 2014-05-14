@@ -543,7 +543,8 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     UITableViewCell *cell = [self.scheduleView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 
     CGFloat fraction = -offset / CGRectGetHeight(cell.frame);
-    fraction = MAX(MIN(1, fraction), 0);
+    fraction = MAX(MIN(1.0f, fraction), 0);
+
     CGFloat angle = (M_PI / 2) - ASIN(fraction);
 
     CATransform3D transform = CATransform3DIdentity;
@@ -561,6 +562,13 @@ forHeaderFooterViewReuseIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
     UIColor *color = [UIColor colorForFadeBetweenFirstColor:todayColor secondColor:yesterdayColor atRatio:fraction];
 
     self.navigationController.navigationBar.barTintColor = color;
+
+    if (fraction == 1.0f) {
+      self.title = [self.titleFormatter stringFromDate:[self.calendar previousDate:self.today]];
+    }
+    else {
+      self.title = [self.titleFormatter stringFromDate:self.today];
+    }
   }
 }
 
