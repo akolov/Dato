@@ -29,7 +29,14 @@
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
 
   [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-  [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont lightClavoFontOfSize:20.0f]}];
+  [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+
+  [[UINavigationBar appearance] setTitleTextAttributes:
+   @{NSFontAttributeName: [UIFont lightClavoFontOfSize:20.0f]}];
+
+  [[UIBarButtonItem appearance] setTitleTextAttributes:
+   @{NSFontAttributeName: [UIFont lightOpenSansFontOfSize:16.0f],
+     NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
 
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
