@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alexander Kolov. All rights reserved.
 //
 
+@import EventKit;
 @import Foundation;
 
 @class DTOCheckmarkCell;
@@ -26,6 +27,7 @@
 @property (nonatomic, strong, readonly) DTOForwardingCell *inviteesCell;
 @property (nonatomic, strong, readonly) DTOReminderCell *reminderCell;
 @property (nonatomic, strong, readonly) DTORepeatCell *repeatCell;
-@property (nonatomic, strong, readonly) NSArray *cells;
+@property (nonatomic, strong) NSArray *cells;
+@property (nonatomic, strong) EKEvent *event;
 
 @end

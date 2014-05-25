@@ -50,6 +50,8 @@
   _titleCell.textField.placeholderColor = [DTOThemeManager theme].secondaryTextColor;
   _titleCell.textField.placeholderFont = [UIFont lightOpenSansFontOfSize:16.0f];
 
+  _titleCell.textField.text = self.event.title;
+
   return _titleCell;
 }
 
@@ -62,6 +64,8 @@
   _allDayCell.textLabel.font = [UIFont lightOpenSansFontOfSize:14.0];
   _allDayCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _allDayCell.textLabel.text = @"All-Day";
+
+  _allDayCell.checked = self.event.allDay;
 
   return _allDayCell;
 }
@@ -79,6 +83,10 @@
   _startDateCell.indentationLevel = 1;
   _startDateCell.indentationWidth = 15.0f;
 
+  if (self.event.startDate) {
+    _startDateCell.datePicker.date = self.event.startDate;
+  }
+
   return _startDateCell;
 }
 
@@ -95,6 +103,10 @@
   _endDateCell.indentationLevel = 1;
   _endDateCell.indentationWidth = 15.0f;
 
+  if (self.event.endDate) {
+    _endDateCell.datePicker.date = self.event.endDate;
+  }
+
   return _endDateCell;
 }
 
@@ -109,7 +121,8 @@
   _locationCell.textLabel.text = @"Location";
   _locationCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _locationCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
-  _locationCell.detailTextLabel.text = @"In a galaxy far away";
+
+  _locationCell.detailTextLabel.text = self.event.location;
 
   return _locationCell;
 }
@@ -125,7 +138,8 @@
   _calendarCell.textLabel.text = @"Calendar";
   _calendarCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _calendarCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
-  _calendarCell.detailTextLabel.text = @"Work";
+
+  _calendarCell.detailTextLabel.text = self.event.calendar.title;
 
   return _calendarCell;
 }
@@ -141,6 +155,8 @@
   _inviteesCell.textLabel.text = @"Invitees";
   _inviteesCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _inviteesCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
+
+  _inviteesCell.detailTextLabel.text = [self.event.attendees componentsJoinedByString:@", "];
 
   return _inviteesCell;
 }

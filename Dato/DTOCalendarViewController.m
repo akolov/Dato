@@ -243,6 +243,9 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
 - (void)didTapRightNavigationBarButton:(id)sender {
   DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
+  vc.eventStore = self.eventStore;
+  vc.event = [EKEvent eventWithEventStore:self.eventStore];
+  vc.event.calendar = self.eventStore.defaultCalendarForNewEvents;
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
   navigation.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
   [self presentViewController:navigation animated:YES completion:NULL];

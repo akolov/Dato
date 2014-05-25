@@ -18,9 +18,10 @@
   return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-  [super setSelected:selected animated:animated];
-  self.accessoryType = selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+- (void)setChecked:(BOOL)checked {
+  _checked = checked;
+
+  self.accessoryType = checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 }
 
 @end

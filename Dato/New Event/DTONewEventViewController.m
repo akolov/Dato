@@ -10,6 +10,8 @@
 #import "DTONewEventViewController.h"
 
 #import <AXKCollectionViewTools/AXKCollectionViewTools.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+#import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 
 #import "DTODatePickerCell.h"
 #import "DTOTableHeaderView.h"
@@ -64,7 +66,42 @@
 }
 
 - (void)didTapRightNavigationBarButton:(id)sender {
-  [self dismissViewControllerAnimated:YES completion:NULL];
+  if (!self.event.hasChanges) {
+    return;
+  }
+
+  if (self.event.isNew || !self.event.hasRecurrenceRules) {
+    NSError *error;
+    if (![self.eventStore saveEvent:self.event span:EKSpanFutureEvents commit:YES error:&error]) {
+      ErrorLog(error.localizedDescription);
+    }
+
+    [self dismissViewControllerAnimated:YES completion:NULL];
+  }
+  else {
+    @weakify(self);
+    [UIAlertView
+     showWithTitle:@"Save event" message:@"Should the change affect all future instances of the event?"
+     cancelButtonTitle:@"No" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+       @strongify(self);
+
+       EKSpan span;
+
+       if (buttonIndex == alertView.cancelButtonIndex) {
+         span = EKSpanThisEvent;
+       }
+       else {
+         span = EKSpanFutureEvents;
+       }
+
+       NSError *error;
+       if (![self.eventStore saveEvent:self.event span:EKSpanFutureEvents commit:YES error:&error]) {
+         ErrorLog(error.localizedDescription);
+       }
+
+       [self dismissViewControllerAnimated:YES completion:NULL];
+     }];
+  }
 }
 
 #pragma mark - UITableViewDelegate
