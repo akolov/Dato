@@ -47,12 +47,20 @@
   [super viewDidLoad];
 
   self.title = @"New event";
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                           initWithTitle:@"Close" style:UIBarButtonItemStylePlain
-                                           target:self action:@selector(didTapLeftNavigationBarButton:)];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                            initWithTitle:@"Add" style:UIBarButtonItemStylePlain
-                                            target:self action:@selector(didTapRightNavigationBarButton:)];
+
+  if (self.navigationController.presentingViewController != nil) {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithTitle:@"Close" style:UIBarButtonItemStylePlain
+                                             target:self action:@selector(didTapLeftNavigationBarButton:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"Add" style:UIBarButtonItemStylePlain
+                                              target:self action:@selector(didTapRightNavigationBarButton:)];
+  }
+  else {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"Save" style:UIBarButtonItemStylePlain
+                                              target:self action:@selector(didTapRightNavigationBarButton:)];
+  }
 
   self.dataSource = [[DTONewEventDataSource alloc] initWithEvent:self.event];
 
@@ -93,7 +101,12 @@
       ErrorLog(error.localizedDescription);
     }
 
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (self.navigationController.presentingViewController) {
+      [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+    else {
+      [self.navigationController popViewControllerAnimated:YES];
+    }
   }
   else {
     @weakify(self);
@@ -116,7 +129,12 @@
          ErrorLog(error.localizedDescription);
        }
 
-       [self dismissViewControllerAnimated:YES completion:NULL];
+       if (self.navigationController.presentingViewController) {
+         [self dismissViewControllerAnimated:YES completion:NULL];
+       }
+       else {
+         [self.navigationController popViewControllerAnimated:YES];
+       }
      }];
   }
 }

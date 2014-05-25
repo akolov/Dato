@@ -72,6 +72,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 - (void)configureScheduleCell:(DTOScheduleDayViewCell *)cell forDate:(NSDate *)date;
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date;
 
+- (void)reloadDataAnimated:(BOOL)animated;
 - (UIColor *)interfaceColorForDate:(NSDate *)date;
 
 - (void)sizeScheduleToFit;
@@ -101,9 +102,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 
     if (granted) {
       self.events = [self eventsForDate:self.today];
-      [self.calendarView reloadData];
-      [self.scheduleView reloadData];
-      [self sizeScheduleToFit];
+      [self reloadDataAnimated:NO];
     }
     else {
       ErrorLog(@"WTF!");
@@ -220,9 +219,13 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
     self.calendarView.backgroundColor = [DTOThemeManager theme].windowBackgroundColor;
     self.scheduleView.separatorColor = [DTOThemeManager theme].separatorColor;
 
-    [self.calendarView reloadData];
-    [self.scheduleView reloadData];
+    [self reloadDataAnimated:YES];
   }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self reloadDataAnimated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -484,7 +487,14 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 1 || indexPath.section == 2) {
+  if (indexPath.section == 0) {
+    if ([self.events count] != 0 && indexPath.row > 0) {
+      EKEvent *event = self.events[(NSUInteger)indexPath.row - 1];
+      DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithEvent:event inStore:self.eventStore];
+      [self.navigationController pushViewController:vc animated:YES];
+    }
+  }
+  else if (indexPath.section == 1 || indexPath.section == 2) {
     self.today = [self.calendar dateWithOffset:indexPath.section fromDate:self.today];
 
     if ([self.events count] != 0) {
@@ -701,6 +711,19 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 }
 
 #pragma mark - Private Methods
+
+- (void)reloadDataAnimated:(BOOL)animated {
+  self.events = [self eventsForDate:self.today];
+
+  [self.scheduleView reloadData];
+  [self.calendarView reloadData];
+
+  [UIView animateWithDuration:animated ? 0.25 : 0 animations:^{
+    [self sizeScheduleToFit];
+    [self.calendarView setContentOffset:CGPointMake(0, -self.calendarView.contentInset.top) animated:YES];
+    self.navigationController.navigationBar.barTintColor = [self interfaceColorForDate:self.today];
+  }];
+}
 
 - (UIColor *)interfaceColorForDate:(NSDate *)date {
   UIColor *color;

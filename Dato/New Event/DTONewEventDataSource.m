@@ -33,7 +33,8 @@
 @property (nonatomic, strong) DTORepeatCell *repeatCell;
 @property (nonatomic, strong) EKEvent *event;
 
-- (void)datePickerDidChangeDate:(id)sender;
+- (void)startDatePickerDidChangeDate:(id)sender;
+- (void)endDatePickerDidChangeDate:(id)sender;
 
 @end
 
@@ -85,7 +86,7 @@
 - (DTODatePickerCell *)startDateCell {
   if (!_startDateCell) {
     _startDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    [_startDateCell.datePicker addTarget:self action:@selector(datePickerDidChangeDate:)
+    [_startDateCell.datePicker addTarget:self action:@selector(startDatePickerDidChangeDate:)
                         forControlEvents:UIControlEventValueChanged];
   }
 
@@ -107,7 +108,7 @@
 - (DTODatePickerCell *)endDateCell {
   if (!_endDateCell) {
     _endDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    [_endDateCell.datePicker addTarget:self action:@selector(datePickerDidChangeDate:)
+    [_endDateCell.datePicker addTarget:self action:@selector(endDatePickerDidChangeDate:)
                       forControlEvents:UIControlEventValueChanged];
   }
 
@@ -256,13 +257,14 @@
 
 #pragma mark - Actions
 
-- (void)datePickerDidChangeDate:(id)sender {
-  if ([sender isEqual:self.startDateCell.datePicker]) {
-    self.event.startDate = self.startDateCell.datePicker.date;
-  }
-  else if ([sender isEqual:self.endDateCell.datePicker]) {
-    self.event.startDate = self.endDateCell.datePicker.date;
-  }
+- (void)startDatePickerDidChangeDate:(id)sender {
+  UIDatePicker *picker = (UIDatePicker *)sender;
+  self.event.startDate = picker.date;
+}
+
+- (void)endDatePickerDidChangeDate:(id)sender {
+  UIDatePicker *picker = (UIDatePicker *)sender;
+  self.event.endDate = picker.date;
 }
 
 #pragma mark - UITableViewDataSource
