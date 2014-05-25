@@ -1,5 +1,5 @@
 //
-//  DTOScheduleEventViewCell.h
+//  DTOEventViewCell.h
 //  Dato
 //
 //  Created by Alexander Kolov on 04/03/14.
@@ -8,10 +8,8 @@
 
 @import UIKit;
 
-@interface DTOScheduleEventViewCell : UITableViewCell
+@interface DTOEventViewCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) UILabel *eventLabel;
-@property (nonatomic, strong, readonly) UILabel *timeLabel;
 @property (nonatomic, strong, readonly) UIView *calendarKnob;
 
 @end

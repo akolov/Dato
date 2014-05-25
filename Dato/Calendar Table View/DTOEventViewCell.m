@@ -1,5 +1,5 @@
 //
-//  DTOScheduleEventViewCell.m
+//  DTOEventViewCell.m
 //  Dato
 //
 //  Created by Alexander Kolov on 04/03/14.
@@ -7,11 +7,11 @@
 //
 
 #import "DTOConfig.h"
-#import "DTOScheduleEventViewCell.h"
+#import "DTOEventViewCell.h"
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
-@interface DTOScheduleEventViewCell ()
+@interface DTOEventViewCell ()
 
 @property (nonatomic, strong) UILabel *eventLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
@@ -19,10 +19,10 @@
 
 @end
 
-@implementation DTOScheduleEventViewCell
+@implementation DTOEventViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:reuseIdentifier];
+  self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
   if (self) {
     self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
     self.indentationLevel = 0;
@@ -62,6 +62,14 @@
   self.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
   self.eventLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   self.timeLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
+}
+
+- (UILabel *)textLabel {
+  return self.eventLabel;
+}
+
+- (UILabel *)detailTextLabel {
+  return self.timeLabel;
 }
 
 @end

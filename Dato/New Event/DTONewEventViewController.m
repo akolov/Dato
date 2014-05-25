@@ -13,6 +13,7 @@
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <UIAlertView+Blocks/UIAlertView+Blocks.h>
 
+#import "DTOCalendarListController.h"
 #import "DTOCheckmarkCell.h"
 #import "DTODatePickerCell.h"
 #import "DTOTableHeaderView.h"
@@ -22,6 +23,8 @@
 
 @interface DTONewEventViewController ()
 
+@property (nonatomic, strong) EKEvent *event;
+@property (nonatomic, strong) EKEventStore *eventStore;
 @property (nonatomic, strong) DTONewEventDataSource *dataSource;
 
 - (void)didTapLeftNavigationBarButton:(id)sender;
@@ -30,6 +33,15 @@
 @end
 
 @implementation DTONewEventViewController
+
+- (instancetype)initWithEvent:(EKEvent *)event inStore:(EKEventStore *)eventStore {
+  self = [super initWithStyle:UITableViewStyleGrouped];
+  if (self) {
+    self.event = event;
+    self.eventStore = eventStore;
+  }
+  return self;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -51,8 +63,12 @@
   self.tableView.separatorInset = UIEdgeInsetsMake(0, 30.0f, 0, 0);
   self.tableView.showsVerticalScrollIndicator = NO;
   self.tableView.showsHorizontalScrollIndicator = NO;
-  [self.tableView registerClassForCellReuse:[UITableViewCell class]];
   [self.tableView registerClassForHeaderFooterViewReuse:[DTOTableHeaderView class]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,6 +160,22 @@
       }
     }
       break;
+
+    case 2: {
+      switch (row) {
+        case 0:
+          break;
+
+        case 1: {
+          DTOCalendarListController *vc = [[DTOCalendarListController alloc] initWithEvent:self.event inStore:self.eventStore];
+          [self.navigationController pushViewController:vc animated:YES];
+        }
+          break;
+
+        default:
+          break;
+      }
+    }
 
     default:
       break;

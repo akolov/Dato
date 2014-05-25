@@ -10,4 +10,6 @@
 
 @interface DTOForwardingCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) UIView *knob;
+
 @end

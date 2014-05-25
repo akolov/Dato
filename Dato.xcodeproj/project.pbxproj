@@ -30,6 +30,7 @@
 		FA6D297A19326C3F00237050 /* UILabel+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297819326AD000237050 /* UILabel+DTOAdditions.m */; };
 		FA6D297D19326E2200237050 /* UIView+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297C19326E2200237050 /* UIView+DTOAdditions.m */; };
 		FA6D29801932746500237050 /* DTOTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297F1932746500237050 /* DTOTextField.m */; };
+		FA6D29831932850B00237050 /* DTOCalendarListController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D29821932850B00237050 /* DTOCalendarListController.m */; };
 		FAA8651F1923FDE400256B7B /* DTOSchedulePullBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
@@ -55,7 +56,7 @@
 		FAD294AD18C53F2F006932BF /* DTOCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294A918C53F2F006932BF /* DTOCalendarViewCell.m */; };
 		FAD294B418C54B84006932BF /* DTOLayoutAttributeStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B318C54B84006932BF /* DTOLayoutAttributeStorage.m */; };
 		FAD294B718C54EE8006932BF /* NSCalendar+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B618C54EE8006932BF /* NSCalendar+DTOAdditions.m */; };
-		FAD294BA18C5558F006932BF /* DTOScheduleEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */; };
+		FAD294BA18C5558F006932BF /* DTOEventViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294B918C5558F006932BF /* DTOEventViewCell.m */; };
 		FAD294BD18C558C8006932BF /* DTOTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294BC18C558C8006932BF /* DTOTableHeaderView.m */; };
 		FAD294C018C5640B006932BF /* DTOScheduleDayViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,8 @@
 		FA6D297C19326E2200237050 /* UIView+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DTOAdditions.m"; sourceTree = "<group>"; };
 		FA6D297E1932746500237050 /* DTOTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOTextField.h; sourceTree = "<group>"; };
 		FA6D297F1932746500237050 /* DTOTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOTextField.m; sourceTree = "<group>"; };
+		FA6D29811932850B00237050 /* DTOCalendarListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOCalendarListController.h; sourceTree = "<group>"; };
+		FA6D29821932850B00237050 /* DTOCalendarListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOCalendarListController.m; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
 		FAA8651D1923FDE400256B7B /* DTOSchedulePullBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOSchedulePullBackCell.h; sourceTree = "<group>"; };
 		FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOSchedulePullBackCell.m; sourceTree = "<group>"; };
@@ -153,8 +156,8 @@
 		FAD294B318C54B84006932BF /* DTOLayoutAttributeStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOLayoutAttributeStorage.m; sourceTree = "<group>"; };
 		FAD294B518C54EE8006932BF /* NSCalendar+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+DTOAdditions.h"; sourceTree = "<group>"; };
 		FAD294B618C54EE8006932BF /* NSCalendar+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+DTOAdditions.m"; sourceTree = "<group>"; };
-		FAD294B818C5558F006932BF /* DTOScheduleEventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleEventViewCell.h; sourceTree = "<group>"; };
-		FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOScheduleEventViewCell.m; sourceTree = "<group>"; };
+		FAD294B818C5558F006932BF /* DTOEventViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOEventViewCell.h; sourceTree = "<group>"; };
+		FAD294B918C5558F006932BF /* DTOEventViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOEventViewCell.m; sourceTree = "<group>"; };
 		FAD294BB18C558C8006932BF /* DTOTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOTableHeaderView.h; sourceTree = "<group>"; };
 		FAD294BC18C558C8006932BF /* DTOTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOTableHeaderView.m; sourceTree = "<group>"; };
 		FAD294BE18C5640B006932BF /* DTOScheduleDayViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOScheduleDayViewCell.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		FA6D295E193224D300237050 /* New Event */ = {
 			isa = PBXGroup;
 			children = (
+				FA6D29811932850B00237050 /* DTOCalendarListController.h */,
+				FA6D29821932850B00237050 /* DTOCalendarListController.m */,
 				FA6D295F193224D300237050 /* DTONewEventViewController.h */,
 				FA6D2960193224D300237050 /* DTONewEventViewController.m */,
 				FA6D29621932251200237050 /* DTONewEventDataSource.h */,
@@ -383,8 +388,8 @@
 				FAD294BC18C558C8006932BF /* DTOTableHeaderView.m */,
 				FAD294BE18C5640B006932BF /* DTOScheduleDayViewCell.h */,
 				FAD294BF18C5640B006932BF /* DTOScheduleDayViewCell.m */,
-				FAD294B818C5558F006932BF /* DTOScheduleEventViewCell.h */,
-				FAD294B918C5558F006932BF /* DTOScheduleEventViewCell.m */,
+				FAD294B818C5558F006932BF /* DTOEventViewCell.h */,
+				FAD294B918C5558F006932BF /* DTOEventViewCell.m */,
 				FAA8651D1923FDE400256B7B /* DTOSchedulePullBackCell.h */,
 				FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */,
 				FAC7B98E19229A330088D3B9 /* DTOScheduleGradient.h */,
@@ -578,7 +583,8 @@
 				FA6D29731932520900237050 /* DTOReminderCell.m in Sources */,
 				FA6D297D19326E2200237050 /* UIView+DTOAdditions.m in Sources */,
 				FAA8651F1923FDE400256B7B /* DTOSchedulePullBackCell.m in Sources */,
-				FAD294BA18C5558F006932BF /* DTOScheduleEventViewCell.m in Sources */,
+				FA6D29831932850B00237050 /* DTOCalendarListController.m in Sources */,
+				FAD294BA18C5558F006932BF /* DTOEventViewCell.m in Sources */,
 				FA6D296A193245EB00237050 /* DTOCheckmarkCell.m in Sources */,
 				FA346ECF19222D8F0018704F /* DTOLightTheme.m in Sources */,
 				FAD294B718C54EE8006932BF /* NSCalendar+DTOAdditions.m in Sources */,

@@ -22,7 +22,7 @@
 #import "DTOCalendarViewCell.h"
 #import "DTONewEventViewController.h"
 #import "DTOScheduleDayViewCell.h"
-#import "DTOScheduleEventViewCell.h"
+#import "DTOEventViewCell.h"
 #import "DTOScheduleGradient.h"
 #import "DTOTableHeaderView.h"
 #import "DTOSchedulePullBackCell.h"
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 - (DTODateBusyness)dateBusyness:(NSDate *)date events:(out NSArray *__autoreleasing *)events;
 
 - (NSArray *)eventsForDate:(NSDate *)date;
-- (DTOScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
+- (DTOEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureScheduleCell:(DTOScheduleDayViewCell *)cell forDate:(NSDate *)date;
 - (void)expandSchedule:(UITableView *)scheduleView forDate:(NSDate *)date;
 
@@ -204,7 +204,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   [self.calendarView addSubview:self.scheduleView];
 
   [self.scheduleView registerClassForCellReuse:[DTOScheduleDayViewCell class]];
-  [self.scheduleView registerClassForCellReuse:[DTOScheduleEventViewCell class]];
+  [self.scheduleView registerClassForCellReuse:[DTOEventViewCell class]];
   [self.scheduleView registerClassForCellReuse:[DTOSchedulePullBackCell class]];
   [self.scheduleView registerClassForHeaderFooterViewReuse:[DTOTableHeaderView class]];
 
@@ -242,12 +242,13 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 }
 
 - (void)didTapRightNavigationBarButton:(id)sender {
-  DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithStyle:UITableViewStyleGrouped];
-  vc.eventStore = self.eventStore;
-  vc.event = [EKEvent eventWithEventStore:self.eventStore];
-  vc.event.calendar = self.eventStore.defaultCalendarForNewEvents;
+  EKEvent *event = [EKEvent eventWithEventStore:self.eventStore];
+  event.calendar = self.eventStore.defaultCalendarForNewEvents;
+
+  DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithEvent:event inStore:self.eventStore];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
   navigation.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+
   [self presentViewController:navigation animated:YES completion:NULL];
 }
 
@@ -768,20 +769,20 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   return events ?: @[];
 }
 
-- (DTOScheduleEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
-  DTOScheduleEventViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:[DTOScheduleEventViewCell reuseIdentifier] forIndexPath:indexPath];
+- (DTOEventViewCell *)eventCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+  DTOEventViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:[DTOEventViewCell reuseIdentifier] forIndexPath:indexPath];
   EKEvent *event = self.events[(NSUInteger)indexPath.row - 1];
   EKCalendar *calendar = event.calendar;
-  cell.eventLabel.text = event.title;
+  cell.textLabel.text = event.title;
 
   if (event.allDay) {
-    cell.timeLabel.text = NSLocalizedString(@"All Day", nil);
+    cell.detailTextLabel.text = NSLocalizedString(@"All Day", nil);
   }
   else {
     NSString *start = [self.timeFormatter stringFromDate:event.startDate];
     NSString *end = [self.timeFormatter stringFromDate:event.endDate];
-    cell.timeLabel.text = [NSString stringWithFormat:@"%@ — %@", start, end];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@", start, end];
   }
 
   cell.calendarKnob.backgroundColor = [UIColor colorWithCGColor:calendar.CGColor];

@@ -20,7 +20,7 @@
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
-@interface DTONewEventDataSource ()
+@interface DTONewEventDataSource () <UITextFieldDelegate>
 
 @property (nonatomic, strong) DTOTextFieldCell *titleCell;
 @property (nonatomic, strong) DTOCheckmarkCell *allDayCell;
@@ -32,6 +32,8 @@
 @property (nonatomic, strong) DTOReminderCell *reminderCell;
 @property (nonatomic, strong) DTORepeatCell *repeatCell;
 @property (nonatomic, strong) EKEvent *event;
+
+- (void)datePickerDidChangeDate:(id)sender;
 
 @end
 
@@ -51,6 +53,7 @@
   }
 
   _titleCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  _titleCell.textField.delegate = self;
   _titleCell.textField.font = [UIFont semiBoldOpenSansFontOfSize:16.0];
   _titleCell.textField.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _titleCell.indentationLevel = 1;
@@ -82,6 +85,8 @@
 - (DTODatePickerCell *)startDateCell {
   if (!_startDateCell) {
     _startDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    [_startDateCell.datePicker addTarget:self action:@selector(datePickerDidChangeDate:)
+                        forControlEvents:UIControlEventValueChanged];
   }
 
   _startDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -102,6 +107,8 @@
 - (DTODatePickerCell *)endDateCell {
   if (!_endDateCell) {
     _endDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    [_endDateCell.datePicker addTarget:self action:@selector(datePickerDidChangeDate:)
+                      forControlEvents:UIControlEventValueChanged];
   }
 
   _endDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -147,6 +154,7 @@
   _calendarCell.textLabel.text = @"Calendar";
   _calendarCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _calendarCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
+  _calendarCell.knob.backgroundColor = [UIColor colorWithCGColor:self.event.calendar.CGColor];
 
   _calendarCell.detailTextLabel.text = self.event.calendar.title;
 
@@ -246,6 +254,17 @@
            @[self.repeatCell]];
 }
 
+#pragma mark - Actions
+
+- (void)datePickerDidChangeDate:(id)sender {
+  if ([sender isEqual:self.startDateCell.datePicker]) {
+    self.event.startDate = self.startDateCell.datePicker.date;
+  }
+  else if ([sender isEqual:self.endDateCell.datePicker]) {
+    self.event.startDate = self.endDateCell.datePicker.date;
+  }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -258,6 +277,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return self.cells[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+  self.event.title = textField.text;
 }
 
 @end

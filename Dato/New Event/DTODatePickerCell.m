@@ -67,7 +67,7 @@
 
     [self.contentView pin:@"H:[titleLabel]-(>=15.0)-|" options:0 owner:self];
     [self.contentView pin:@"V:|-20.0-[titleLabel][datePicker(160.0)]" options:0 owner:self];
-    [self.contentView pin:@"V:|-98.5-[dateSelectionView(35.0)]" options:0 owner:self];
+    [self.contentView pin:@"V:|-103.5-[dateSelectionView(35.0)]" options:0 owner:self];
     [self.datePicker pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
     [self.dateSelectionView pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
 
