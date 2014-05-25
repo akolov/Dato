@@ -1,5 +1,5 @@
 //
-//  DTOScheduleHeaderView.h
+//  DTOTableHeaderView.h
 //  Dato
 //
 //  Created by Alexander Kolov on 04/03/14.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface DTOScheduleHeaderView : UITableViewHeaderFooterView
+@interface DTOTableHeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 

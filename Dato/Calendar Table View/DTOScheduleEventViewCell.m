@@ -46,7 +46,7 @@
 
     // Constraints
 
-    [self.contentView pin:@[@"H:|-10.0-[calendarKnob]-10.0-[eventLabel]-[timeLabel]-10.0-|"] owner:self];
+    [self.contentView pin:@"H:|-10.0-[calendarKnob]-10.0-[eventLabel]-[timeLabel]-10.0-|" options:0 owner:self];
     [self.eventLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.timeLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
     [self.timeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired

@@ -24,7 +24,7 @@
 #import "DTOScheduleDayViewCell.h"
 #import "DTOScheduleEventViewCell.h"
 #import "DTOScheduleGradient.h"
-#import "DTOScheduleHeaderView.h"
+#import "DTOTableHeaderView.h"
 #import "DTOSchedulePullBackCell.h"
 #import "DTOTheme.h"
 #import "DTODarkTheme.h"
@@ -206,7 +206,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   [self.scheduleView registerClassForCellReuse:[DTOScheduleDayViewCell class]];
   [self.scheduleView registerClassForCellReuse:[DTOScheduleEventViewCell class]];
   [self.scheduleView registerClassForCellReuse:[DTOSchedulePullBackCell class]];
-  [self.scheduleView registerClassForHeaderFooterViewReuse:[DTOScheduleHeaderView class]];
+  [self.scheduleView registerClassForHeaderFooterViewReuse:[DTOTableHeaderView class]];
 
   self.events = [self eventsForDate:self.today];
   [self.scheduleView reloadData];
@@ -427,29 +427,29 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   switch (section) {
     case 1: {
-      DTOScheduleHeaderView *view =
-        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
+      DTOTableHeaderView *view =
+        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOTableHeaderView reuseIdentifier]];
       NSDate *date = [self.calendar nextDate:self.today];
       view.titleLabel.text = [self.headerFormatter stringFromDate:date];
       return view;
     }
     case 2: {
-      DTOScheduleHeaderView *view =
-        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
+      DTOTableHeaderView *view =
+        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOTableHeaderView reuseIdentifier]];
       NSDate *date = [self.calendar nextNextDate:self.today];
       view.titleLabel.text = [self.headerFormatter stringFromDate:date];
       return view;
     }
     case 3: {
-      DTOScheduleHeaderView *view =
-        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
+      DTOTableHeaderView *view =
+        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOTableHeaderView reuseIdentifier]];
       NSDate *date = [self.calendar nextDate:[self.calendar nextNextDate:self.today]];
       view.titleLabel.text = [self.headerFormatter stringFromDate:date];
       return view;
     }
     case 4: {
-      DTOScheduleHeaderView *view =
-        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOScheduleHeaderView reuseIdentifier]];
+      DTOTableHeaderView *view =
+        [tableView dequeueReusableHeaderFooterViewWithIdentifier:[DTOTableHeaderView reuseIdentifier]];
       NSDate *date = [self.calendar nextDate:[self.calendar dateWithOffset:3 fromDate:self.today]];
       view.titleLabel.text = [self.headerFormatter stringFromDate:date];
       return view;

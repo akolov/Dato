@@ -27,7 +27,7 @@
     self.textLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
     [self addSubview:self.textLabel];
 
-    [self pin:@[@"H:|-30.0-[textLabel]-(>=0)-|"] owner:self];
+    [self pin:@"H:|-30.0-[textLabel]-(>=0)-|" options:0 owner:self];
     [self.textLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
   }
   return self;

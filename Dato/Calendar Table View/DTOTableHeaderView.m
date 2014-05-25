@@ -1,5 +1,5 @@
 //
-//  DTOScheduleHeaderView.m
+//  DTOTableHeaderView.m
 //  Dato
 //
 //  Created by Alexander Kolov on 04/03/14.
@@ -7,17 +7,19 @@
 //
 
 #import "DTOConfig.h"
-#import "DTOScheduleHeaderView.h"
+#import "DTOTableHeaderView.h"
+
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
-@interface DTOScheduleHeaderView ()
+@interface DTOTableHeaderView ()
 
+@property (nonatomic, strong) NSLayoutConstraint *leadingConstraint;
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
-@implementation DTOScheduleHeaderView
+@implementation DTOTableHeaderView
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithReuseIdentifier:reuseIdentifier];
@@ -27,7 +29,10 @@
     self.titleLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
     [self.contentView addSubview:self.titleLabel];
 
-    [self pin:@[@"H:|-30.0-[titleLabel]"] owner:self];
+    self.leadingConstraint = [self.titleLabel pinToContainerEdge:NSLayoutAttributeLeading];
+    self.leadingConstraint.constant = 30.0f;
+
+    [self pin:@"H:[titleLabel]-(>=0)-|" options:0 owner:self];
     [self.titleLabel pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];
   }
   return self;
