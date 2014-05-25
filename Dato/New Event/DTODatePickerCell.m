@@ -60,29 +60,21 @@
 
     self.dateSelectionView = [DTODatePickerSelectionView autolayoutView];
     [self.contentView addSubview:self.dateSelectionView];
-  }
-  return self;
-}
-
-- (void)updateConstraints {
-  if (!self.didUpdateConstraints) {
-    self.didUpdateConstraints = YES;
 
     CGRect bounds = self.contentView.bounds;
     bounds.size.height = 300.0f;
     self.contentView.bounds = bounds;
 
     [self.contentView pin:@"H:[titleLabel]-(>=15.0)-|" options:0 owner:self];
-    [self.contentView pin:@"V:|-15.0-[titleLabel]-[datePicker(160.0)]|" options:0 owner:self];
-    [self.contentView pin:@"V:[dateSelectionView(35.0)]-61.5-|" options:0 owner:self];
+    [self.contentView pin:@"V:|-20.0-[titleLabel][datePicker(160.0)]" options:0 owner:self];
+    [self.contentView pin:@"V:|-98.5-[dateSelectionView(35.0)]" options:0 owner:self];
     [self.datePicker pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
     [self.dateSelectionView pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
 
     self.leadingConstraint = [self.titleLabel pinToContainerEdge:NSLayoutAttributeLeading];
     self.leadingConstraint.constant = self.indentationLevel * self.indentationWidth + 15.0f;
   }
-
-  [super updateConstraints];
+  return self;
 }
 
 - (UILabel *)textLabel {

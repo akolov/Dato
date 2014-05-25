@@ -27,7 +27,9 @@
 @property (nonatomic, strong, readonly) DTOForwardingCell *inviteesCell;
 @property (nonatomic, strong, readonly) DTOReminderCell *reminderCell;
 @property (nonatomic, strong, readonly) DTORepeatCell *repeatCell;
-@property (nonatomic, strong) NSArray *cells;
-@property (nonatomic, strong) EKEvent *event;
+@property (nonatomic, strong, readonly) NSArray *cells;
+@property (nonatomic, strong, readonly) EKEvent *event;
+
+- (instancetype)initWithEvent:(EKEvent *)event;
 
 @end

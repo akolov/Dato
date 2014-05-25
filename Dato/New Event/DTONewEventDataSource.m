@@ -31,10 +31,19 @@
 @property (nonatomic, strong) DTOForwardingCell *inviteesCell;
 @property (nonatomic, strong) DTOReminderCell *reminderCell;
 @property (nonatomic, strong) DTORepeatCell *repeatCell;
+@property (nonatomic, strong) EKEvent *event;
 
 @end
 
 @implementation DTONewEventDataSource
+
+- (instancetype)initWithEvent:(EKEvent *)event {
+  self = [super init];
+  if (self) {
+    self.event = event;
+  }
+  return self;
+}
 
 - (DTOTextFieldCell *)titleCell {
   if (!_titleCell) {
