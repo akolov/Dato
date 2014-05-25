@@ -15,6 +15,7 @@
 #import "DTOReminderCell.h"
 #import "DTORepeatCell.h"
 #import "DTOTextFieldCell.h"
+
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
@@ -72,6 +73,7 @@
   }
 
   _startDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  _startDateCell.dateSelectionView.tintColor = [DTOThemeManager theme].separatorColor;
   _startDateCell.textLabel.font = [UIFont lightOpenSansFontOfSize:14.0];
   _startDateCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _startDateCell.textLabel.text = @"Start";
@@ -87,6 +89,7 @@
   }
 
   _endDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
+  _endDateCell.dateSelectionView.tintColor = [DTOThemeManager theme].separatorColor;
   _endDateCell.textLabel.font = [UIFont lightOpenSansFontOfSize:14.0];
   _endDateCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _endDateCell.textLabel.text = @"End";

@@ -7,6 +7,7 @@ PODS:
     - ReactiveCocoa
   - AXKViewLayout (1.0.2)
   - HockeySDK (3.5.5)
+  - JRSwizzle (1.0)
   - ReactiveCocoa (2.3):
     - ReactiveCocoa/UI
   - ReactiveCocoa/Core (2.3):
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - AXKRACExtensions (~> 1.0.1)
   - AXKViewLayout (~> 1.0.2)
   - HockeySDK (~> 3.5.5)
+  - JRSwizzle (~> 1.0)
   - ReactiveCocoa (~> 2.3)
 
 SPEC CHECKSUMS:
@@ -27,6 +29,7 @@ SPEC CHECKSUMS:
   AXKRACExtensions: af7fec8f2ed021f2f66aae7797eaa08a62935dc7
   AXKViewLayout: af3293a33943b17554d40b857f2da99d025b2b48
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
+  JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
   ReactiveCocoa: 2066583826c17dde8e90c41e489f682048cc57c9
 
 COCOAPODS: 0.33.1

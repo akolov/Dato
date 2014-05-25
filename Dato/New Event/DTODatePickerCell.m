@@ -8,6 +8,32 @@
 
 #import "DTOConfig.h"
 #import "DTODatePickerCell.h"
+#import "UILabel+DTOAdditions.h"
+
+@interface DTODatePickerSelectionView : UIView
+
+@end
+
+@implementation DTODatePickerSelectionView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    self.backgroundColor = [UIColor clearColor];
+  }
+  return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+  CGContextRef context = UIGraphicsGetCurrentContext();
+
+  [self.tintColor setFill];
+
+  CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(rect), 0.5f));
+  CGContextFillRect(context, CGRectMake(0, CGRectGetMaxY(rect) - 0.5f, CGRectGetWidth(rect), 0.5f));
+}
+
+@end
 
 @interface DTODatePickerCell ()
 
@@ -15,6 +41,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) NSLayoutConstraint *leadingConstraint;
+@property (nonatomic, strong) UIView *dateSelectionView;
 
 @end
 
@@ -30,6 +57,9 @@
 
     self.datePicker = [UIDatePicker autolayoutView];
     [self.contentView addSubview:self.datePicker];
+
+    self.dateSelectionView = [DTODatePickerSelectionView autolayoutView];
+    [self.contentView addSubview:self.dateSelectionView];
   }
   return self;
 }
@@ -43,8 +73,10 @@
     self.contentView.bounds = bounds;
 
     [self.contentView pin:@"H:[titleLabel]-(>=15.0)-|" options:0 owner:self];
-    [self.datePicker pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView pin:@"V:|-15.0-[titleLabel]-[datePicker(160.0)]|" options:0 owner:self];
+    [self.contentView pin:@"V:[dateSelectionView(35.0)]-61.5-|" options:0 owner:self];
+    [self.datePicker pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
+    [self.dateSelectionView pinToFillContainerOnAxis:UILayoutConstraintAxisHorizontal];
 
     self.leadingConstraint = [self.titleLabel pinToContainerEdge:NSLayoutAttributeLeading];
     self.leadingConstraint.constant = self.indentationLevel * self.indentationWidth + 15.0f;

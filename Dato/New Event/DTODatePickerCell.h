@@ -11,5 +11,6 @@
 @interface DTODatePickerCell : UITableViewCell
 
 @property (nonatomic, strong, readonly) UIDatePicker *datePicker;
+@property (nonatomic, strong, readonly) UIView *dateSelectionView;
 
 @end
