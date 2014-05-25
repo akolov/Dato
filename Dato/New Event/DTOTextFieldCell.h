@@ -8,8 +8,10 @@
 
 @import UIKit;
 
+@class DTOTextField;
+
 @interface DTOTextFieldCell : UITableViewCell
 
-@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) DTOTextField *textField;
 
 @end

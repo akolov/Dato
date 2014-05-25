@@ -35,4 +35,8 @@
   return [DTOStyleKit foregroundSilverColor];
 }
 
+- (UIColor *)tretiaryTextColor {
+  return [DTOStyleKit foregroundBlueColor];
+}
+
 @end

@@ -14,6 +14,7 @@
 #import "DTOForwardingCell.h"
 #import "DTOReminderCell.h"
 #import "DTORepeatCell.h"
+#import "DTOTextField.h"
 #import "DTOTextFieldCell.h"
 
 #import "DTOTheme.h"
@@ -41,15 +42,13 @@
   }
 
   _titleCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
-  _titleCell.textField.font = [UIFont lightOpenSansFontOfSize:16.0];
-  _titleCell.textField.textColor = [DTOThemeManager theme].primaryTextColor;
+  _titleCell.textField.font = [UIFont semiBoldOpenSansFontOfSize:16.0];
+  _titleCell.textField.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _titleCell.indentationLevel = 1;
   _titleCell.indentationWidth = 15.0f;
-
-  NSDictionary *attributes = @{NSForegroundColorAttributeName: [DTOThemeManager theme].secondaryTextColor};
-  NSAttributedString *placeholder = [[NSAttributedString alloc] initWithString:@"Add a title..." attributes:attributes];
-
-  _titleCell.textField.attributedPlaceholder = placeholder;
+  _titleCell.textField.placeholder = @"Add a title...";
+  _titleCell.textField.placeholderColor = [DTOThemeManager theme].secondaryTextColor;
+  _titleCell.textField.placeholderFont = [UIFont lightOpenSansFontOfSize:16.0f];
 
   return _titleCell;
 }
@@ -109,7 +108,7 @@
   _locationCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _locationCell.textLabel.text = @"Location";
   _locationCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
-  _locationCell.detailTextLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
+  _locationCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _locationCell.detailTextLabel.text = @"In a galaxy far away";
 
   return _locationCell;
@@ -125,7 +124,7 @@
   _calendarCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _calendarCell.textLabel.text = @"Calendar";
   _calendarCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
-  _calendarCell.detailTextLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
+  _calendarCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _calendarCell.detailTextLabel.text = @"Work";
 
   return _calendarCell;
@@ -141,7 +140,7 @@
   _inviteesCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _inviteesCell.textLabel.text = @"Invitees";
   _inviteesCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
-  _inviteesCell.detailTextLabel.textColor = [DTOThemeManager theme].secondaryTextColor;
+  _inviteesCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
 
   return _inviteesCell;
 }

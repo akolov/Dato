@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) UIColor *separatorColor;
 @property (nonatomic, strong, readonly) UIColor *primaryTextColor;
 @property (nonatomic, strong, readonly) UIColor *secondaryTextColor;
+@property (nonatomic, strong, readonly) UIColor *tretiaryTextColor;
 
 + (instancetype)theme;
 

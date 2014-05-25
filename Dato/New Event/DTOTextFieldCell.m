@@ -8,6 +8,7 @@
 
 #import "DTOConfig.h"
 #import "DTOTextFieldCell.h"
+#import "DTOTextField.h"
 
 @interface DTOTextFieldCell ()
 
@@ -22,7 +23,7 @@
   if (self) {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    self.textField = [UITextField autolayoutView];
+    self.textField = [DTOTextField autolayoutView];
     [self.contentView addSubview:self.textField];
     [self.contentView pin:@"H:[textField]-15.0-|" options:0 owner:self];
     [self.textField pinToCenterInContainerOnAxis:UILayoutConstraintAxisVertical];

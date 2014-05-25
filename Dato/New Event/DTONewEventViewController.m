@@ -79,7 +79,7 @@
     return size.height;
   }
 
-  return 44.0f;
+  return 60.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

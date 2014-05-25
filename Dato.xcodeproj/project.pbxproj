@@ -29,6 +29,7 @@
 		FA6D29761932560900237050 /* DTORepeatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D29751932560900237050 /* DTORepeatCell.m */; };
 		FA6D297A19326C3F00237050 /* UILabel+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297819326AD000237050 /* UILabel+DTOAdditions.m */; };
 		FA6D297D19326E2200237050 /* UIView+DTOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297C19326E2200237050 /* UIView+DTOAdditions.m */; };
+		FA6D29801932746500237050 /* DTOTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6D297F1932746500237050 /* DTOTextField.m */; };
 		FAA8651F1923FDE400256B7B /* DTOSchedulePullBackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */; };
 		FAB4613B18AC5E74006E9437 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613A18AC5E74006E9437 /* Foundation.framework */; };
 		FAB4613D18AC5E74006E9437 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB4613C18AC5E74006E9437 /* CoreGraphics.framework */; };
@@ -111,6 +112,8 @@
 		FA6D297819326AD000237050 /* UILabel+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DTOAdditions.m"; sourceTree = "<group>"; };
 		FA6D297B19326E2200237050 /* UIView+DTOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DTOAdditions.h"; sourceTree = "<group>"; };
 		FA6D297C19326E2200237050 /* UIView+DTOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DTOAdditions.m"; sourceTree = "<group>"; };
+		FA6D297E1932746500237050 /* DTOTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOTextField.h; sourceTree = "<group>"; };
+		FA6D297F1932746500237050 /* DTOTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOTextField.m; sourceTree = "<group>"; };
 		FAA81EDE18C3F82F00CC3E8B /* DTOConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTOConfig.h; sourceTree = "<group>"; };
 		FAA8651D1923FDE400256B7B /* DTOSchedulePullBackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOSchedulePullBackCell.h; sourceTree = "<group>"; };
 		FAA8651E1923FDE400256B7B /* DTOSchedulePullBackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTOSchedulePullBackCell.m; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				FA6D29751932560900237050 /* DTORepeatCell.m */,
 				FA6D29651932261300237050 /* DTOTextFieldCell.h */,
 				FA6D29661932261300237050 /* DTOTextFieldCell.m */,
+				FA6D297E1932746500237050 /* DTOTextField.h */,
+				FA6D297F1932746500237050 /* DTOTextField.m */,
 			);
 			path = "New Event";
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				FA6D29641932251200237050 /* DTONewEventDataSource.m in Sources */,
 				FAB4614718AC5E74006E9437 /* main.m in Sources */,
 				FA346ED219222E9F0018704F /* DTOThemeManager.m in Sources */,
+				FA6D29801932746500237050 /* DTOTextField.m in Sources */,
 				FA346EC219222B300018704F /* DTOConstants.m in Sources */,
 				FA6D29731932520900237050 /* DTOReminderCell.m in Sources */,
 				FA6D297D19326E2200237050 /* UIView+DTOAdditions.m in Sources */,
