@@ -11,6 +11,6 @@
 
 @interface DTONewEventViewController : UITableViewController
 
-- (instancetype)initWithEvent:(EKEvent *)event inStore:(EKEventStore *)eventStore;
+- (instancetype)initWithEvent:(EKEvent *)event inStore:(EKEventStore *)eventStore calendar:(NSCalendar *)calendar;
 
 @end

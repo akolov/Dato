@@ -248,7 +248,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   EKEvent *event = [EKEvent eventWithEventStore:self.eventStore];
   event.calendar = self.eventStore.defaultCalendarForNewEvents;
 
-  DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithEvent:event inStore:self.eventStore];
+  DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithEvent:event inStore:self.eventStore calendar:self.calendar];
   UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:vc];
   navigation.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
 
@@ -490,7 +490,8 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
   if (indexPath.section == 0) {
     if ([self.events count] != 0 && indexPath.row > 0) {
       EKEvent *event = self.events[(NSUInteger)indexPath.row - 1];
-      DTONewEventViewController *vc = [[DTONewEventViewController alloc] initWithEvent:event inStore:self.eventStore];
+      DTONewEventViewController *vc = [[DTONewEventViewController alloc]
+                                       initWithEvent:event inStore:self.eventStore calendar:self.calendar];
       [self.navigationController pushViewController:vc animated:YES];
     }
   }
@@ -545,6 +546,7 @@ typedef NS_ENUM(NSInteger, DTODateBusyness) {
         [self.scheduleView insertRowsAtIndexPaths:insert withRowAnimation:UITableViewRowAnimationBottom];
       }
       [self.scheduleView endUpdates];
+      [self.scheduleView reloadData];
 
       [UIView animateWithDuration:0.25 animations:^{
         [self sizeScheduleToFit];

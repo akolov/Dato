@@ -20,7 +20,7 @@
 #import "DTOTheme.h"
 #import "DTOThemeManager.h"
 
-@interface DTONewEventDataSource () <UITextFieldDelegate>
+@interface DTONewEventDataSource ()
 
 @property (nonatomic, strong) DTOTextFieldCell *titleCell;
 @property (nonatomic, strong) DTOCheckmarkCell *allDayCell;
@@ -51,10 +51,10 @@
 - (DTOTextFieldCell *)titleCell {
   if (!_titleCell) {
     _titleCell = [[DTOTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    _titleCell.textField.text = self.event.title;
   }
 
   _titleCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
-  _titleCell.textField.delegate = self;
   _titleCell.textField.font = [UIFont semiBoldOpenSansFontOfSize:16.0];
   _titleCell.textField.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _titleCell.indentationLevel = 1;
@@ -63,22 +63,19 @@
   _titleCell.textField.placeholderColor = [DTOThemeManager theme].secondaryTextColor;
   _titleCell.textField.placeholderFont = [UIFont lightOpenSansFontOfSize:16.0f];
 
-  _titleCell.textField.text = self.event.title;
-
   return _titleCell;
 }
 
 - (DTOCheckmarkCell *)allDayCell {
   if (!_allDayCell) {
     _allDayCell = [[DTOCheckmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    _allDayCell.checked = self.event.allDay;
   }
 
   _allDayCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
   _allDayCell.textLabel.font = [UIFont lightOpenSansFontOfSize:14.0];
   _allDayCell.textLabel.textColor = [DTOThemeManager theme].primaryTextColor;
   _allDayCell.textLabel.text = @"All-Day";
-
-  _allDayCell.checked = self.event.allDay;
 
   return _allDayCell;
 }
@@ -88,6 +85,9 @@
     _startDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     [_startDateCell.datePicker addTarget:self action:@selector(startDatePickerDidChangeDate:)
                         forControlEvents:UIControlEventValueChanged];
+    if (self.event.startDate) {
+      _startDateCell.datePicker.date = self.event.startDate;
+    }
   }
 
   _startDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -98,10 +98,6 @@
   _startDateCell.indentationLevel = 1;
   _startDateCell.indentationWidth = 15.0f;
 
-  if (self.event.startDate) {
-    _startDateCell.datePicker.date = self.event.startDate;
-  }
-
   return _startDateCell;
 }
 
@@ -110,6 +106,9 @@
     _endDateCell = [[DTODatePickerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     [_endDateCell.datePicker addTarget:self action:@selector(endDatePickerDidChangeDate:)
                       forControlEvents:UIControlEventValueChanged];
+    if (self.event.endDate) {
+      _endDateCell.datePicker.date = self.event.endDate;
+    }
   }
 
   _endDateCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -120,16 +119,13 @@
   _endDateCell.indentationLevel = 1;
   _endDateCell.indentationWidth = 15.0f;
 
-  if (self.event.endDate) {
-    _endDateCell.datePicker.date = self.event.endDate;
-  }
-
   return _endDateCell;
 }
 
 - (DTOForwardingCell *)locationCell {
   if (!_locationCell) {
     _locationCell = [[DTOForwardingCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _locationCell.detailTextLabel.text = self.event.location;
   }
 
   _locationCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -139,14 +135,13 @@
   _locationCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _locationCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
 
-  _locationCell.detailTextLabel.text = self.event.location;
-
   return _locationCell;
 }
 
 - (DTOForwardingCell *)calendarCell {
   if (!_calendarCell) {
     _calendarCell = [[DTOForwardingCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _calendarCell.detailTextLabel.text = self.event.calendar.title;
   }
 
   _calendarCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -157,14 +152,13 @@
   _calendarCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
   _calendarCell.knob.backgroundColor = [UIColor colorWithCGColor:self.event.calendar.CGColor];
 
-  _calendarCell.detailTextLabel.text = self.event.calendar.title;
-
   return _calendarCell;
 }
 
 - (DTOForwardingCell *)inviteesCell {
   if (!_inviteesCell) {
     _inviteesCell = [[DTOForwardingCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _inviteesCell.detailTextLabel.text = [self.event.attendees componentsJoinedByString:@", "];
   }
 
   _inviteesCell.backgroundColor = [DTOThemeManager theme].viewBackgroundColor;
@@ -173,8 +167,6 @@
   _inviteesCell.textLabel.text = @"Invitees";
   _inviteesCell.detailTextLabel.font = [UIFont semiBoldOpenSansFontOfSize:14.0];
   _inviteesCell.detailTextLabel.textColor = [DTOThemeManager theme].tretiaryTextColor;
-
-  _inviteesCell.detailTextLabel.text = [self.event.attendees componentsJoinedByString:@", "];
 
   return _inviteesCell;
 }
@@ -281,10 +273,13 @@
   return self.cells[(NSUInteger)indexPath.section][(NSUInteger)indexPath.row];
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - Public Methods
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-  self.event.title = textField.text;
+- (void)updateEvent {
+  self.event.title = self.titleCell.textField.text;
+  self.event.allDay = self.allDayCell.checked;
+  self.event.startDate = self.startDateCell.datePicker.date;
+  self.event.endDate = self.endDateCell.datePicker.date;
 }
 
 @end

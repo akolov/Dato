@@ -230,12 +230,12 @@
 		FA6D295E193224D300237050 /* New Event */ = {
 			isa = PBXGroup;
 			children = (
-				FA6D29811932850B00237050 /* DTOCalendarListController.h */,
-				FA6D29821932850B00237050 /* DTOCalendarListController.m */,
 				FA6D295F193224D300237050 /* DTONewEventViewController.h */,
 				FA6D2960193224D300237050 /* DTONewEventViewController.m */,
 				FA6D29621932251200237050 /* DTONewEventDataSource.h */,
 				FA6D29631932251200237050 /* DTONewEventDataSource.m */,
+				FA6D29811932850B00237050 /* DTOCalendarListController.h */,
+				FA6D29821932850B00237050 /* DTOCalendarListController.m */,
 				FA6D2968193245EB00237050 /* DTOCheckmarkCell.h */,
 				FA6D2969193245EB00237050 /* DTOCheckmarkCell.m */,
 				FA6D296B1932477100237050 /* DTODatePickerCell.h */,

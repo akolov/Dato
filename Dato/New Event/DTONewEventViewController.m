@@ -26,6 +26,7 @@
 @property (nonatomic, strong) EKEvent *event;
 @property (nonatomic, strong) EKEventStore *eventStore;
 @property (nonatomic, strong) DTONewEventDataSource *dataSource;
+@property (nonatomic, strong) NSCalendar *calendar;
 
 - (void)didTapLeftNavigationBarButton:(id)sender;
 - (void)didTapRightNavigationBarButton:(id)sender;
@@ -34,11 +35,12 @@
 
 @implementation DTONewEventViewController
 
-- (instancetype)initWithEvent:(EKEvent *)event inStore:(EKEventStore *)eventStore {
+- (instancetype)initWithEvent:(EKEvent *)event inStore:(EKEventStore *)eventStore calendar:(NSCalendar *)calendar {
   self = [super initWithStyle:UITableViewStyleGrouped];
   if (self) {
     self.event = event;
     self.eventStore = eventStore;
+    self.calendar = calendar;
   }
   return self;
 }
@@ -63,6 +65,16 @@
   }
 
   self.dataSource = [[DTONewEventDataSource alloc] initWithEvent:self.event];
+
+  if (!self.event.startDate) {
+    self.event.startDate = [NSDate date];
+  }
+
+  if (!self.event.endDate) {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.hour = 1;
+    self.event.endDate = [self.calendar dateByAddingComponents:components toDate:self.event.startDate options:0];
+  }
 
   self.tableView.dataSource = self.dataSource;
   self.tableView.backgroundColor = [DTOThemeManager theme].windowBackgroundColor;
@@ -96,6 +108,8 @@
   }
 
   if (self.event.isNew || !self.event.hasRecurrenceRules) {
+    [self.dataSource updateEvent];
+
     NSError *error;
     if (![self.eventStore saveEvent:self.event span:EKSpanFutureEvents commit:YES error:&error]) {
       ErrorLog(error.localizedDescription);
@@ -123,6 +137,8 @@
        else {
          span = EKSpanFutureEvents;
        }
+
+       [self.dataSource updateEvent];
 
        NSError *error;
        if (![self.eventStore saveEvent:self.event span:EKSpanFutureEvents commit:YES error:&error]) {

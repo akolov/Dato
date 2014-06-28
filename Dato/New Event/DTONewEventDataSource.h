@@ -31,5 +31,6 @@
 @property (nonatomic, strong, readonly) EKEvent *event;
 
 - (instancetype)initWithEvent:(EKEvent *)event;
+- (void)updateEvent;
 
 @end
