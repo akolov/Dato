@@ -1,4 +1,4 @@
 Calendar
 ========
 
-New calendar app
+Prototype of a calendar app
